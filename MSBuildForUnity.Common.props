@@ -6,8 +6,8 @@
     <UnityProjectAssetsPath>E:\UnityProjects\CRASHAsteroids\Assets</UnityProjectAssetsPath>
     <MSBuildForUnityDefaultOutputPath>$(UnityProjectAssetsPath)\Dependencies</MSBuildForUnityDefaultOutputPath>
     
-    <UnityCurrentPlatform>WindowsStandalone64</UnityCurrentPlatform>
-    <UnityCurrentTargetFramework>netstandard2.0</UnityCurrentTargetFramework>
+    <UnityCurrentPlatform>WSA</UnityCurrentPlatform>
+    <UnityCurrentTargetFramework>net46</UnityCurrentTargetFramework>
     
     <UnityMajorVersion>2018</UnityMajorVersion>
     <UnityMinorVersion>4</UnityMinorVersion>
