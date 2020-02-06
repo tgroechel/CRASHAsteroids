@@ -1,0 +1,13 @@
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Editor.asmdef.meta
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Init.cs
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\Editor\Microsoft.Windows.MixedReality.DotNetWinRT.Init.cs.meta
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\x64\MonoSupport.dll
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT\x64\MonoSupport.dll.meta
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\DotNetAdapter.deps.json
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT.dll.meta
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\System.Drawing.Primitives.dll.meta
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\Microsoft.Windows.MixedReality.DotNetWinRT.dll
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\Plugins\netstandard2.0\System.Drawing.Primitives.dll
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\.obj\Release\netstandard2.0\DotNetAdapter.csprojAssemblyReference.cache
+E:\UnityProjects\CRASHAsteroids\Assets\MixedRealityToolkit.Providers\WindowsMixedReality\DotNetAdapter\.obj\Release\netstandard2.0\DotNetAdapter.csproj.CopyComplete
