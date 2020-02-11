@@ -40,3 +40,6 @@ sysinfo.txt
 Assets/StreamingAssets/crashlytics-build.properties
 
 UWP/
+MSBuildForUnity.Common.props
+MSBuildForUnity.Common.props
+Assets/MixedRealityToolkit.Providers/WindowsMixedReality/DotNetAdapter/DotNetAdapter.csproj.meta
