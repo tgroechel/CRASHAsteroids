@@ -31,14 +31,14 @@ public class SphereScript : MonoBehaviour
 
     public void Lauch()
     {
-        rb.velocity = new Vector3(Camera.main.transform.forward.x * 1,
-            Camera.main.transform.forward.y * 15,
-            Camera.main.transform.forward.z * 15);
+        rb.velocity = new Vector3(Camera.main.transform.forward.x * 10,
+            Camera.main.transform.forward.y * 10,
+            Camera.main.transform.forward.z * 10);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        Vector3 vel = Vector3.Normalize(rb.velocity) * 15;
+        Vector3 vel = Vector3.Normalize(rb.velocity) * 10;
         rb.velocity = vel;
     }
 }

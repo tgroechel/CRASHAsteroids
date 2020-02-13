@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Vector3 vel = Vector3.Normalize(collision.rigidbody.velocity) * 15;
-        collision.rigidbody.velocity = vel;
+        // Vector3 vel = Vector3.Normalize(collision.rigidbody.velocity) * 15;
+        //collision.rigidbody.velocity = vel;
     }
 }
