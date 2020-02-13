@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: a70ed92714808e548987b795131f2793
+  - enabled: 1
+    path: Assets/Scenes/Zhaoqi.unity
+    guid: fe4015749328e1b4b88fa7611617c1c1
   m_configObjects: {}
