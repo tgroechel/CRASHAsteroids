@@ -2,43 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereScript : MonoBehaviour
-{
-    
+public class SphereScript : MonoBehaviour {
+
     private Rigidbody rb;
+    public float speed;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
-    public void ResetPosition()
-    {
+    public void ResetPosition() {
         transform.position = new Vector3(0, 0, 4);
         rb.velocity = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.R)) {
             ResetPosition();
         }
     }
 
-    public void Lauch()
-    {
-        rb.velocity = new Vector3(Camera.main.transform.forward.x * 10,
-            Camera.main.transform.forward.y * 10,
-            Camera.main.transform.forward.z * 10);
+    public void Lauch() {
+        rb.velocity = Camera.main.transform.forward * speed;
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        Vector3 vel = Vector3.Normalize(rb.velocity) * 10;
-        rb.velocity = vel;
+    public void OnCollisionEnter(Collision collision) {
+        rb.velocity = Vector3.Normalize(rb.velocity) * speed;
     }
 }
