@@ -536,7 +536,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    14: master;DOTNETWINRT_PRESENT
+    4: 
+    7: 
+    14: master
   platformArchitecture:
     iOS: 1
   scriptingBackend: {}

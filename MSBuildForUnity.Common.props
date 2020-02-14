@@ -2,11 +2,11 @@
   <PropertyGroup>
     <MSBuildForUnityVersion>0.8.3</MSBuildForUnityVersion>
     
-    <MSBuildForUnityGeneratedOutputDirectory>E:\UnityProjects\CRASHAsteroids\MSBuild\Projects</MSBuildForUnityGeneratedOutputDirectory>
-    <UnityProjectAssetsPath>E:\UnityProjects\CRASHAsteroids\Assets</UnityProjectAssetsPath>
+    <MSBuildForUnityGeneratedOutputDirectory>C:\Projects\CRASHAsteroids\MSBuild\Projects</MSBuildForUnityGeneratedOutputDirectory>
+    <UnityProjectAssetsPath>C:\Projects\CRASHAsteroids\Assets</UnityProjectAssetsPath>
     <MSBuildForUnityDefaultOutputPath>$(UnityProjectAssetsPath)\Dependencies</MSBuildForUnityDefaultOutputPath>
     
-    <UnityCurrentPlatform>WSA</UnityCurrentPlatform>
+    <UnityCurrentPlatform>WindowsStandalone64</UnityCurrentPlatform>
     <UnityCurrentTargetFramework>net46</UnityCurrentTargetFramework>
     
     <UnityMajorVersion>2018</UnityMajorVersion>
