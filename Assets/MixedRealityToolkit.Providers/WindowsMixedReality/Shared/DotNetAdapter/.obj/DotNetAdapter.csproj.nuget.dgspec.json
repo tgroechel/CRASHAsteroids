@@ -44,6 +44,7 @@
         "net46": {
           "dependencies": {
             "Microsoft.Windows.MixedReality.DotNetWinRT": {
+              "suppressParent": "Analyzers",
               "target": "Package",
               "version": "[0.5.1045, )"
             }
