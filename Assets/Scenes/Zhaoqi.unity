@@ -3106,6 +3106,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062876, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
         type: 3}
       propertyPath: m_Enabled
