@@ -1262,6 +1262,8 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -0.12
   offsetZ: 0.7
+  rotation_speed: 3
+  visible_angle: 30
 --- !u!1 &1031823773
 GameObject:
   m_ObjectHideFlags: 0

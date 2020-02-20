@@ -12,6 +12,8 @@ public class PointAtBoss : MonoBehaviour
     public float offsetX = 0;
     public float offsetY = 0;
     public float offsetZ = 0;
+    public float rotation_speed = 0;
+    public float visible_angle = 0;
 
 
     // Start is called before the first frame update
@@ -31,9 +33,18 @@ public class PointAtBoss : MonoBehaviour
 
         Vector3 relativePos2Boss = boss.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos2Boss, Vector3.up);
-        rotation *= Quaternion.Euler(90, 0, 0) * Quaternion.Euler(0, yAngle += 5, 0);
+        rotation *= Quaternion.Euler(90, 0, 0) * Quaternion.Euler(0, yAngle += rotation_speed, 0);
         transform.rotation = rotation;
 
         //
+        float angle = Vector3.Angle(relativePos2Boss, cam.transform.forward);
+        if (angle > visible_angle)
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 }
