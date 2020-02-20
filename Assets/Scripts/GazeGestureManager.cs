@@ -18,24 +18,32 @@ public class GazeGestureManager : MonoBehaviour
 
         // Set up a GestureRecognizer to detect Select gestures.
         recognizer = new GestureRecognizer();
-        recognizer.SetRecognizableGestures(GestureSettings.Tap);
+        recognizer.SetRecognizableGestures(GestureSettings.Tap | GestureSettings.DoubleTap);
         recognizer.Tapped += Recognizer_TappedEvent;
         recognizer.StartCapturingGestures();
     }
 
-    private void Recognizer_TappedEvent(TappedEventArgs obj)
+    private void Recognizer_TappedEvent(TappedEventArgs tappedEventArgs)
     {
-        // Do a raycast into the world based on the user's
-        // head position and orientation.
-        var headPosition = Camera.main.transform.position;
-        var gazeDirection = Camera.main.transform.forward;
-
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+        if(tappedEventArgs.tapCount == 1)
         {
-            // Shoot projectile towards the point
-            FiringProjectiles.FireBullet(hitInfo.point);
+            // Do a raycast into the world based on the user's
+            // head position and orientation.
+            var headPosition = Camera.main.transform.position;
+            var gazeDirection = Camera.main.transform.forward;
+
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+            {
+                // Shoot projectile towards the point
+                FiringProjectiles.FireBullet(hitInfo.point);
+            }
+        }
+        else
+        {
+            FiringProjectiles.magazine.UnionWith(FiringProjectiles.shells);
+            AlignAmmo.UpdateAmmoCount(FiringProjectiles.magazine.Count);
         }
     }
 

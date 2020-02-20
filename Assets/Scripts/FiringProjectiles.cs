@@ -12,8 +12,8 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     public static string firingHand = "Right Hand";
     public static string reloadingHand = "Left Hand";
     public static Vector3 bulletRelativeToCamera = new Vector3(0, 0, 0.5f);
-    private static HashSet<GameObject> magazine;
-    private static HashSet<GameObject> shells;
+    public static HashSet<GameObject> magazine;
+    public static HashSet<GameObject> shells;
 
     
     void Awake()
