@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d9acc7968244a8886f3af591305bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProfile: {fileID: 11400000, guid: 31a611a779d3499e8e35f1a2018ca841, type: 2}
+  activeProfile: {fileID: 11400000, guid: c16bd84709792144aabf1ec8e454f321, type: 2}
 --- !u!4 &1464568098
 Transform:
   m_ObjectHideFlags: 0
@@ -3110,6 +3110,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793658073546062877, guid: 9a61d06fa995b624e9beca69f216f37b,
+        type: 3}
+      propertyPath: animCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 793658073546062878, guid: 9a61d06fa995b624e9beca69f216f37b,
         type: 3}
