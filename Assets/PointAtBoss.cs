@@ -17,7 +17,7 @@ public class PointAtBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        boss = GameObject.Find("Cola Can");
+        boss = GameObject.Find("BossBot");
         cam = GameObject.Find("Main Camera");
     }
 
