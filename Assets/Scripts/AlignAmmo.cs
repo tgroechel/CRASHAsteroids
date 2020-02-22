@@ -4,11 +4,15 @@ using TMPro;
 public class AlignAmmo : MonoBehaviour
 {
     public static TextMeshProUGUI textComponent;
-    public static Vector3 ammoRelativeToCamera = new Vector3(-1.50f, 0.6f, 1f);
+    public static GameObject cam;
+    public float offsetX = -0.395f;
+    public float offsetY = 0.170f;
+    public float offsetZ = 0.310f;
 
     // Start is called before the first frame update
     void Awake()
     {
+        cam = GameObject.Find("Main Camera");
         textComponent = GetComponent<TextMeshProUGUI>();
         textComponent.SetText("Ammo Remaining " + FiringProjectiles.magazineSize);
     }
@@ -16,10 +20,12 @@ public class AlignAmmo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var headPosition = Camera.main.transform.position + ammoRelativeToCamera;
-        var gazeDirection = Camera.main.transform.forward;
-        transform.position = headPosition;
-        // transform.rotation = Quaternion.FromToRotation(Vector3.up, gazeDirection);
+        var camRotation = Camera.main.transform.rotation;
+        transform.position = cam.transform.position
+            + cam.transform.rotation * Vector3.forward * offsetZ
+            + cam.transform.rotation * Vector3.up * offsetY
+            + cam.transform.rotation * Vector3.right * offsetX;
+        transform.rotation = camRotation;
     }
 
     // Update ammo count
