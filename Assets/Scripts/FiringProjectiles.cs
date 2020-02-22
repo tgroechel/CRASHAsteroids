@@ -4,14 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMixedRealityInputActionHandler
+public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMixedRealityInputActionHandler, IMixedRealityGestureHandler
 {
     public GameObject bullet;
     public static int magazineSize = 10;
     public static float velocity = 10;
     public static string firingHand = "Right Hand";
     public static string reloadingHand = "Left Hand";
-    public static Vector3 bulletRelativeToCamera = new Vector3(0, 0, 0.5f);
+    public static Vector3 bulletRelativeToCamera = new Vector3(0, 0, 1f);
     public static HashSet<GameObject> magazine;
     public static HashSet<GameObject> shells;
 
@@ -19,6 +19,7 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     void Awake()
     {
         CoreServices.InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
+        CoreServices.InputSystem?.RegisterHandler<IMixedRealityGestureHandler>(this);
     }
 
     // Start is called before the first frame update
@@ -45,7 +46,7 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     }
 
     // Fires a bullet (towards the position given) if present in the magazine, else prompts to reload
-    public static void FireBullet(Vector3 targetPosition)
+    public static void FireBulletToPosition(Vector3 targetPosition)
     {
         if (magazine.Count > 0)
         {
@@ -110,31 +111,76 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
 
     public void OnActionStarted(BaseInputEventData eventData)
     {
-        print("Action Started: " + eventData.MixedRealityInputAction.Description);
+        //print("Action Started: " + eventData.MixedRealityInputAction.Description);
     }
 
     public void OnActionEnded(BaseInputEventData eventData)
     {
-        print("Action Ended " + eventData.MixedRealityInputAction.Description);
+        //print("Action Ended " + eventData.MixedRealityInputAction.Description);
     }
 
     // Fire using firingHand and reload using reloadingHand
     void IMixedRealityPointerHandler.OnPointerClicked(MixedRealityPointerEventData eventData)
     {
-        print(eventData.InputSource.SourceName + " clicked!");
-        if(eventData.InputSource.SourceName == firingHand)
+        //print(eventData.InputSource.SourceName + " clicked! " + eventData.MixedRealityInputAction.Description + "action detected!");
+        //if (eventData.InputSource.SourceName == firingHand)
+        //{
+        //    var result = eventData.Pointer.Result;
+        //    var targetposition = result.Details.Point;
+        //    // var targetrotation = quaternion.lookrotation(result.details.normal); 
+        //    // firingprojectiles.firebullet(transform.position);
+        //    FireBulletToPosition(targetposition);
+        //}
+        //else if (eventData.InputSource.SourceName == reloadingHand)
+        //{
+        //    magazine.UnionWith(shells);
+        //    AlignAmmo.UpdateAmmoCount(magazine.Count);
+        //}
+    }
+
+    public void OnGestureStarted(InputEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnGestureUpdated(InputEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnGestureCompleted(InputEventData eventData)
+    {
+        if (eventData.InputSource.SourceName == firingHand)
         {
-            var result = eventData.Pointer.Result;
-            var targetPosition = result.Details.Point;
-            // var targetRotation = Quaternion.LookRotation(result.Details.Normal);
-            // FiringProjectiles.FireBullet(transform.position);
-            FireBullet(targetPosition);
+            // Do a raycast into the world based on the user's
+            // head position and orientation.
+            var headPosition = Camera.main.transform.position;
+            var gazeDirection = Camera.main.transform.forward;
+
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
+            {
+                // Shoot projectile towards the point
+                FiringProjectiles.FireBulletToPosition(hitInfo.point);
+            }
         }
-        else if(eventData.InputSource.SourceName == reloadingHand)
+        else
         {
             magazine.UnionWith(shells);
             AlignAmmo.UpdateAmmoCount(magazine.Count);
         }
-        print("Pointer Clicked!");
+
+        // To check which gesture occurred and by which input source
+        var currentText = AlignAmmo.textComponent.textInfo.textComponent.text;
+        var actionDescription = eventData.MixedRealityInputAction.Description;
+        var actionSource = eventData.InputSource.SourceName;
+        var stringToAppend = "Gesture Completed: " + actionDescription + "\n" + "By Input Source: " + actionSource;
+        AlignAmmo.textComponent.SetText(currentText + "\n\n" + stringToAppend);
+    }
+
+    public void OnGestureCanceled(InputEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }

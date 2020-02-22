@@ -25,6 +25,7 @@ public class GazeGestureManager : MonoBehaviour
 
     private void Recognizer_TappedEvent(TappedEventArgs tappedEventArgs)
     {
+        print("TappedEvent recognised!");
         if(tappedEventArgs.tapCount == 1)
         {
             // Do a raycast into the world based on the user's
@@ -37,7 +38,7 @@ public class GazeGestureManager : MonoBehaviour
             if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
             {
                 // Shoot projectile towards the point
-                FiringProjectiles.FireBullet(hitInfo.point);
+                FiringProjectiles.FireBulletToPosition(hitInfo.point);
             }
         }
         else
