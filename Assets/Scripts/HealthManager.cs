@@ -10,7 +10,7 @@ public class HealthManager : MonoBehaviour
     Color objOriginalColor;
     List<Color> childOriginalColors;
     public static float damageTime;
-    public static Color colorOnDamage = new Color(0.58f, 0, 0);
+    public static Color colorOnDamage = new Color(1, 0, 0);
 
     // Start is called before the first frame update
     void Awake()
@@ -54,7 +54,6 @@ public class HealthManager : MonoBehaviour
         if (health - damage <= 0)
         {
             gameObject.SetActive(false);
-            bullet.SetActive(false);
         }
         else
         {
@@ -83,8 +82,11 @@ public class HealthManager : MonoBehaviour
                     i++;
                 }
             }
-            
-            bullet.SetActive(false);
         }
+    }
+
+    public void CallDecreaseHealth(float damage, GameObject bullet)
+    {
+        StartCoroutine(DecreaseHealth(damage, bullet));
     }
 }

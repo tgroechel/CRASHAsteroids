@@ -32,8 +32,8 @@ public class HitEnemy : MonoBehaviour
         {
             print("HealthManager present!");
             var healthManager = other.gameObject.GetComponent<HealthManager>();
-            StartCoroutine(healthManager.DecreaseHealth(bulletDamage, gameObject));
-            objRigidbody.velocity = Vector3.zero;
+            healthManager.CallDecreaseHealth(bulletDamage, gameObject);
+            gameObject.SetActive(false);
         }
         else
         {
