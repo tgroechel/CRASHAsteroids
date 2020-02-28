@@ -1,24 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BehaviorDesigner.Runtime.Tasks;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
     [TaskIcon("Assets/Behavior Designer Tutorials/Tasks/Editor/{SkinColor}SeekIcon.png")]
-    public class MoveToward : Action
+    public class MoveTowards : Action
     {
         [Tooltip("The speed of the agent")]
         public SharedFloat speed = 10;
         [Tooltip("The agent has arrived when the destination is less than the specified amount. This distance should be greater than or equal to the NavMeshAgent StoppingDistance.")]
         public SharedFloat arriveDistance = 0.2f;
-        [Tooltip("The target position the agent is moving towards")]
+        [Tooltip("The distance you want to move relative to your current position.")]
+        public SharedVector3 relativePositionChange;
+        [Tooltip("The target position the agent is moving towards. Only used if relative position change is 0.")]
         public SharedVector3 targetPosition;
 
-        private Rigidbody myBody;
+        private Vector3 goalPosition;
 
         public override void OnStart()
         {
-            myBody = GetComponent<Rigidbody>();
-            //Vector3 direction = (targetPosition.Value - myBody.transform.position).normalized * speed.Value;
+            if (relativePositionChange.Value == new Vector3(0f, 0f, 0f))
+            {
+                goalPosition = targetPosition.Value;
+            }
+            else
+            {
+                goalPosition = transform.position + relativePositionChange.Value;
+            }
         }
 
         // Seek the destination. Return success once the agent has reached the destination.
@@ -29,6 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks
             {
                 return TaskStatus.Success;
             }
+            transform.position = Vector3.MoveTowards(transform.position, goalPosition, speed.Value * Time.deltaTime);
 
             return TaskStatus.Running;
         }
@@ -39,16 +49,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         /// <returns>True if the agent has arrived at the destination.</returns>
         private bool HasArrived()
         {
-            return (targetPosition.Value - myBody.transform.position).sqrMagnitude <= Mathf.Pow(arriveDistance.Value,2);
-        }
-
-
-        /// <summary>
-        /// The behavior tree has ended. Stop moving.
-        /// </summary>
-        public override void OnBehaviorComplete()
-        {
-            //Stop();
+            return (goalPosition - transform.position).sqrMagnitude <= Mathf.Pow(arriveDistance.Value,2);
         }
     }
 }
