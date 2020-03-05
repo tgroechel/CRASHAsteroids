@@ -14,7 +14,7 @@ public class AlignAmmo : MonoBehaviour
     {
         cam = GameObject.Find("Main Camera");
         textComponent = GetComponent<TextMeshProUGUI>();
-        textComponent.SetText("Ammo Remaining " + FiringProjectiles.magazineSize);
+        textComponent.SetText("Ammo Remaining " + FiringProjectilesReuse.magazineSize);
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class AlignAmmo : MonoBehaviour
     // Update ammo count
     public static void UpdateAmmoCount(int bulletsLeft)
     {
-        if(bulletsLeft == FiringProjectiles.magazineSize)
+        if(bulletsLeft == FiringProjectilesReuse.magazineSize)
             textComponent.SetText("Ammo Remaining " + bulletsLeft + "\n" + "Reloaded!");
         else if(bulletsLeft > 0)
             textComponent.SetText("Ammo Remaining " + bulletsLeft);
