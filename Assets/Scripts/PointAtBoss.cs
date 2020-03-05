@@ -36,7 +36,7 @@ public class PointAtBoss : MonoBehaviour
         rotation *= Quaternion.Euler(90, 0, 0) * Quaternion.Euler(0, yAngle += rotation_speed, 0);
         transform.rotation = rotation;
 
-        //
+        // only show the indicator if you are not seeing the boss
         float angle = Vector3.Angle(relativePos2Boss, cam.transform.forward);
         if (angle > visible_angle)
         {
