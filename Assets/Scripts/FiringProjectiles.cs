@@ -7,6 +7,12 @@ using UnityEngine;
 public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMixedRealityInputActionHandler, IMixedRealityGestureHandler
 {
     public GameObject bullet;
+
+    // projectile related assets
+    public List<GameObject> VFXs = new List<GameObject>();
+
+
+
     public static int magazineSize = 10;
     public static float velocity = 10;
     public static string firingHand = "Right Hand";
@@ -15,7 +21,10 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     public static HashSet<GameObject> magazine;
     public static HashSet<GameObject> shells;
 
+    public static GameObject spawnEffect;
     
+
+
     void Awake()
     {
         CoreServices.InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
@@ -29,15 +38,20 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
         string pathToBullet = ResourcePathManager.projectilesFolder + ResourcePathManager.bullet1;
         bullet = Resources.Load<GameObject>(pathToBullet) as GameObject;
 
+
+
         // Load the magazine with magazineSize number of bullets
         magazine = new HashSet<GameObject>();
         shells = new HashSet<GameObject>();
         for(int i=0;i<magazineSize;i++)
         {
             GameObject newBullet = Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
+            //GameObject newBullet = Instantiate(, new Vector3(0, 0, 0), Quaternion.identity);
             newBullet.SetActive(false);
             magazine.Add(newBullet);
         }
+
+
     }
 
     private void Update()
@@ -48,25 +62,33 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     // Fires a bullet (towards the position given) if present in the magazine, else prompts to reload
     public static void FireBulletToPosition(Vector3 targetPosition)
     {
+        GameObject effect = Resources.Load<GameObject>(ResourcePathManager.projectile) as GameObject;
+        GameObject vfx = Instantiate(effect, Camera.main.transform.position, Quaternion.identity);
+        //vfx.GetComponent<ProjectileMoveScript>().SetTarget(GameObject.Find("BossBot"), null);
+        vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPosition);
         if (magazine.Count > 0)
         {
             foreach(GameObject bullet in magazine)
             {
-                magazine.Remove(bullet);
-                shells.Add(bullet);
-                bullet.SetActive(true);
-                bullet.transform.position = Camera.main.transform.position + bulletRelativeToCamera;
-                bullet.transform.LookAt(targetPosition);
-                bullet.GetComponent<Rigidbody>().velocity = Vector3.Normalize(targetPosition - bullet.transform.position) * velocity;
-                print("Fired bullet!");
-                AlignAmmo.UpdateAmmoCount(magazine.Count);
-                break; // breaking here to ensure that only one bullet is fired per point click
+                //GameObject effect = Resources.Load<GameObject>(ResourcePathManager.spawn) as GameObject;
+                //GameObject vfx = Instantiate(effect, bullet.transform.position, Quaternion.identity);
+                //bullet.GetComponent<ProjectileMoveScript>().SetTarget(targetPosition, rotateToMouse);
+                //magazine.Remove(bullet);
+                //shells.Add(bullet);
+                //bullet.SetActive(true);
+                //bullet.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPosition);
+                //bullet.transform.position = Camera.main.transform.position;// + bulletRelativeToCamera;
+                //bullet.transform.LookAt(targetPosition);
+                //bullet.GetComponent<Rigidbody>().velocity = Vector3.Normalize(targetPosition - bullet.transform.position) * velocity;
+                //print("Fired bullet!");
+                //AlignAmmo.UpdateAmmoCount(magazine.Count);
+                //break; // breaking here to ensure that only one bullet is fired per point click
             }
         }
         else
         {
-            AlignAmmo.UpdateAmmoCount(magazine.Count);
-            print("Magazine is empty! Please reload.");
+           // AlignAmmo.UpdateAmmoCount(magazine.Count);
+            //print("Magazine is empty! Please reload.");
         }
             
     }
@@ -140,12 +162,12 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
 
     public void OnGestureStarted(InputEventData eventData)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void OnGestureUpdated(InputEventData eventData)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void OnGestureCompleted(InputEventData eventData)
@@ -181,6 +203,6 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
 
     public void OnGestureCanceled(InputEventData eventData)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }
