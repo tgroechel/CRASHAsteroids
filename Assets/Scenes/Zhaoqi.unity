@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitDuration: 5
+  bulletSpeed: 2
 --- !u!1001 &107758760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,7 +746,7 @@ PrefabInstance:
     - target: {fileID: 7686468788067393164, guid: 7ad772491e20fea4eade0c01d394c1a7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7686468788067393164, guid: 7ad772491e20fea4eade0c01d394c1a7,
         type: 3}
@@ -760,6 +762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686468788067393165, guid: 7ad772491e20fea4eade0c01d394c1a7,
+        type: 3}
+      propertyPath: offsetY
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 7686468788067393166, guid: 7ad772491e20fea4eade0c01d394c1a7,
         type: 3}
