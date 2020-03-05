@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossAttackScript : MonoBehaviour
 {
+    public float waitDuration = 1f;
     void Start()
     {
         StartCoroutine("ShootPlayer");
@@ -31,7 +32,7 @@ public class BossAttackScript : MonoBehaviour
             Vector3 targetPos = head.transform.position;
             vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPos);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(waitDuration);
         }
     }
 }
