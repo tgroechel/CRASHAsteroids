@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 66ca9bf0145725543a1e8a693589f362
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Polygonal Metalon
+    100004: Rig
+    100006: RigHead
+    100008: RigJaw
+    100010: RigLLeg011
+    100012: RigLLeg012
+    100014: RigLLeg013
+    100016: RigLLeg01Platform
+    100018: RigLLeg021
+    100020: RigLLeg022
+    100022: RigLLeg023
+    100024: RigLLeg02Platform
+    100026: RigLLeg031
+    100028: RigLLeg032
+    100030: RigLLeg033
+    100032: RigLLeg03Platform
+    100034: RigNeck
+    100036: RigPelvis
+    100038: RigRibcage
+    100040: RigRLeg011
+    100042: RigRLeg012
+    100044: RigRLeg013
+    100046: RigRLeg01Platform
+    100048: RigRLeg021
+    100050: RigRLeg022
+    100052: RigRLeg023
+    100054: RigRLeg02Platform
+    100056: RigRLeg031
+    100058: RigRLeg032
+    100060: RigRLeg033
+    100062: RigRLeg03Platform
+    100064: RigSpine
+    100066: RigTail1
+    100068: RigTail2
+    100070: RigTail3
+    100072: RigTail4
+    100074: RigTail5
+    100076: RigHeadGizmo
+    100078: RigJawGizmo
+    100080: RigPelvisGizmo
+    100082: RigRibcageGizmo
+    100084: RigTail1Gizmo
+    100086: RigTail2Gizmo
+    100088: RigTail3Gizmo
+    100090: RigTail4Gizmo
+    100092: RigTail5Gizmo
+    400000: //RootNode
+    400002: Polygonal Metalon
+    400004: Rig
+    400006: RigHead
+    400008: RigJaw
+    400010: RigLLeg011
+    400012: RigLLeg012
+    400014: RigLLeg013
+    400016: RigLLeg01Platform
+    400018: RigLLeg021
+    400020: RigLLeg022
+    400022: RigLLeg023
+    400024: RigLLeg02Platform
+    400026: RigLLeg031
+    400028: RigLLeg032
+    400030: RigLLeg033
+    400032: RigLLeg03Platform
+    400034: RigNeck
+    400036: RigPelvis
+    400038: RigRibcage
+    400040: RigRLeg011
+    400042: RigRLeg012
+    400044: RigRLeg013
+    400046: RigRLeg01Platform
+    400048: RigRLeg021
+    400050: RigRLeg022
+    400052: RigRLeg023
+    400054: RigRLeg02Platform
+    400056: RigRLeg031
+    400058: RigRLeg032
+    400060: RigRLeg033
+    400062: RigRLeg03Platform
+    400064: RigSpine
+    400066: RigTail1
+    400068: RigTail2
+    400070: RigTail3
+    400072: RigTail4
+    400074: RigTail5
+    400076: RigHeadGizmo
+    400078: RigJawGizmo
+    400080: RigPelvisGizmo
+    400082: RigRibcageGizmo
+    400084: RigTail1Gizmo
+    400086: RigTail2Gizmo
+    400088: RigTail3Gizmo
+    400090: RigTail4Gizmo
+    400092: RigTail5Gizmo
+    2100000: No Name
+    2100002: 'Material #2'
+    2300000: //RootNode
+    2300002: Polygonal Metalon
+    3300000: //RootNode
+    3300002: Polygonal Metalon
+    4300000: Polygonal Metalon
+    9500000: //RootNode
+    13700000: Polygonal Metalon
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Rig
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

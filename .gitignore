@@ -43,3 +43,11 @@ UWP/
 MSBuildForUnity.Common.props
 MSBuildForUnity.Common.props
 Assets/MixedRealityToolkit.Providers/WindowsMixedReality/DotNetAdapter/DotNetAdapter.csproj.meta
+MSBuild/Projects/Editor.InEditor.props
+MSBuild/Projects/WindowsStandalone32.InEditor.props
+MSBuild/Projects/WindowsStandalone32.Player.props
+MSBuild/Projects/WindowsStandalone64.InEditor.props
+MSBuild/Projects/WindowsStandalone64.Player.props
+MSBuild/Projects/WSA.InEditor.props
+MSBuild/Projects/WSA.Player.props
+MSBuildForUnity.Common.props
