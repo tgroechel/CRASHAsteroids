@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossAttackScript : MonoBehaviour
 {
     public float waitDuration = 1f;
+    public float bulletSpeed = 2;
     void Start()
     {
         StartCoroutine("ShootPlayer");
@@ -25,9 +26,9 @@ public class BossAttackScript : MonoBehaviour
     {
         while (true)
         {
-            GameObject effect = Resources.Load<GameObject>(ResourcePathManager.blackhole) as GameObject;
+            GameObject effect = Resources.Load<GameObject>(ResourcePathManager.projectilesFolder + ResourcePathManager.bullet1) as GameObject;
             GameObject vfx = Instantiate(effect, transform.position, Quaternion.identity);
-            vfx.GetComponent<ProjectileMoveScript>().speed = 3;
+            vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
             GameObject head = GameObject.Find("PlayerHead");
             Vector3 targetPos = head.transform.position;
             vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPos);

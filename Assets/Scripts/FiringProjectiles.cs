@@ -1,5 +1,6 @@
 ﻿using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
+using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,14 @@ using UnityEngine;
 public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMixedRealityInputActionHandler, IMixedRealityGestureHandler
 {
     public static GameObject bullet;
+    public static float bulletSpeed = 2;
     public static string bulletName;
     public static Vector3 bulletRelativeToCamera = new Vector3(0, 0, 1f);
-
-    //public static string firingHand = "Mixed Reality Controller Right";
-    //public static string reloadingHand = "Mixed Reality Controller Left";
-    public static string firingHand = "Right Hand";
-    public static string reloadingHand = "Left Hand";
+    public static float offsetX = 0, offsetY = 0.05f, offsetZ = 0;
+    public static string firingHandHoloLens2 = "Mixed Reality Controller Right";
+    public static string reloadingHandHoloLens2 = "Mixed Reality Controller Left";
+    public static string firingHandUnity = "Right Hand";
+    public static string reloadingHandUnity= "Left Hand";
 
     void Awake()
     {
@@ -39,10 +41,24 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     // Fires a bullet (towards the position given) if present in the magazine, else prompts to reload
     public static void FireBulletToPosition(Vector3 targetPosition)
     {
-        GameObject vfx = Instantiate(bullet, Camera.main.transform.position + bulletRelativeToCamera, Quaternion.identity);
+        MixedRealityPose pose;
+        Vector3 bulletSpawnPosition;
+
+        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, firingHandUnity == "Right Hand" || firingHandHoloLens2 == "Mixed Reality Controller Right" ? Handedness.Right : Handedness.Left, out pose))
+        {
+            bulletSpawnPosition = pose.Position
+            + pose.Rotation * Vector3.forward * offsetZ
+            + pose.Rotation * Vector3.up * offsetY
+            + pose.Rotation * Vector3.right * offsetX;
+        }
+        else
+            bulletSpawnPosition = Camera.main.transform.position + bulletRelativeToCamera;
+
+        GameObject vfx = Instantiate(bullet, bulletSpawnPosition, Quaternion.identity);
 
         //vfx.GetComponent<ProjectileMoveScript>().SetTarget(GameObject.Find("BossBot"), null);
-        vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPosition);    
+        vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPosition);
+        vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
     }
 
     // Fires a bullet (in the direction given) if present in the magazine, else prompts to reload
@@ -87,7 +103,7 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     // Fire using firingHand and reload using reloadingHand
     void IMixedRealityPointerHandler.OnPointerClicked(MixedRealityPointerEventData eventData)
     {
-        if (eventData.InputSource.SourceName == firingHand)
+        if (eventData.InputSource.SourceName == firingHandHoloLens2 || eventData.InputSource.SourceName == firingHandUnity)
         {
             var result = eventData.Pointer.Result;
             var targetposition = result.Details.Point;
