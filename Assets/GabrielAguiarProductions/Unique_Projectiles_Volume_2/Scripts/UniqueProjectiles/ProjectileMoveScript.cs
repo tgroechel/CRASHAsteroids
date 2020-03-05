@@ -80,16 +80,17 @@ public class ProjectileMoveScript : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-        if (targetPos != null)
-        {
-            Vector3 direction;
-            Quaternion rotation;
-            direction = targetPos - gameObject.transform.position;
-            rotation = Quaternion.LookRotation(direction);
-            gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
-        }
-        else if (target != null)
-            RotateToMouse (gameObject, target.transform.position);
+        //if (targetPos != null)
+        //{
+           // Vector3 direction;
+            //Quaternion rotation;
+            //direction = targetPos - gameObject.transform.position;
+            //rotation = Quaternion.LookRotation(direction);
+            //gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
+            //targetPos = null;
+        //}
+        //else if (target != null)
+            //RotateToMouse (gameObject, target.transform.position);
         if (rotate)
             transform.Rotate(0, 0, rotateAmount, Space.Self);
         if (speed != 0 && rb != null)
@@ -109,7 +110,7 @@ public class ProjectileMoveScript : MonoBehaviour {
     void OnCollisionEnter (Collision co) {
         if (!bounce)
         {
-            if (co.gameObject.tag != "Bullet" && !collided)
+            if (collided)
             {
                 collided = true;
 
@@ -122,13 +123,17 @@ public class ProjectileMoveScript : MonoBehaviour {
                 {
                     for (int i = 0; i < trails.Count; i++)
                     {
-                        trails[i].transform.parent = null;
-                        var ps = trails[i].GetComponent<ParticleSystem>();
-                        if (ps != null)
+                        if (trails[i] != null)
                         {
-                            ps.Stop();
-                            Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+                            trails[i].transform.parent = null;
+                            var ps = trails[i].GetComponent<ParticleSystem>();
+                            if (ps != null)
+                            {
+                                ps.Stop();
+                                Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+                            }
                         }
+
                     }
                 }
 
@@ -185,7 +190,6 @@ public class ProjectileMoveScript : MonoBehaviour {
 		}
 		
 		yield return new WaitForSeconds (waitTime);
-        //gameObject.SetActive(false);
         Destroy (gameObject);
     }
 
@@ -193,10 +197,16 @@ public class ProjectileMoveScript : MonoBehaviour {
     {
         target = trg;
         rotateToMouse = rotateTo;
+        RotateToMouse(gameObject, target.transform.position);
     }
 
     public void SetTargetPos(Vector3 tp)
     {
-        targetPos = tp;
+        Vector3 direction;
+
+        Quaternion rotation;
+        direction = tp - gameObject.transform.position;
+        rotation = Quaternion.LookRotation(direction);
+        gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
     }
 }
