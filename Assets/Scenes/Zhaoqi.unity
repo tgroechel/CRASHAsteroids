@@ -1710,6 +1710,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3584441901570375270, guid: 885d27067d5de1041b01d981114588f9,
+        type: 3}
+      propertyPath: VFXs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3584441903206463836, guid: 885d27067d5de1041b01d981114588f9,
         type: 3}
       propertyPath: m_SizeDelta.y
