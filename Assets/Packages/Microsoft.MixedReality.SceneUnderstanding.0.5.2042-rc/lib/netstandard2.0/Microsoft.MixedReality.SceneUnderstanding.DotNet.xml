@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Microsoft.MixedReality.SceneUnderstanding.DotNet"
+    </assembly>
+    <members>
+        <member name="F:Microsoft.MixedReality.SceneUnderstanding.SceneObject._kind">
+            <summary>
+The scene object's classification from the set of system recognized labels.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.ProtobufToMatrix(SU.Proto.Transform!System.Runtime.CompilerServices.IsConst@)">
+            <summary>
+Converts the protobuf form of the matrix to a native matrix type.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.UpdateLabel">
+            <summary>
+Updates the label for the scene object based on the current set of supported classes.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.GetLocationAsMatrix">
+            <summary>
+The translation/rotation as a composed transformation matrix. Transforms are represented by a 3x3 rotation R 
+in row major and 3x1 translation T in the following form: [ R 0 ] [ T 1 ]
+</summary>
+            <returns>The transformation matrix.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Orientation">
+            <summary>
+The orientation of the transform.
+</summary>
+            <returns>The orientation quaterion.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Position">
+            <summary>
+The position of the transform.
+</summary>
+            <returns>The position vector.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Meshes">
+            <summary>
+Returns a list of meshes that are referenced by this scene object.
+</summary>
+            <returns>The list of all meshes referenced by this scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Quads">
+            <summary>
+Returns a list of quads that are referenced by this scene object.
+</summary>
+            <returns>The list of all quads referenced by this scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Kind">
+            <summary>
+The scene object's classification from the set of system recognized labels.
+</summary>
+            <returns>The label that most accurately classifies the scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.AddAssociatedComponent(SU.Proto.Id!System.Runtime.CompilerServices.IsConst@)">
+            <summary>
+Appends an associated component id to the collection of associated components ids in the protobuf object.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.InitializeSceneTransform(SU.Proto.Transform!System.Runtime.CompilerServices.IsConst@)">
+            <summary>
+Initializes the transform for this scene object from the "Transform" structure in the protobuf.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObject.#ctor(SU.Proto.SceneObject@)">
+            <summary>
+Default class constructor.
+</summary>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.SceneObject">
+            <summary>
+Scene objects represent a single “thing” or “object" sensed in the scene. Example scene objects might include objects such as walls, floors, etc. Scene objects are
+further composed out of multiple components, which collectively are the representation of that singular "SceneObject" concept.For example, a wall scene object could be composed out of the
+component collection : Mesh, BoundingBox, Transform.Thus, the scene object's primary purpose is to define the set of components that collectively represent the object.
+Note that components may be referenced by multiple scene object instances.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneQuad.FindCentermostPlacement(System.Numerics.Vector2,System.Numerics.Vector2@)">
+            <summary>
+Attempts to find a location on the SceneQuad that can hold an object.The function is given 2D bounding regions of the object to be placed and will find the most centered location that satisfies the size 
+constraints. The API does not rotate the object, so it only looks for locations that are aligned with the SceneQuad axis.
+</summary>
+            <param name="objectExtents">The 2D extent of the object that is to be placed.</param>
+            <param name="placementCenter">The location of the placement center.</param>
+            <returns>True if there exists a position to place the object, false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneQuad.GetSurfaceMask(System.UInt16,System.UInt16,System.Byte[]@)">
+            <summary>
+Computes which regions of the SceneQuad represent the actual surface instead of empty space. The API quantizes the SceneQuad at a specified resolution dividing it into cells. Each cell is tristate, 
+either empty, surface or inferred.
+</summary>
+            <param name="maskWidth">The x resolution of the output mask.</param>
+            <param name="maskHeight">The y resolution of the output mask.</param>
+            <param name="surfaceMask">A linear array with a stride of maskWidth cells that represents the surface of the SceneQuad. Each entry in the array represents if the area under that discretized 
+space is empty or if it’s an actual surface.</param>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneQuad.Alignment">
+            <summary>
+Alignment of the SceneQuad with respect to gravity.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneQuad.Extents">
+            <summary>
+The full width and height of the quad in meters.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneQuad.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.SceneQuad">
+            <summary>
+A SceneQuad is a rectangle aligned with a planar surface in the scene. Within a SceneQuad, coordinates are given as 2D offsets from the top - left corner of the SceneQuad, with X coordinates increasing to the right, 
+and Y coordinates increasing down. Thus, a SceneQuad can be considered as a 2D drawing canvas posed in 3D space. The SceneQuad's local 3D space has the origin at the centroid of the SceneQuad.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneMesh.GetVertexPositions(System.Numerics.Vector3[]@)">
+            <summary>
+Fills a vertex position array with the mesh vertex positions. Vertices are defined as a buffer of XYZ triples (float3).
+</summary>
+            <param name="vertexBuffer">
+The array of triangle position vectors to be filled. The size of the buffer must be of size VertexCount() or greater.
+</param>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneMesh.VertexCount">
+            <summary>
+Returns the number of triangle vertices that the mesh contains.
+</summary>
+            <returns>The number of triangle vertices that the mesh contains.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneMesh.GetTriangleIndices(System.UInt32[]@)">
+            <summary>
+Fills a buffer with the set of all mesh triangle indices. The array must be of TriangleIndexCount() size or greater.
+</summary>
+            <param name="indexBuffer">The index buffer to be filled.</param>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneMesh.TriangleIndexCount">
+            <summary>
+Returns the number of triangle indices that the mesh contains.
+</summary>
+            <returns>The number of triangle indices that the mesh contains.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneMesh.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.SceneMesh">
+            <summary>
+SceneMesh representation, consisting of an unordered indexed triangle list to an array of 3D vertex positions. 
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneComponent.Id">
+            <summary>
+A unique identifier that allows for referential access and queries of SceneComponents in the scene processor.
+</summary>
+            <returns>A reference to the identifier.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneComponent.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.SceneComponent">
+            <summary>
+The base class for all types in a Scene. SceneComponents are referenced by an instance of Id.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.Close">
+            <summary>
+Implementation of the IClosable interface. Gets projected to Dispose in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.FromFragments(winrt.array_view&lt;Microsoft.MixedReality.SceneUnderstanding.SceneFragment!System.Runtime.CompilerServices.IsConst&gt;,Microsoft.MixedReality.SceneUnderstanding.Scene!System.Runtime.CompilerServices.IsConst@)">
+            <summary>
+Creates a scene by combining a collection of scene fragments.
+</summary>
+            <param name="sceneFragments">Collection of scene fragments to combine.</param>
+            <param name="previousScene">The combined scene will attempt to track and persist objects from the previous scene provided.</param>
+            <returns>The combined scene.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.FromFragments(winrt.array_view&lt;Microsoft.MixedReality.SceneUnderstanding.SceneFragment!System.Runtime.CompilerServices.IsConst&gt;)">
+            <summary>
+Creates a scene by combining a collection of scene fragments.
+</summary>
+            <param name="sceneFragments">Collection of scene fragments to combine.</param>
+            <returns>The combined scene.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.Deserialize(System.Byte[],Microsoft.MixedReality.SceneUnderstanding.Scene!System.Runtime.CompilerServices.IsConst@)">
+            <summary>
+Deserializes a previously computed scene.
+</summary>
+            <param name="serializedScene">The serialized scene.</param>
+            <param name="previousScene">The computed scene will attempt to track and persist objects from the previously computed scene provided.</param>
+            <returns>The scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.Deserialize(System.Byte[])">
+            <summary>
+Deserializes a previously computed scene.
+</summary>
+            <param name="serializedScene">The serialized scene.</param>
+            <returns>The scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.SceneObjects">
+            <summary>
+Returns all SceneObjects in the current scene.
+</summary>
+            <returns>All SceneObjects in the current scene.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.FindComponent(System.Guid@)">
+            <summary>
+Returns the component that is associated with the specified ID.
+</summary>
+            <param name="id">The ID of the component.</param>
+            <returns>The component that is associated with the specified ID.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.OriginSpatialGraphNodeId">
+            <summary>
+A reference to the spatial coordinate system for this scene. All objects in the scene are rendered relative to this coordinate system.
+</summary>
+            <returns>The node ID for the spatial coordinate system as of the last scene update.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.Scene.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.Scene">
+            <summary>
+The Scene Processor is the main entry class for Scene Understanding.It provides information about the current scene in the form of scene objects and their associated components.
+The internal representation of the Scene Processor is a snapshot of the scene as it existed at the time the Update() function was called.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObserver.ComputeSerializedAsync(Microsoft.MixedReality.SceneUnderstanding.SceneQuerySettings!System.Runtime.CompilerServices.IsConst,System.Single)">
+            <summary>
+Computes the latest scene and returns it as a serialized blob for future deserialization. The compute operation will generate representations for all sensed scene objects around the sensor within a specified radius.
+</summary>
+            <param name="settings">Flags passed to the runtime to enable / disable component types or subsets of the runtime for memory or performance reasons.</param>
+            <param name="queryRadius">The radius(in meters) of the query sphere.</param>
+            <returns>SceneBuffer object containing the scene data.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObserver.ComputeAsync(Microsoft.MixedReality.SceneUnderstanding.SceneQuerySettings!System.Runtime.CompilerServices.IsConst,System.Single,Microsoft.MixedReality.SceneUnderstanding.Scene!System.Runtime.CompilerServices.IsConst)">
+            <summary>
+Computes the latest scene. The compute operation will generate representations for all sensed scene objects around the sensor within a specified radius.
+</summary>
+            <param name="settings">Flags passed to the runtime to enable / disable component types or subsets of the runtime for memory or performance reasons.</param>
+            <param name="queryRadius">The radius(in meters) of the query sphere.</param>
+            <param name="previousScene">The computed scene will attempt to track and persist objects from the previously computed scene provided.</param>
+            <returns>The scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObserver.ComputeAsync(Microsoft.MixedReality.SceneUnderstanding.SceneQuerySettings!System.Runtime.CompilerServices.IsConst,System.Single)">
+            <summary>
+Computes the latest scene. The compute operation will generate representations for all sensed scene objects around the sensor within a specified radius.
+</summary>
+            <param name="settings">Flags passed to the runtime to enable / disable component types or subsets of the runtime for memory or performance reasons.</param>
+            <param name="queryRadius">The radius(in meters) of the query sphere.</param>
+            <returns>The scene object.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObserver.RequestAccessAsync">
+            <summary>
+Requests access to Scene Observer provided data. This needs to be called once initially, before calling any of the SceneObserver.Compute* methods.
+</summary>
+            <returns>The status of the access request.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneObserver.IsSupported">
+            <summary>
+Checks if Scene Observer is supported on the platform.
+</summary>
+            <returns>True if supported. False, otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.Close">
+            <summary>
+Implementation of the IClosable interface. Gets projected to Dispose in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.GetData(System.Byte[]@)">
+            <summary>
+Copies the byte array containing the Scene data into the output param.
+</summary>
+            <param name="data">An array_view to the copy destination. The array_view size must match the value returned by Size. </param>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.Size">
+            <summary>
+Returns the size of the buffer that will be filled by a call to GetData.
+</summary>
+            <returns>The size of the buffer that will be filled by a call to GetData.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.GetData">
+            <summary>
+An internal convience function that returns a reference to the underlying vector of bytes.
+</summary>
+            <returns> A reference to the underlying vector of bytes.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.Dispose">
+            <summary>
+Destructor
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer.#ctor(std.vector&lt;System.Byte,std.allocator&lt;System.Byte&gt;&gt;@)">
+            <summary>
+Default class constructor. Produces a degenerate object.
+</summary>
+            <summary>
+Constructor
+</summary>
+            <param name="data">a vector of bytes containing Scene object data.</param>
+        </member>
+        <member name="T:Microsoft.MixedReality.SceneUnderstanding.SceneBuffer">
+            <summary>
+SceneBuffer encapsulates a byte buffer of Scene data that can be consumed by Scene.Deserialzed to produce a Scene object.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.Deserialize(System.Byte[])">
+            <summary>
+Deserializes a scene fragment passed as a serialized buffer.
+</summary>
+            <param name="serializedSceneFragment">The serialized scene fragment.</param>
+            <returns>The scene fragment.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.Finalize">
+            <summary>
+Used for deterministic finalization in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.Close">
+            <summary>
+Implementation of the IClosable interface. Gets projected to Dispose in managed land.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.GetData">
+            <summary>
+Returns the underlying serialized data associated with this scene fragment.
+</summary>
+            <returns>The underlying serialized data.</returns>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.Dispose">
+            <summary>
+Destructor.
+</summary>
+        </member>
+        <member name="M:Microsoft.MixedReality.SceneUnderstanding.SceneFragment.#ctor(System.Byte[])">
+            <summary>
+Creates an empty scene fragment.
+</summary>
+            <summary>
+Creates a scene fragment using the passed in serialized buffer.
+</summary>
+        </member>
+    </members>
+</doc>
