@@ -39,7 +39,7 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
     // Fires a bullet (towards the position given) if present in the magazine, else prompts to reload
     public static void FireBulletToPosition(Vector3 targetPosition)
     {
-        GameObject vfx = Instantiate(bullet, Camera.main.transform.position, Quaternion.identity);
+        GameObject vfx = Instantiate(bullet, Camera.main.transform.position + bulletRelativeToCamera, Quaternion.identity);
         //vfx.GetComponent<ProjectileMoveScript>().SetTarget(GameObject.Find("BossBot"), null);
         vfx.GetComponent<ProjectileMoveScript>().SetTargetPos(targetPosition);    
     }
