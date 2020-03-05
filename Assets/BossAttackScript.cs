@@ -25,7 +25,7 @@ public class BossAttackScript : MonoBehaviour
     {
         while (true)
         {
-            GameObject effect = Resources.Load<GameObject>(ResourcePathManager.blackhole) as GameObject;
+            GameObject effect = Resources.Load<GameObject>(ResourcePathManager.projectilesFolder + ResourcePathManager.bullet1) as GameObject;
             GameObject vfx = Instantiate(effect, transform.position, Quaternion.identity);
             vfx.GetComponent<ProjectileMoveScript>().speed = 3;
             GameObject head = GameObject.Find("PlayerHead");
