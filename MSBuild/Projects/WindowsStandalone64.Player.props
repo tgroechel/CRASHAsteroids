@@ -5,392 +5,392 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(IsEditorOnlyTarget)' == 'false' OR '$(IsEditorOnlyTarget)' == ''">
-    <AssemblySearchPaths>$(AssemblySearchPaths);D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\GUISystem;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\net35\unity-custom;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Timeline\RuntimeEditor;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Networking;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnityGoogleAudioSpatializer\RuntimeEditor;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnitySpatialTracking\RuntimeEditor;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades;D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript</AssemblySearchPaths>
+    <AssemblySearchPaths>$(AssemblySearchPaths);C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\GUISystem;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\net35\unity-custom;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Timeline\RuntimeEditor;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Networking;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnityGoogleAudioSpatializer\RuntimeEditor;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnitySpatialTracking\RuntimeEditor;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades;C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript</AssemblySearchPaths>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsEditorOnlyTarget)' == 'false' OR '$(IsEditorOnlyTarget)' == ''">
 <!--PLATFORM_COMMON_REFERENCE_TEMPLATE_START-->
     <Reference Include="UnityEngine">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference><Reference Include="Unity.Locator">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed\Unity.Locator.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\Managed\Unity.Locator.dll</HintPath>
     </Reference><Reference Include="UnityEngine.UI">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
     </Reference><Reference Include="UnityEngine.TestRunner">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\UnityEngine.TestRunner.dll</HintPath>
     </Reference><Reference Include="nunit.framework">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\net35\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\TestRunner\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference><Reference Include="UnityEngine.Timeline">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Timeline\RuntimeEditor\UnityEngine.Timeline.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Timeline\RuntimeEditor\UnityEngine.Timeline.dll</HintPath>
     </Reference><Reference Include="UnityEngine.Networking">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
     </Reference><Reference Include="UnityEngine.GoogleAudioSpatializer">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnityGoogleAudioSpatializer\RuntimeEditor\UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnityGoogleAudioSpatializer\RuntimeEditor\UnityEngine.GoogleAudioSpatializer.dll</HintPath>
     </Reference><Reference Include="UnityEngine.SpatialTracking">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnitySpatialTracking\RuntimeEditor\UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\UnityExtensions\Unity\UnitySpatialTracking\RuntimeEditor\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference><Reference Include="mscorlib">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
     </Reference><Reference Include="System">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll</HintPath>
     </Reference><Reference Include="System.Core">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Serialization">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Runtime.Serialization.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Runtime.Serialization.dll</HintPath>
     </Reference><Reference Include="System.Xml">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.dll</HintPath>
     </Reference><Reference Include="System.Xml.Linq">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.Linq.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.Linq.dll</HintPath>
     </Reference><Reference Include="System.Numerics">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.dll</HintPath>
     </Reference><Reference Include="System.Numerics.Vectors">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.Vectors.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.Vectors.dll</HintPath>
     </Reference><Reference Include="System.Net.Http">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Net.Http.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Net.Http.dll</HintPath>
     </Reference><Reference Include="Microsoft.CSharp">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Microsoft.CSharp.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Microsoft.CSharp.dll</HintPath>
     </Reference><Reference Include="System.Data">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Data.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Data.dll</HintPath>
     </Reference><Reference Include="Microsoft.Win32.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\Microsoft.Win32.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference><Reference Include="netstandard">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\netstandard.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\netstandard.dll</HintPath>
     </Reference><Reference Include="System.AppContext">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.AppContext.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.AppContext.dll</HintPath>
     </Reference><Reference Include="System.Collections.Concurrent">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Concurrent.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Concurrent.dll</HintPath>
     </Reference><Reference Include="System.Collections">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.dll</HintPath>
     </Reference><Reference Include="System.Collections.NonGeneric">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.NonGeneric.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.NonGeneric.dll</HintPath>
     </Reference><Reference Include="System.Collections.Specialized">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Specialized.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Specialized.dll</HintPath>
     </Reference><Reference Include="System.ComponentModel.Annotations">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Annotations.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Annotations.dll</HintPath>
     </Reference><Reference Include="System.ComponentModel">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.dll</HintPath>
     </Reference><Reference Include="System.ComponentModel.EventBasedAsync">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.EventBasedAsync.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.EventBasedAsync.dll</HintPath>
     </Reference><Reference Include="System.ComponentModel.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Primitives.dll</HintPath>
     </Reference><Reference Include="System.ComponentModel.TypeConverter">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.TypeConverter.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.TypeConverter.dll</HintPath>
     </Reference><Reference Include="System.Console">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Console.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Console.dll</HintPath>
     </Reference><Reference Include="System.Data.Common">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Data.Common.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Data.Common.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.Contracts">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Contracts.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Contracts.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.Debug">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Debug.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Debug.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.FileVersionInfo">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.FileVersionInfo.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.FileVersionInfo.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.Process">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Process.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Process.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.StackTrace">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.StackTrace.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.StackTrace.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.TextWriterTraceListener">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.Tools">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Tools.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Tools.dll</HintPath>
     </Reference><Reference Include="System.Diagnostics.TraceSource">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TraceSource.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TraceSource.dll</HintPath>
     </Reference><Reference Include="System.Drawing.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Drawing.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Drawing.Primitives.dll</HintPath>
     </Reference><Reference Include="System.Dynamic.Runtime">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Dynamic.Runtime.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Dynamic.Runtime.dll</HintPath>
     </Reference><Reference Include="System.Globalization.Calendars">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Calendars.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Calendars.dll</HintPath>
     </Reference><Reference Include="System.Globalization">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.dll</HintPath>
     </Reference><Reference Include="System.Globalization.Extensions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Extensions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Extensions.dll</HintPath>
     </Reference><Reference Include="System.IO.Compression.ZipFile">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Compression.ZipFile.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Compression.ZipFile.dll</HintPath>
     </Reference><Reference Include="System.IO">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.dll</HintPath>
     </Reference><Reference Include="System.IO.FileSystem">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.dll</HintPath>
     </Reference><Reference Include="System.IO.FileSystem.DriveInfo">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.DriveInfo.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.DriveInfo.dll</HintPath>
     </Reference><Reference Include="System.IO.FileSystem.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Primitives.dll</HintPath>
     </Reference><Reference Include="System.IO.FileSystem.Watcher">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Watcher.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Watcher.dll</HintPath>
     </Reference><Reference Include="System.IO.IsolatedStorage">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.IsolatedStorage.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.IsolatedStorage.dll</HintPath>
     </Reference><Reference Include="System.IO.MemoryMappedFiles">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.MemoryMappedFiles.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.MemoryMappedFiles.dll</HintPath>
     </Reference><Reference Include="System.IO.Pipes">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Pipes.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Pipes.dll</HintPath>
     </Reference><Reference Include="System.IO.UnmanagedMemoryStream">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.UnmanagedMemoryStream.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.UnmanagedMemoryStream.dll</HintPath>
     </Reference><Reference Include="System.Linq">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.dll</HintPath>
     </Reference><Reference Include="System.Linq.Expressions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Expressions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Expressions.dll</HintPath>
     </Reference><Reference Include="System.Linq.Parallel">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Parallel.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Parallel.dll</HintPath>
     </Reference><Reference Include="System.Linq.Queryable">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Queryable.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Queryable.dll</HintPath>
     </Reference><Reference Include="System.Net.Http.Rtc">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Http.Rtc.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Http.Rtc.dll</HintPath>
     </Reference><Reference Include="System.Net.NameResolution">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NameResolution.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NameResolution.dll</HintPath>
     </Reference><Reference Include="System.Net.NetworkInformation">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NetworkInformation.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NetworkInformation.dll</HintPath>
     </Reference><Reference Include="System.Net.Ping">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Ping.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Ping.dll</HintPath>
     </Reference><Reference Include="System.Net.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Primitives.dll</HintPath>
     </Reference><Reference Include="System.Net.Requests">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Requests.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Requests.dll</HintPath>
     </Reference><Reference Include="System.Net.Security">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Security.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Security.dll</HintPath>
     </Reference><Reference Include="System.Net.Sockets">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Sockets.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Sockets.dll</HintPath>
     </Reference><Reference Include="System.Net.WebHeaderCollection">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebHeaderCollection.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebHeaderCollection.dll</HintPath>
     </Reference><Reference Include="System.Net.WebSockets.Client">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.Client.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.Client.dll</HintPath>
     </Reference><Reference Include="System.Net.WebSockets">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.dll</HintPath>
     </Reference><Reference Include="System.ObjectModel">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ObjectModel.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ObjectModel.dll</HintPath>
     </Reference><Reference Include="System.Reflection">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.dll</HintPath>
     </Reference><Reference Include="System.Reflection.Emit">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.dll</HintPath>
     </Reference><Reference Include="System.Reflection.Emit.ILGeneration">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.ILGeneration.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.ILGeneration.dll</HintPath>
     </Reference><Reference Include="System.Reflection.Emit.Lightweight">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.Lightweight.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.Lightweight.dll</HintPath>
     </Reference><Reference Include="System.Reflection.Extensions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Extensions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Extensions.dll</HintPath>
     </Reference><Reference Include="System.Reflection.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Primitives.dll</HintPath>
     </Reference><Reference Include="System.Resources.Reader">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Reader.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Reader.dll</HintPath>
     </Reference><Reference Include="System.Resources.ResourceManager">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.ResourceManager.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.ResourceManager.dll</HintPath>
     </Reference><Reference Include="System.Resources.Writer">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Writer.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Writer.dll</HintPath>
     </Reference><Reference Include="System.Runtime.CompilerServices.VisualC">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.CompilerServices.VisualC.dll</HintPath>
     </Reference><Reference Include="System.Runtime">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Extensions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Extensions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Extensions.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Handles">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Handles.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Handles.dll</HintPath>
     </Reference><Reference Include="System.Runtime.InteropServices">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.dll</HintPath>
     </Reference><Reference Include="System.Runtime.InteropServices.RuntimeInformation">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference><Reference Include="System.Runtime.InteropServices.WindowsRuntime">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Numerics">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Numerics.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Numerics.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Serialization.Formatters">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Formatters.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Formatters.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Serialization.Json">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Json.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Json.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Serialization.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Primitives.dll</HintPath>
     </Reference><Reference Include="System.Runtime.Serialization.Xml">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Xml.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Xml.dll</HintPath>
     </Reference><Reference Include="System.Security.Claims">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Claims.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Claims.dll</HintPath>
     </Reference><Reference Include="System.Security.Cryptography.Algorithms">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference><Reference Include="System.Security.Cryptography.Csp">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Csp.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Csp.dll</HintPath>
     </Reference><Reference Include="System.Security.Cryptography.Encoding">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Encoding.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Encoding.dll</HintPath>
     </Reference><Reference Include="System.Security.Cryptography.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Primitives.dll</HintPath>
     </Reference><Reference Include="System.Security.Cryptography.X509Certificates">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference><Reference Include="System.Security.Principal">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Principal.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Principal.dll</HintPath>
     </Reference><Reference Include="System.Security.SecureString">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.SecureString.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.SecureString.dll</HintPath>
     </Reference><Reference Include="System.ServiceModel.Duplex">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Duplex.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Duplex.dll</HintPath>
     </Reference><Reference Include="System.ServiceModel.Http">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Http.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Http.dll</HintPath>
     </Reference><Reference Include="System.ServiceModel.NetTcp">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.NetTcp.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.NetTcp.dll</HintPath>
     </Reference><Reference Include="System.ServiceModel.Primitives">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Primitives.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Primitives.dll</HintPath>
     </Reference><Reference Include="System.ServiceModel.Security">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Security.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Security.dll</HintPath>
     </Reference><Reference Include="System.Text.Encoding">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.dll</HintPath>
     </Reference><Reference Include="System.Text.Encoding.Extensions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.Extensions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.Extensions.dll</HintPath>
     </Reference><Reference Include="System.Text.RegularExpressions">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.RegularExpressions.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.RegularExpressions.dll</HintPath>
     </Reference><Reference Include="System.Threading">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.dll</HintPath>
     </Reference><Reference Include="System.Threading.Overlapped">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Overlapped.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Overlapped.dll</HintPath>
     </Reference><Reference Include="System.Threading.Tasks">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.dll</HintPath>
     </Reference><Reference Include="System.Threading.Tasks.Parallel">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.Parallel.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.Parallel.dll</HintPath>
     </Reference><Reference Include="System.Threading.Thread">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Thread.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Thread.dll</HintPath>
     </Reference><Reference Include="System.Threading.ThreadPool">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.ThreadPool.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.ThreadPool.dll</HintPath>
     </Reference><Reference Include="System.Threading.Timer">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Timer.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Timer.dll</HintPath>
     </Reference><Reference Include="System.ValueTuple">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ValueTuple.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ValueTuple.dll</HintPath>
     </Reference><Reference Include="System.Xml.ReaderWriter">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.ReaderWriter.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.ReaderWriter.dll</HintPath>
     </Reference><Reference Include="System.Xml.XDocument">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XDocument.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XDocument.dll</HintPath>
     </Reference><Reference Include="System.Xml.XmlDocument">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlDocument.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlDocument.dll</HintPath>
     </Reference><Reference Include="System.Xml.XmlSerializer">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlSerializer.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlSerializer.dll</HintPath>
     </Reference><Reference Include="System.Xml.XPath">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.dll</HintPath>
     </Reference><Reference Include="System.Xml.XPath.XDocument">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference><Reference Include="UnityScript">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\UnityScript.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\UnityScript.dll</HintPath>
     </Reference><Reference Include="UnityScript.Lang">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\UnityScript.Lang.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\UnityScript.Lang.dll</HintPath>
     </Reference><Reference Include="Boo.Lang">
       <Private>false</Private>
-      <HintPath>D:\Softwares\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\Boo.Lang.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor\Data\MonoBleedingEdge\lib\mono\unityscript\Boo.Lang.dll</HintPath>
     </Reference>
 <!--PLATFORM_COMMON_REFERENCE_TEMPLATE_END-->
   </ItemGroup>
