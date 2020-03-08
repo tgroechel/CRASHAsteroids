@@ -61,7 +61,7 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
 
         vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
 
-        GameObject.Find("Main Camera").GetComponent<CameraShakeSimpleScript>().ShakeCamera();
+        Camera.main.GetComponent<CameraShakeSimpleScript>().ShakeCamera();
     }
 
     // Fires a bullet (in the direction given) if present in the magazine, else prompts to reload
