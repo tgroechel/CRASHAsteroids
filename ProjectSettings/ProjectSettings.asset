@@ -538,7 +538,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     4: 
     7: 
-    14: master
+    14: master;DOTNETWINRT_PRESENT
   platformArchitecture:
     iOS: 1
   scriptingBackend: {}
