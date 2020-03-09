@@ -23,24 +23,24 @@ public class HitEnemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {        
+    //private void OnTriggerEnter(Collider other)
+    //{        
         // If HealthManager script exists on the collided object then
         // we assume it is an enemy and we decrease its health,
         // else the bullet simply vanishes upon collision
-        if (other.gameObject.GetComponent<HealthManager>() != null)
-        {
-            print("HealthManager present!");
-            var healthManager = other.gameObject.GetComponent<HealthManager>();
-            healthManager.CallDecreaseHealth(bulletDamage, gameObject);
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            print("Trigger entered: " + other.gameObject.name);
-            gameObject.SetActive(false);
-        }
-    }
+        //if (other.gameObject.GetComponent<HealthManager>() != null)
+        //{
+            //print("HealthManager present!");
+            //var healthManager = other.gameObject.GetComponent<HealthManager>();
+            //healthManager.CallDecreaseHealth(bulletDamage, gameObject);
+            //gameObject.SetActive(false);
+        //}
+        //else
+        //{
+            //print("Trigger entered: " + other.gameObject.name);
+            //gameObject.SetActive(false);
+        //}
+    //}
 
     
 }

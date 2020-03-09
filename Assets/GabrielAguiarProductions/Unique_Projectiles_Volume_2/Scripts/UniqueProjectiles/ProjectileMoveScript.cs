@@ -100,20 +100,23 @@ public class ProjectileMoveScript : MonoBehaviour {
     public void RotateToMouse(GameObject obj, Vector3 destination)
     {
 
-         Vector3 direction;
+        Vector3 direction;
         Quaternion rotation;
         direction = destination - obj.transform.position;
         rotation = Quaternion.LookRotation(direction);
         obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
     }
-
+    
     void OnCollisionEnter (Collision co) {
+        Debug.Log("dddddddfadsfasdfasfasdfsdfsadfdsafdsa");
         if (!bounce)
         {
-            if (collided)
+            GetComponent<AudioSource>().PlayOneShot(shotSFX);
+            if (co.gameObject.tag == "Bullet")
+                Debug.Log("caonima");
+            if (co.gameObject.tag != "Bullet" && !collided)
             {
                 collided = true;
-
                 if (shotSFX != null && GetComponent<AudioSource>())
                 {
                     GetComponent<AudioSource>().PlayOneShot(hitSFX);
@@ -203,10 +206,15 @@ public class ProjectileMoveScript : MonoBehaviour {
     public void SetTargetPos(Vector3 tp)
     {
         Vector3 direction;
-
         Quaternion rotation;
         direction = tp - gameObject.transform.position;
         rotation = Quaternion.LookRotation(direction);
+        gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        Quaternion rotation = Quaternion.LookRotation(dir);
         gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
     }
 }
