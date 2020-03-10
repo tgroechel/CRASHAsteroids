@@ -54,7 +54,7 @@ public class BossAttackScript : MonoBehaviour
         if (ii >= 9)
             ii = 17 - ii;
 
-        GameObject vfx = Instantiate(effect, transform.position, Quaternion.identity);
+        GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
         vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
         vfx.GetComponent<ProjectileMoveScript>().accuracy = 100;
         Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
