@@ -147,19 +147,19 @@ public class ProjectileMoveScript : MonoBehaviour {
                 Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
                 Vector3 pos = contact.point;
 
-                if (hitPrefab != null)
-                {
-                    var hitVFX = Instantiate(hitPrefab, pos, rot) as GameObject;
+                //if (hitPrefab != null)
+                //{
+                    //var hitVFX = Instantiate(hitPrefab, pos, rot) as GameObject;
 
-                    var ps = hitVFX.GetComponent<ParticleSystem>();
-                    if (ps == null)
-                    {
-                        var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                        Destroy(hitVFX, psChild.main.duration);
-                    }
-                    else
-                        Destroy(hitVFX, ps.main.duration);
-                }
+                    //var ps = hitVFX.GetComponent<ParticleSystem>();
+                    //if (ps == null)
+                    //{
+                        //var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
+                        //Destroy(hitVFX, psChild.main.duration);
+                    //}
+                    //else
+                        //Destroy(hitVFX, ps.main.duration);
+                //}
 
                 StartCoroutine(DestroyParticle(0f));
             }
