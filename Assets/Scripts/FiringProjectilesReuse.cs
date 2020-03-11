@@ -60,7 +60,8 @@ public class FiringProjectilesReuse : MonoBehaviour, IMixedRealityPointerHandler
                 magazine.Remove(bullet);
                 shells.Add(bullet);
                 bullet.SetActive(true);
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, firingHand == "Right Hand" ? Handedness.Right : Handedness.Left, out MixedRealityPose pose))
+                MixedRealityPose pose;
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, firingHand == "Right Hand" ? Handedness.Right : Handedness.Left, out pose))
                 {
                     bullet.transform.position = pose.Position
                     + pose.Rotation * Vector3.forward * offsetZ

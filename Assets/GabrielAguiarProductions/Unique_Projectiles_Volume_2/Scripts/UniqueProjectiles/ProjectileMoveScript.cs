@@ -38,6 +38,7 @@ public class ProjectileMoveScript : MonoBehaviour {
     private Vector3 targetPos;
 
 	void Start () {
+        
         startPos = transform.position;
         rb = GetComponent <Rigidbody> ();
 
@@ -217,4 +218,7 @@ public class ProjectileMoveScript : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(dir);
         gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
     }
+
+    
+
 }
