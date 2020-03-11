@@ -2,9 +2,15 @@
   
   <!-- These are specific to this Unity project and can't be overridden -->
   <PropertyGroup>
+<<<<<<< HEAD
     <UnityProjectAssetsPath>C:\Projects\CRASHAsteroids\Assets</UnityProjectAssetsPath>
     
     <_MSBuildForUnityGeneratedOutputDirectory>C:\Projects\CRASHAsteroids\MSBuild</_MSBuildForUnityGeneratedOutputDirectory>
+=======
+    <UnityProjectAssetsPath>C:\Users\pc\Downloads\CSCI 538\CRASHAsteroids\Assets</UnityProjectAssetsPath>
+    
+    <_MSBuildForUnityGeneratedOutputDirectory>C:\Users\pc\Downloads\CSCI 538\CRASHAsteroids\MSBuild</_MSBuildForUnityGeneratedOutputDirectory>
+>>>>>>> 332f730b0f977ecfa3a6bdafcf8cf07009fc0740
     <MSBuildForUnityGeneratedProjectDirectory>$(_MSBuildForUnityGeneratedOutputDirectory)\Projects</MSBuildForUnityGeneratedProjectDirectory>
   </PropertyGroup>
   
@@ -23,7 +29,11 @@
     
     <UnityMajorVersion>2018</UnityMajorVersion>
     <UnityMinorVersion>4</UnityMinorVersion>
+<<<<<<< HEAD
     <UnityEditorInstallPath>C:\Program Files\Unity\Hub\Editor\2018.4.14f1\Editor</UnityEditorInstallPath>
+=======
+    <UnityEditorInstallPath>C:\Program Files\Unity\Editor</UnityEditorInstallPath>
+>>>>>>> 332f730b0f977ecfa3a6bdafcf8cf07009fc0740
   </PropertyGroup>
   
   <PropertyGroup>
