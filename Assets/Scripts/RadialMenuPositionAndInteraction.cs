@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 // using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class RadialMenuPositionAndInteraction : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public class RadialMenuPositionAndInteraction : MonoBehaviour
     public float yRot = 0;
     public float zRot = 0;
     public float rotateMenu = 0;
+    public static TextMeshProUGUI textComponent;
+    MixedRealityPose poseThumbTip;
+    MixedRealityPose poseIndexTip;
+    MixedRealityPose poseMiddleTip;
+    MixedRealityPose poseRingTip;
+    MixedRealityPose posePinkyTip;
+    MixedRealityPose poseWrist;
 
     //void Awake()
     //{
@@ -42,6 +50,9 @@ public class RadialMenuPositionAndInteraction : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        // Obtain the GUI component for displaying joint poses
+
+
         // Obtain the RadialMenuButton prefab
         string pathToButton = ResourcePathManager.prefabsFolder + ResourcePathManager.radialMenuButton;
         radialMenuButton = Resources.Load<GameObject>(pathToButton) as GameObject;
@@ -65,14 +76,30 @@ public class RadialMenuPositionAndInteraction : MonoBehaviour
     {
         if (showRadialMenu)
         {
-            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Wrist, Handedness.Right, out MixedRealityPose pose))
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Wrist, Handedness.Right, out poseWrist))
             {
-                gameObject.transform.position = pose.Position
-                    + pose.Rotation * Vector3.forward * offsetZ
-                    + pose.Rotation * Vector3.up * offsetY
-                    + pose.Rotation * Vector3.right * offsetX;
-                gameObject.transform.rotation = pose.Rotation * Quaternion.Euler(xRot, yRot, zRot);
+                gameObject.transform.position = poseWrist.Position
+                    + poseWrist.Rotation * Vector3.forward * offsetZ
+                    + poseWrist.Rotation * Vector3.up * offsetY
+                    + poseWrist.Rotation * Vector3.right * offsetX;
+                gameObject.transform.rotation = poseWrist.Rotation * Quaternion.Euler(xRot, yRot, zRot);
             }
+
+            HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Right, out poseThumbTip);
+            HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out poseIndexTip);
+            HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Right, out poseMiddleTip);
+            HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Right, out poseRingTip);
+            HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Right, out posePinkyTip);
+
+            // Showing hand joint positions in UI
+            ShowJointPosition.textComponent.SetText("");
+            string stringToBeShown = "Right Thumb Pos: " + (poseThumbTip.Position - poseWrist.Position) + "\n\n";
+            stringToBeShown = stringToBeShown +  "Right Index Pos: " + (poseIndexTip.Position - poseWrist.Position) + "\n\n";
+            stringToBeShown = stringToBeShown + "Right Middle Pos: " + (poseMiddleTip.Position - poseWrist.Position) + "\n\n";
+            stringToBeShown = stringToBeShown + "Right Ring Pos: " + (poseRingTip.Position - poseWrist.Position) + "\n\n";
+            stringToBeShown = stringToBeShown + "Right Pinky Pos: " + (posePinkyTip.Position - poseWrist.Position) + "\n\n";
+            ShowJointPosition.textComponent.SetText(stringToBeShown);
+
         }
     }
 
