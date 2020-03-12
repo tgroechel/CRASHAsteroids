@@ -14,7 +14,7 @@ public class HitEnemy : MonoBehaviour
     {
         objRigidbody = gameObject.GetComponent<Rigidbody>();
         objCollider = gameObject.GetComponent<Collider>();
-        objCollider.isTrigger = true;
+        //objCollider.isTrigger = true;
     }
 
     // Update is called once per frame
@@ -24,8 +24,9 @@ public class HitEnemy : MonoBehaviour
     }
 
     // For bullets triggered by player
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("Caonima!!!!!");
         // If HealthManager script exists on the collided object then
         // we assume it is an enemy and we decrease its health,
         // else the bullet simply vanishes upon collision
@@ -34,12 +35,12 @@ public class HitEnemy : MonoBehaviour
             print("HealthManager present!");
             var healthManager = other.gameObject.GetComponent<HealthManager>();
             healthManager.CallDecreaseHealth(bulletDamage, gameObject);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
         else
         {
             print("Trigger entered: " + other.gameObject.name);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

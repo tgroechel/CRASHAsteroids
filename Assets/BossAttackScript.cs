@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Threading;
+using Random = UnityEngine.Random;
 
 public class BossAttackScript : MonoBehaviour
 {
     public float waitDuration = 1f;
     public float bulletSpeed = 2;
+    public GameObject explodePrefab;
+    public AudioClip explodeSFX;
 
-    public GameObject effect;
+    private GameObject effect;
     void Start()
     {
 
@@ -25,6 +28,34 @@ public class BossAttackScript : MonoBehaviour
         relativePos2Player.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
         transform.rotation = rotation;
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (explodeSFX != null && GetComponent<AudioSource>())
+            {
+                GetComponent<AudioSource>().PlayOneShot(explodeSFX);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                if (explodePrefab != null)
+                {
+
+                    var hitVFX = Instantiate(explodePrefab, transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0, 0.2f), Random.Range(-0.3f, 0.3f)), Quaternion.identity) as GameObject;
+                    hitVFX.GetComponent<ProjectileMoveScript>().speed = 0f;
+                    var ps = hitVFX.GetComponent<ParticleSystem>();
+                    if (ps == null)
+                    {
+                        var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
+                        Destroy(hitVFX, psChild.main.duration);
+                    }
+                    else
+                        Destroy(hitVFX, ps.main.duration);
+                }
+            }
+
+
+            Destroy(gameObject, 0.3f);
+        }
     }
 
     IEnumerator ShootPlayer()
