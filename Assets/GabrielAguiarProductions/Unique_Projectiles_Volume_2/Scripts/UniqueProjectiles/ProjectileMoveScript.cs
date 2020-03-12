@@ -219,6 +219,10 @@ public class ProjectileMoveScript : MonoBehaviour {
         gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
     }
 
-    
 
+    public void explode()
+    {
+
+
+    }
 }
