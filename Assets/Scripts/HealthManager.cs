@@ -54,6 +54,7 @@ public class HealthManager : MonoBehaviour
         if (health - damage <= 0)
         {
             gameObject.SetActive(false);
+            FindObjectOfType<AudioManager>().Play("GameWin");
         }
         else
         {
