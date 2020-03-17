@@ -5,30 +5,37 @@ using System;
 using System.Threading;
 using Random = UnityEngine.Random;
 
-public class BossAttackScript : MonoBehaviour
-{
+public class BossAttackScript : MonoBehaviour {
     public float waitDuration = 1f;
     public float bulletSpeed = 2;
     public GameObject explodePrefab;
     public AudioClip explodeSFX;
 
+    private Animator animator;
+    private bool alive = true;
+
     private GameObject effect;
-    void Start()
-    {
+    void Start() {
 
         effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
         StartCoroutine("ShootPlayer");
+        animator = GetComponent<Animator>();
 
     }
 
-    void Update()
-    {
+    void Update() {
         GameObject head = GameObject.Find("Main Camera");
         Vector3 relativePos2Player = head.transform.position - transform.position;
         relativePos2Player.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
         transform.rotation = rotation;
 
+        if (Input.GetKeyDown(KeyCode.P)) {
+            animator.SetTrigger("Die");
+            alive = false;
+        }
+
+        /*
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (explodeSFX != null && GetComponent<AudioSource>())
@@ -55,17 +62,14 @@ public class BossAttackScript : MonoBehaviour
 
 
             Destroy(gameObject, 0.3f);
-        }
+        }*/
     }
 
-    IEnumerator ShootPlayer()
-    {
+    IEnumerator ShootPlayer() {
         yield return new WaitForSeconds(1f);
         int i = 0;
-        while (true)
-        {
-            if (i % 13 == 0)
-            {
+        while (alive) {
+            if (i % 13 == 0) {
                 if (i % 2 == 0)
                     Pattern3(i);
                 else
@@ -79,8 +83,7 @@ public class BossAttackScript : MonoBehaviour
     }
 
 
-    private void Pattern1(int i)
-    {
+    private void Pattern1(int i) {
         int ii = i % 18;
         if (ii >= 9)
             ii = 17 - ii;
@@ -94,14 +97,12 @@ public class BossAttackScript : MonoBehaviour
         vfx.GetComponent<ProjectileMoveScript>().SetDirection(dir);
     }
 
-    private void Pattern2(int i)
-    {
+    private void Pattern2(int i) {
         int ii = i % 3;
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
-        for (int jj = 0; jj < 7; jj++)
-        {
+        for (int jj = 0; jj < 7; jj++) {
             vfx = Instantiate(effect, transform.position + new Vector3(0, jj * 0.05f, 0), Quaternion.identity);
             vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
             vfx.GetComponent<ProjectileMoveScript>().accuracy = 100;
@@ -110,8 +111,7 @@ public class BossAttackScript : MonoBehaviour
         }
         int j = 0;
         Vector3 targetPos, dir;
-        foreach (GameObject bullet in bullets)
-        {
+        foreach (GameObject bullet in bullets) {
             targetPos = GameObject.Find("PlayerHead").transform.position;
             if (ii == 0)
                 targetPos.y += 0.15f;
@@ -125,14 +125,12 @@ public class BossAttackScript : MonoBehaviour
 
     }
 
-    private void Pattern3(int i)
-    {
+    private void Pattern3(int i) {
         int ii = i % 3;
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
-        for (int jj = 0; jj < 7; jj++)
-        {
+        for (int jj = 0; jj < 7; jj++) {
             GameObject head = GameObject.Find("Main Camera");
             Vector3 relativePos2Player = head.transform.position - transform.position;
             relativePos2Player.y = 0;
@@ -147,8 +145,7 @@ public class BossAttackScript : MonoBehaviour
         }
         int j = 0;
         Vector3 targetPos, dir;
-        foreach (GameObject bullet in bullets)
-        {
+        foreach (GameObject bullet in bullets) {
             targetPos = GameObject.Find("PlayerHead").transform.position;
             dir = Quaternion.AngleAxis(-7.5f + 2.5f * j, Vector3.forward) * (targetPos - transform.position);
             bullet.GetComponent<ProjectileMoveScript>().SetDirection(dir);
