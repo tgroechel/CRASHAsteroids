@@ -6,6 +6,9 @@ public class ResourcePathManager : MonoBehaviour
 {
     public static string projectilesFolder = "Projectiles/Projectiles/";
     public static string projectilesThumbnailsFolder = "Projectile Thumbnails/";
+    public static string materialsFolder = "Materials/";
+    public static string bulletHighlightMaterial = "SelectedBulletHighlight";
+    public static string bulletDeHighlightMaterial = "SelectedBulletDeHighlight";
     public static string bullet1 = "vfx_Projectile_BlackHole01_Orange";
     public static string prefabsFolder = "Prefabs/";
     public static string radialMenuButton = "RadialMenuButton";

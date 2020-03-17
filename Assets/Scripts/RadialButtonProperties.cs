@@ -23,7 +23,18 @@ public class RadialButtonProperties : MonoBehaviour
     {
         // To check that interactable was clicked
         print("Clicked Interactable and chose: " + bulletName);
-
         FiringProjectiles.ChangeBullet(bulletName);
+
+        // Remove highlight from previously selected button if it was different
+        // and highlight the newly selected button
+        if (bulletName != LoadRadialMenuButtons.selectedBulletName)
+        {
+            if(LoadRadialMenuButtons.selectedBulletName != null)
+            {
+                LoadRadialMenuButtons.radialMenuButtons[LoadRadialMenuButtons.selectedBulletName].transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = LoadRadialMenuButtons.bulletDeHighlightMaterial;
+            }
+            LoadRadialMenuButtons.radialMenuButtons[bulletName].transform.GetChild(3).gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = LoadRadialMenuButtons.bulletHighlightMaterial;
+            LoadRadialMenuButtons.selectedBulletName = bulletName;
+        }        
     }
 }
