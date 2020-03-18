@@ -9,6 +9,7 @@ public class HitEnemy : MonoBehaviour
     public Collider objCollider;
     public Rigidbody objRigidbody;
 
+
     // Start is called before the first frame update
     void Start()
     {

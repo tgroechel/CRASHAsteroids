@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4000900529869625856}
   - component: {fileID: 4000900529869625863}
   m_Layer: 0
-  m_Name: RadialMenuLeft
+  m_Name: RadialMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   layout: 1
   anchor: 4
   radius: 0.05
-  radialRange: 180
+  radialRange: 360
   distance: 0
   rows: 1
   columns: 10
