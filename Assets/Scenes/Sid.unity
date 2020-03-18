@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d9acc7968244a8886f3af591305bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProfile: {fileID: 11400000, guid: 7e7c962b9eb9dfa44993d5b2f2576752, type: 2}
+  activeProfile: {fileID: 11400000, guid: dc364f26320e8994d824680c2494f72e, type: 2}
 --- !u!4 &1464568098
 Transform:
   m_ObjectHideFlags: 0
@@ -2846,6 +2846,7 @@ GameObject:
   - component: {fileID: 2091350390}
   - component: {fileID: 2091350389}
   - component: {fileID: 2091350388}
+  - component: {fileID: 2091350393}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2975,6 +2976,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2091350393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091350386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1561ad5ecde53f84bae260b308e51a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3630120322891291719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3137,6 +3150,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714268320757924995, guid: 3b47c96f0f67060468b37228e7e88f0b,
+        type: 3}
+      propertyPath: radialRange
+      value: 360
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4000900529869625863, guid: 3b47c96f0f67060468b37228e7e88f0b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3b47c96f0f67060468b37228e7e88f0b, type: 3}
@@ -3217,5 +3235,20 @@ PrefabInstance:
       propertyPath: onHandDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2026267716}
+    - target: {fileID: 8266105325399064168, guid: b4f94b9d672ba024392ac9e69cdfc6b6,
+        type: 3}
+      propertyPath: offsetX
+      value: -0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266105325399064168, guid: b4f94b9d672ba024392ac9e69cdfc6b6,
+        type: 3}
+      propertyPath: offsetY
+      value: 0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266105325399064168, guid: b4f94b9d672ba024392ac9e69cdfc6b6,
+        type: 3}
+      propertyPath: offsetZ
+      value: 0.31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f94b9d672ba024392ac9e69cdfc6b6, type: 3}

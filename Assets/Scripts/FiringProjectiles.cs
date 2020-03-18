@@ -118,7 +118,8 @@ public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler, IMi
         var actionDescription = eventData.MixedRealityInputAction.Description;
         var actionSource = eventData.InputSource.SourceName;
         var stringToAppend = "Pointer Action Completed: " + actionDescription + "\n" + "By Input Source: " + actionSource;
-        AlignAmmo.textComponent.SetText(currentText + "\n\n" + stringToAppend);
+        //AlignAmmo.textComponent.SetText(currentText + "\n\n" + stringToAppend);
+        AlignAmmo.textComponent.SetText(stringToAppend);
     }
 
     public void OnGestureStarted(InputEventData eventData)
