@@ -33,3 +33,16 @@ Here is an example.
 
 1. *Right Mouse Click or Air Tap*: Shoot the bullet in the direction of camera gaze pointer.
 2. *Left Mouse Click or Air Tap*: Reload the magazine of bullets.
+
+## Radial Menu Behaviour
+
+1. The radial menu is activated only when the __right palm__ is facing the player.
+2. The radial menu appears on the __left side__ of the __right palm__.
+3. The user has an arsenal of __8 types of bullets__ (each with its own damage and speed characteristics, this needs to be updated). 
+4. The user can choose a bullet type by pressing it like a button using his/her __left hand__.
+5. Upon pressing a button, the user gets *audio feedback* and the *button is highlighted* to indicate selection.
+6. Each bullet type has its own __shot sound__ and __hit sound__ (these will be 3D sounds, this needs to be updated).
+
+Here is an example.
+
+![RadialMenu](https://user-images.githubusercontent.com/18630586/77114670-27d8ba00-69ea-11ea-9a54-e0e6f3990172.gif)
