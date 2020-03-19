@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Whatever {
+namespace Crash {
     public class SnapCollider : MonoBehaviour {
 
         Rigidbody rb;

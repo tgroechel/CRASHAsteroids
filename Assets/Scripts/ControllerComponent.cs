@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Whatever {
+namespace Crash {
     public class ControllerComponent : MonoBehaviour {
 
         public static ControllerComponent curDraggingControllerComponent;
