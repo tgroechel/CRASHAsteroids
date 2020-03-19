@@ -2,92 +2,85 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+namespace Sid
 {
-    public float health;
-    Renderer objRenderer;
-    Renderer[] childRenderers;
-    Color objOriginalColor;
-    List<Color> childOriginalColors;
-    public static float damageTime;
-    public static Color colorOnDamage = new Color(1, 0, 0);
-
-    // Start is called before the first frame update
-    void Awake()
+    public class HealthManager : MonoBehaviour
     {
-        health = 100;
-        damageTime = Time.deltaTime * 3;
+        public float health;
+        Renderer objRenderer;
+        Renderer[] childRenderers;
+        Color objOriginalColor;
+        List<Color> childOriginalColors;
+        public static float damageTime;
+        public static Color colorOnDamage = new Color(1, 0, 0);
 
-        // Initialising object renderer and its original color
-        if (GetComponent<Renderer>() != null)
+        // Store original color of current object and its children (parts)
+        void Awake()
         {
-            objRenderer = GetComponent<Renderer>();
-            objOriginalColor = objRenderer.material.color;
-        }
-        else
-        {
-            objRenderer = null;
-        }
+            health = 100;
+            damageTime = Time.deltaTime * 3;
 
-        // Initialising child renderers and their original colors
-        childRenderers = GetComponentsInChildren<Renderer>();
-        childOriginalColors = new List<Color>();
-        foreach(Renderer childRend in childRenderers)
-        {
-            print("Org Color of " + childRend.gameObject.name + " is " + childRend.material.color);
-            childOriginalColors.Add(childRend.material.color);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // If an enemy object is hit by a bullet, change its color for a brief period and decrease its health.
-    // If the enemy object has child objects, then change the color of each child.
-    // If health becomes <0, then deactivate the enemy.
-    public IEnumerator DecreaseHealth(float damage, GameObject bullet)
-    {
-        Time.timeScale = 1;
-        if (health - damage <= 0)
-        {
-            gameObject.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("GameWin");
-        }
-        else
-        {
-            health -= damage;
-            if(objRenderer != null)
+            // Initialising object renderer and its original color
+            if (GetComponent<Renderer>() != null)
             {
-                objRenderer.material.color = colorOnDamage;
-                yield return new WaitForSeconds(damageTime);
-                print("I am also here!");
-                objRenderer.material.color = objOriginalColor;
+                objRenderer = GetComponent<Renderer>();
+                objOriginalColor = objRenderer.material.color;
             }
             else
             {
-                foreach (Renderer childRend in childRenderers)
+                objRenderer = null;
+            }
+
+            // Initialising child renderers and their original colors
+            childRenderers = GetComponentsInChildren<Renderer>();
+            childOriginalColors = new List<Color>();
+            foreach (Renderer childRend in childRenderers)
+            {
+                childOriginalColors.Add(childRend.material.color);
+            }
+        }
+
+        /*  If an enemy object is hit by a bullet, change its color for a brief period and decrease its health.
+            If the enemy object has child objects, then change the color of each child.
+            If health becomes <0, then deactivate the enemy. */
+        public IEnumerator DecreaseHealth(float damage)
+        {
+            Time.timeScale = 1;
+            if (health - damage <= 0)
+            {
+                gameObject.SetActive(false);
+                FindObjectOfType<AudioManager>().Play("GameWin");
+            }
+            else
+            {
+                health -= damage;
+                if (objRenderer != null)
                 {
-                    print("Changed color!");
-                    childRend.material.color = colorOnDamage;
+                    objRenderer.material.color = colorOnDamage;
+                    yield return new WaitForSeconds(damageTime);
+                    objRenderer.material.color = objOriginalColor;
                 }
-                yield return new WaitForSeconds(damageTime);
-                var i = 0;
-                print("I am here!");
-                foreach (Renderer childRend in childRenderers)
+                else
                 {
-                    print("Setting Org Color of " + childRend.gameObject.name + " to " + childOriginalColors[i]);
-                    childRend.material.color = childOriginalColors[i];
-                    i++;
+                    foreach (Renderer childRend in childRenderers)
+                    {
+                        childRend.material.color = colorOnDamage;
+                    }
+                    yield return new WaitForSeconds(damageTime);
+                    int i = 0;
+                    foreach (Renderer childRend in childRenderers)
+                    {
+                        childRend.material.color = childOriginalColors[i];
+                        i++;
+                    }
                 }
             }
         }
-    }
 
-    public void CallDecreaseHealth(float damage, GameObject bullet)
-    {
-        StartCoroutine(DecreaseHealth(damage, bullet));
+        // Decrease health of the gameobject by 'damage' amount
+        public void CallDecreaseHealth(float damage)
+        {
+            StartCoroutine(DecreaseHealth(damage));
+        }
     }
 }

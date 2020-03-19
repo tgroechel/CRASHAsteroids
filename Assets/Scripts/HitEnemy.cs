@@ -2,46 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitEnemy : MonoBehaviour
+namespace Sid
 {
-    // Default, can be changed using GUI for different bullets
-    public float bulletDamage = 10;
-    public Collider objCollider;
-    public Rigidbody objRigidbody;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class HitEnemy : MonoBehaviour
     {
-        objRigidbody = gameObject.GetComponent<Rigidbody>();
-        objCollider = gameObject.GetComponent<Collider>();
-        //objCollider.isTrigger = true;
-    }
+        // Default, can be changed using GUI for different bullets
+        public float bulletDamage = 10;
+        public Collider objCollider;
+        public Rigidbody objRigidbody;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    // For bullets triggered by player
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Caonima!!!!!");
-        // If HealthManager script exists on the collided object then
-        // we assume it is an enemy and we decrease its health,
-        // else the bullet simply vanishes upon collision
-        if (other.gameObject.GetComponent<HealthManager>() != null)
+        // Start is called before the first frame update
+        void Start()
         {
-            print("HealthManager present!");
-            var healthManager = other.gameObject.GetComponent<HealthManager>();
-            healthManager.CallDecreaseHealth(bulletDamage, gameObject);
-            //gameObject.SetActive(false);
+            objRigidbody = gameObject.GetComponent<Rigidbody>();
+            objCollider = gameObject.GetComponent<Collider>();
+            //objCollider.isTrigger = true;
         }
-        else
+
+        // For bullets triggered by player
+        private void OnCollisionEnter(Collision other)
         {
-            print("Trigger entered: " + other.gameObject.name);
-            //gameObject.SetActive(false);
+            /* If HealthManager script exists on the collided object then
+               we assume it is an enemy and we decrease its health,
+               else the bullet simply vanishes upon collision */
+            if (other.gameObject.GetComponent<HealthManager>() != null)
+            {
+                print("Name of gameobject entered is " + other.gameObject.name);
+                HealthManager healthManager = other.gameObject.GetComponent<HealthManager>();
+                healthManager.CallDecreaseHealth(bulletDamage);
+            }
         }
     }
 }
