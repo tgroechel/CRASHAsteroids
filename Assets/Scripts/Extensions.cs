@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Whatever {
+namespace Crash {
     public static class Extensions {
 
         // transform extension
