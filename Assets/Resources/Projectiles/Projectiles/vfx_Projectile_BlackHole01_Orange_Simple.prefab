@@ -14173,7 +14173,6 @@ GameObject:
   - component: {fileID: 65597604615514542}
   - component: {fileID: 54283302129575054}
   - component: {fileID: 114557518944588400}
-  - component: {fileID: 114359864406340900}
   - component: {fileID: 82804134481865734}
   m_Layer: 0
   m_Name: vfx_Projectile_BlackHole01_Orange_Simple
@@ -14287,21 +14286,6 @@ MonoBehaviour:
   - {fileID: 1478734722567804}
   - {fileID: 1074746446080952}
   ActiveParticleSystems: 01010101010101
---- !u!114 &114359864406340900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473007591874996}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2e006bfa3ec024288c5d2ae4488301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletDamage: 10
-  objCollider: {fileID: 0}
-  objRigidbody: {fileID: 0}
 --- !u!82 &82804134481865734
 AudioSource:
   m_ObjectHideFlags: 0
