@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crash;
 
-public class ResourcePathManager : MonoBehaviour
+public class ResourcePathManager : Singleton<ResourcePathManager>
 {
     public static string projectilesFolder = "Projectiles/Projectiles/";
     public static string projectilesThumbnailsFolder = "Projectile Thumbnails/";

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
+using Crash;
 
 namespace Sid
 {
-    public class AlignAmmo : MonoBehaviour
+    public class AlignAmmo : Singleton<AlignAmmo>
     {
         public static TextMeshProUGUI textComponent;
         public static GameObject cam;

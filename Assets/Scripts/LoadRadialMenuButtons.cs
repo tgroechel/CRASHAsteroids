@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using Crash;
 
 namespace Sid
 {
-    public class LoadRadialMenuButtons : MonoBehaviour
+    public class LoadRadialMenuButtons : Singleton<LoadRadialMenuButtons>
     {
         public static string selectedBulletName;
         public static Dictionary<string, GameObject> radialMenuButtons = new Dictionary<string, GameObject>();      // Creating a dictionary to store bullet references
