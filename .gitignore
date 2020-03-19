@@ -51,3 +51,9 @@ MSBuild/Projects/WindowsStandalone64.Player.props
 MSBuild/Projects/WSA.InEditor.props
 MSBuild/Projects/WSA.Player.props
 MSBuildForUnity.Common.props
+
+Assets/CRASHAsteroids.Dependencies.msb4u.csproj.meta
+
+Assets/GabrielAguiarProductions/Unique_Projectiles_Volume_2/HDRP.meta
+
+Assets/GabrielAguiarProductions/Unique_Projectiles_Volume_2/LWRP.meta
