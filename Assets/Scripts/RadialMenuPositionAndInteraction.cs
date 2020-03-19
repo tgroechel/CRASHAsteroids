@@ -6,10 +6,11 @@ using System.IO;
 // using UnityEditor;
 using UnityEngine;
 using TMPro;
+using Crash;
 
 namespace Sid
 {
-    public class RadialMenuPositionAndInteraction : MonoBehaviour
+    public class RadialMenuPositionAndInteraction : Singleton<RadialMenuPositionAndInteraction>
     {
         public bool showRadialMenu = true;
         public GameObject radialMenuButton;

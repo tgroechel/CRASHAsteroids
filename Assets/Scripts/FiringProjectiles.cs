@@ -4,10 +4,11 @@ using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Crash;
 
 namespace Sid
 {
-    public class FiringProjectiles : MonoBehaviour, IMixedRealityPointerHandler
+    public class FiringProjectiles : Singleton<FiringProjectiles>, IMixedRealityPointerHandler
     {
         public static GameObject bullet;
         public static float bulletSpeed = 2;
