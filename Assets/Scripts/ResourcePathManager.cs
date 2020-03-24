@@ -17,4 +17,5 @@ public class ResourcePathManager : Singleton<ResourcePathManager>
     // public static string bullet1 = "vfx_Projectile_BlackHole01_Orange_Mobile Variant";
     public static string blackhole = "Projectiles/Projectiles/vfx_Projectile_BlackHole01_Purple";
     public static string bossProjectile = "Projectiles/Projectiles/vfx_Projectile_BlackHole01_Orange_Simple";
+    
 }
