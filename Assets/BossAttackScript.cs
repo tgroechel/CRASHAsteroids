@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System;
 using System.Threading;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BossAttackScript : MonoBehaviour {
@@ -24,11 +24,13 @@ public class BossAttackScript : MonoBehaviour {
     }
 
     void Update() {
-        GameObject head = GameObject.Find("Main Camera");
-        Vector3 relativePos2Player = head.transform.position - transform.position;
+        Vector3 relativePos2Player = Camera.main.transform.position - transform.position;
         relativePos2Player.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
-        transform.rotation = rotation;
+        Quaternion lookAtPlayerRotation = Quaternion.identity;
+        if (relativePos2Player != Vector3.zero) {
+            lookAtPlayerRotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
+        }
+        transform.rotation = lookAtPlayerRotation;
 
         if (Input.GetKeyDown(KeyCode.P)) {
             animator.SetTrigger("Die");
