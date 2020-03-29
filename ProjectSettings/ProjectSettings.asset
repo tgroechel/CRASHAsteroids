@@ -536,9 +536,10 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    4: 
-    7: 
-    14: master;DOTNETWINRT_PRESENT
+    1: CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: master;DOTNETWINRT_PRESENT;MOBILE_INPUT
   platformArchitecture:
     iOS: 1
   scriptingBackend: {}
