@@ -6,6 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BossAttackScript : MonoBehaviour {
+
     public float waitDuration = 1f;
     public float bulletSpeed = 2;
     public GameObject explodePrefab;
@@ -14,13 +15,42 @@ public class BossAttackScript : MonoBehaviour {
     private Animator animator;
     private bool alive = true;
 
-    private GameObject effect;
-    void Start() {
+    private List<GameObject> bullets;
 
+    private GameObject effect;
+
+
+    private void populatePool()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
+            vfx.SetActive(false);
+            bullets.Add(vfx);
+        }
+    }
+
+    private GameObject getBullet()
+    {
+        Debug.Log(bullets.Count);
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            
+            if (!bullets[i].activeInHierarchy)
+            {
+                Debug.Log("dddddddfadsfasdfasfasdfsdfsadfdsafdsa");
+                return bullets[i];
+            }
+        }
+        return null;
+    }
+
+    void Start() {
         effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
+        bullets = new List<GameObject>();
+        populatePool();
         StartCoroutine("ShootPlayer");
         animator = GetComponent<Animator>();
-
     }
 
     void Update() {
@@ -90,13 +120,22 @@ public class BossAttackScript : MonoBehaviour {
         if (ii >= 9)
             ii = 17 - ii;
 
-        GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
-        vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
-        vfx.GetComponent<ProjectileMoveScript>().accuracy = 100;
-        Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
-        targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
-        Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
-        vfx.GetComponent<ProjectileMoveScript>().SetDirection(dir);
+        GameObject vfx = getBullet();
+        if (vfx != null)
+        {
+            Debug.Log("not null");
+            //GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
+            vfx.SetActive(true);
+            vfx.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            vfx.transform.rotation = Quaternion.identity;
+            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
+            vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
+            Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
+            targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
+            Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+        }
+        
     }
 
     private void Pattern2(int i) {
@@ -106,8 +145,8 @@ public class BossAttackScript : MonoBehaviour {
 
         for (int jj = 0; jj < 7; jj++) {
             vfx = Instantiate(effect, transform.position + new Vector3(0, jj * 0.05f, 0), Quaternion.identity);
-            vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
-            vfx.GetComponent<ProjectileMoveScript>().accuracy = 100;
+            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
+            vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
             vfx.SetActive(false);
             bullets.Add(vfx);
         }
@@ -120,7 +159,7 @@ public class BossAttackScript : MonoBehaviour {
             if (ii == 2)
                 targetPos.y -= 0.15f;
             dir = Quaternion.AngleAxis(-12 + 4 * j, Vector3.up) * (targetPos - transform.position);
-            bullet.GetComponent<ProjectileMoveScript>().SetDirection(dir);
+            bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             bullet.SetActive(true);
             j++;
         }
@@ -140,8 +179,8 @@ public class BossAttackScript : MonoBehaviour {
             relativePos2Player.x *= 0.05f * jj;
             relativePos2Player.z *= 0.05f * jj;
             vfx = Instantiate(effect, transform.position + relativePos2Player, Quaternion.identity);
-            vfx.GetComponent<ProjectileMoveScript>().speed = bulletSpeed;
-            vfx.GetComponent<ProjectileMoveScript>().accuracy = 100;
+            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
+            vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
             vfx.SetActive(false);
             bullets.Add(vfx);
         }
@@ -150,7 +189,7 @@ public class BossAttackScript : MonoBehaviour {
         foreach (GameObject bullet in bullets) {
             targetPos = GameObject.Find("PlayerHead").transform.position;
             dir = Quaternion.AngleAxis(-7.5f + 2.5f * j, Vector3.forward) * (targetPos - transform.position);
-            bullet.GetComponent<ProjectileMoveScript>().SetDirection(dir);
+            bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             bullet.SetActive(true);
             j++;
         }

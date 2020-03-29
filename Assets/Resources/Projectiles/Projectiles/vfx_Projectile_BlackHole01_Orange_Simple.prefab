@@ -14169,11 +14169,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4331473746972588}
-  - component: {fileID: 114197732418690830}
   - component: {fileID: 65597604615514542}
   - component: {fileID: 54283302129575054}
   - component: {fileID: 114557518944588400}
   - component: {fileID: 82804134481865734}
+  - component: {fileID: 114169819587385386}
   m_Layer: 0
   m_Name: vfx_Projectile_BlackHole01_Orange_Simple
   m_TagString: Bullet
@@ -14202,30 +14202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114197732418690830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473007591874996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ba759cd568c0e47a7018ab70867a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotate: 0
-  rotateAmount: 45
-  bounce: 0
-  bounceForce: 10
-  speed: 20
-  accuracy: 95
-  fireRate: 2
-  muzzlePrefab: {fileID: 0}
-  hitPrefab: {fileID: 1605288786288348, guid: 17d342865beb3b549a1bcb4c4814dac5, type: 3}
-  shotSFX: {fileID: 8300000, guid: c461b547b9c507c42b617904589eaa13, type: 3}
-  hitSFX: {fileID: 8300000, guid: 84de76713d919274db33ba726f1fb3e4, type: 3}
-  trails: []
 --- !u!65 &65597604615514542
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14372,7 +14348,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.125
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -14382,6 +14358,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114169819587385386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473007591874996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98b19730a0740949b01a2f98ac710af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSFX: {fileID: 8300000, guid: c461b547b9c507c42b617904589eaa13, type: 3}
+  hitSFX: {fileID: 8300000, guid: 84de76713d919274db33ba726f1fb3e4, type: 3}
+  speed: 2
+  accuracy: 100
+  autoTimeout: 10
 --- !u!1 &1478734722567804
 GameObject:
   m_ObjectHideFlags: 0
