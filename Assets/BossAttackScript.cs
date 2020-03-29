@@ -18,16 +18,37 @@ public class BossAttackScript : MonoBehaviour {
     private List<GameObject> bullets;
 
     private GameObject effect;
+
+
+    private void populatePool()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
+            vfx.SetActive(false);
+            bullets.Add(vfx);
+        }
+    }
+
+    private GameObject getBullet()
+    {
+        Debug.Log(bullets.Count);
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            
+            if (!bullets[i].activeInHierarchy)
+            {
+                Debug.Log("dddddddfadsfasdfasfasdfsdfsadfdsafdsa");
+                return bullets[i];
+            }
+        }
+        return null;
+    }
+
     void Start() {
         effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
         bullets = new List<GameObject>();
-        for (int i = 0; i < 50; i++)
-        {
-           //// GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
-            //vfx.SetActive(false);
-            //bullets.Add(vfx);
-        }
-
+        populatePool();
         StartCoroutine("ShootPlayer");
         animator = GetComponent<Animator>();
     }
@@ -99,13 +120,22 @@ public class BossAttackScript : MonoBehaviour {
         if (ii >= 9)
             ii = 17 - ii;
 
-        GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
-        vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
-        vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
-        Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
-        targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
-        Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
-        vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+        GameObject vfx = getBullet();
+        if (vfx != null)
+        {
+            Debug.Log("not null");
+            //GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
+            vfx.SetActive(true);
+            vfx.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            vfx.transform.rotation = Quaternion.identity;
+            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
+            vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
+            Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
+            targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
+            Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+        }
+        
     }
 
     private void Pattern2(int i) {
