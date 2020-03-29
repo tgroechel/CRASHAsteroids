@@ -18,13 +18,10 @@ limitations under the License.
 using UnityEditor;
 using UnityEngine;
 
-namespace RosSharp.Urdf.Editor
-{
+namespace RosSharp.Urdf.Editor {
     [CustomEditor(typeof(Rigidbody))]
-    public class RigidbodyEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
+    public class RigidbodyEditor : UnityEditor.Editor {
+        public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
             Rigidbody _rigidbody = (Rigidbody)target;

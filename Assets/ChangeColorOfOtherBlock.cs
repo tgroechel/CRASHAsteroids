@@ -8,9 +8,5 @@ public class ChangeColorOfOtherBlock : MonoBehaviour {
         gameObject.GetComponent<MeshRenderer>().material.color = Random.ColorHSV();
     }
 
-    void Update() {
-        if (Input.GetKey(KeyCode.Alpha0)) {
-            ChangeMyColor();
-        }
-    }
+
 }
