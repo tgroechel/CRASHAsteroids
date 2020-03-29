@@ -64,6 +64,9 @@ public class ProjectileMoveScript2 : MonoBehaviour
 
         timeElapsed = 0;
 
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
         Quaternion rotation = Quaternion.LookRotation(dir);
         gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 1);
     }
