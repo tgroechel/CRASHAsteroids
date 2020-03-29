@@ -23,7 +23,6 @@ namespace Sid
         void Awake()
         {
             CoreServices.InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
-            CoreServices.InputSystem?.RegisterHandler<IMixedRealityGestureHandler>(this);
         }
 
         // Start is called before the first frame update
