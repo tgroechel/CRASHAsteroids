@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 8a284f14d65988d428f0061deaf4197f
+timeCreated: 1524651221
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Dummy Turn
+    100002: Polygonal Robot Hermit
+    100004: //RootNode
+    100006: Rig
+    100008: RigBLLeg1
+    100010: RigBLLeg2
+    100012: RigBLLeg3
+    100014: RigBLLegPlatform
+    100016: RigBRLeg1
+    100018: RigBRLeg2
+    100020: RigBRLeg3
+    100022: RigBRLegPlatform
+    100024: RigEye01
+    100026: RigEye01Gizmo
+    100028: RigEye02
+    100030: RigEye02Gizmo
+    100032: RigFLLeg1
+    100034: RigFLLeg2
+    100036: RigFLLeg3
+    100038: RigFLLegPlatform
+    100040: RigFRLeg1
+    100042: RigFRLeg2
+    100044: RigFRLeg3
+    100046: RigFRLegPlatform
+    100048: RigHead
+    100050: RigHeadGizmo
+    100052: RigLGun
+    100054: RigLGunGizmo
+    100056: RigMain
+    100058: RigMainGizmo
+    100060: RigRGun
+    100062: RigRGunGizmo
+    100064: RigWheel
+    100066: RigWheelGizmo
+    400000: Dummy Turn
+    400002: Polygonal Robot Hermit
+    400004: //RootNode
+    400006: Rig
+    400008: RigBLLeg1
+    400010: RigBLLeg2
+    400012: RigBLLeg3
+    400014: RigBLLegPlatform
+    400016: RigBRLeg1
+    400018: RigBRLeg2
+    400020: RigBRLeg3
+    400022: RigBRLegPlatform
+    400024: RigEye01
+    400026: RigEye01Gizmo
+    400028: RigEye02
+    400030: RigEye02Gizmo
+    400032: RigFLLeg1
+    400034: RigFLLeg2
+    400036: RigFLLeg3
+    400038: RigFLLegPlatform
+    400040: RigFRLeg1
+    400042: RigFRLeg2
+    400044: RigFRLeg3
+    400046: RigFRLegPlatform
+    400048: RigHead
+    400050: RigHeadGizmo
+    400052: RigLGun
+    400054: RigLGunGizmo
+    400056: RigMain
+    400058: RigMainGizmo
+    400060: RigRGun
+    400062: RigRGunGizmo
+    400064: RigWheel
+    400066: RigWheelGizmo
+    4300000: Polygonal Robot Hermit
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Polygonal Robot Hermit
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
