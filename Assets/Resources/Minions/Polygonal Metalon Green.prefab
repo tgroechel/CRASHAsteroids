@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5405116836490834201}
   - component: {fileID: 3240685137775148300}
   m_Layer: 0
-  m_Name: Polygonal Metalon Green 1
+  m_Name: Polygonal Metalon Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5405116836490834206}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 2.47
   m_Speed: 1
   m_Acceleration: 8
