@@ -4548,7 +4548,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentTypeID: 0
-  floorNavMesh: {fileID: 0}
+  floorNavMesh: {fileID: 375615287}
+--- !u!114 &2026236815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026236812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba65add173461944838975d6ddf20de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2026267716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3590177335100655571, guid: 3b47c96f0f67060468b37228e7e88f0b,
