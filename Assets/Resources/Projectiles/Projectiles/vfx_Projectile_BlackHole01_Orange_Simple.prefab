@@ -14374,7 +14374,7 @@ MonoBehaviour:
   hitSFX: {fileID: 8300000, guid: 84de76713d919274db33ba726f1fb3e4, type: 3}
   speed: 2
   accuracy: 100
-  autoTimeout: 10
+  autoTimeout: 8
 --- !u!1 &1478734722567804
 GameObject:
   m_ObjectHideFlags: 0
