@@ -20,7 +20,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !followPlayer)
+        if (Input.GetMouseButtonDown(0) && !followPlayer)       // Go to the point where ray cast hits 
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -30,7 +30,13 @@ public class MinionFollowPlayerScript : MonoBehaviour
             }
         }
 
-        if(followPlayer)
+        if(followPlayer)                                        // Keep following the player
+        {
+            // Agent follows the player
+            agent.SetDestination(Camera.main.transform.position);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && !followPlayer)       // Follow player only when F is pressed
         {
             // Agent follows the player
             agent.SetDestination(Camera.main.transform.position);
