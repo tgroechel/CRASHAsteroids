@@ -46,3 +46,22 @@ Here is an example.
 Here is an example.
 
 ![RadialMenu](https://user-images.githubusercontent.com/18630586/77114670-27d8ba00-69ea-11ea-9a54-e0e6f3990172.gif)
+
+## Running Spatial Understanding with Minions Scene ('Sid' scene)
+
+1. Run the scene and wait for the spatial understanding walls to get loaded (walls will stop loading visually speaking).
+2. Make sure you are in the scene view of Unity before pressing the buttons mentioned below.
+2. __Press the 'C' button__ for creating navmesh objects and attaching them to each of the walls.
+3. __Press the 'B' button__ to bake the navmesh on the walls and the floor.
+4. __Press the 'L' button__ to create navmesh links between the walls and the floor.
+5. You are all set to use the scene now!
+6. Click on any location in the scene using the __left mouse button__ and the hermit and spider will go to that point.
+7. If the point is not reachable, they will go to their __nearest reachable points__.
+7. The paths followed by the minions is shown in the scene using *line renderers*.
+8. Remember, the __spider can walk on any surface__ but the __hermit can only walk on the floor__.
+9. For the spider and the hermit, you can toggle between __follow player__ and __don't follow player__ modes by checking/unchecking the __follow player__ checkbox on the `Minion Follow Player Script` component of that particular object.
+10. You can also shoot at the minions to kill them. See the *radial menu behaviour section* above. 
+
+Here is an example.
+
+![nmvWdBHHc9](https://user-images.githubusercontent.com/18630586/78309670-7c0e8e80-7500-11ea-92d0-34413b0e0b6a.gif)
