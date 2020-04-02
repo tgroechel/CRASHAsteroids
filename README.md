@@ -50,7 +50,7 @@ Here is an example.
 ## Running Spatial Understanding with Minions Scene ('Sid' scene)
 
 1. Run the scene and wait for the spatial understanding walls to get loaded (walls will stop loading visually speaking).
-2. Make sure you are in the scene view of Unity before pressing the buttons mentioned below.
+2. Make sure you are in the **Game Window** of Unity before pressing the buttons mentioned below.
 2. __Press the 'C' button__ for creating navmesh objects and attaching them to each of the walls.
 3. __Press the 'B' button__ to bake the navmesh on the walls and the floor.
 4. __Press the 'L' button__ to create navmesh links between the walls and the floor.
