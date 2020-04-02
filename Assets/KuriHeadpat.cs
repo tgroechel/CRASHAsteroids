@@ -12,7 +12,7 @@ namespace Crash {
         }
 
         public void OnTouchStarted(HandTrackingInputEventData eventData) {
-
+            KuriManager.instance.AlertHeadPat();
         }
 
         public void OnTouchUpdated(HandTrackingInputEventData eventData) {
