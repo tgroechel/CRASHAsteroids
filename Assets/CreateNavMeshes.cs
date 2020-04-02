@@ -41,15 +41,19 @@ public class CreateNavMeshes : MonoBehaviour
             // Get first child of the wall
             GameObject child = currentWall.transform.GetChild(0).gameObject;
 
-            // Instantiate new NavMesh object from prefab and make the child the parent of navMesh
-            GameObject navMesh = Instantiate(navMeshPrefab, child.transform);
+            // Add NavMesh only if child has name 'Wall'
+            //if(child.name == "Wall")
+            //{
+                // Instantiate new NavMesh object from prefab and make the child the parent of navMesh
+                GameObject navMesh = Instantiate(navMeshPrefab, child.transform);
 
-            // Make the navMesh's location and rotation the same as that of the parent
-            navMesh.transform.localPosition = Vector3.zero;
-            navMesh.transform.localRotation = Quaternion.identity;
+                // Make the navMesh's location and rotation the same as that of the parent
+                navMesh.transform.localPosition = Vector3.zero;
+                navMesh.transform.localRotation = Quaternion.identity;
 
-            // Rotating the navMesh so that its y-axis protrudes out of the wall (its parent)
-            navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
+                // Rotating the navMesh so that its y-axis protrudes out of the wall (its parent)
+                navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
+            //}            
         }
     }
 }

@@ -21,7 +21,6 @@ public class BakeNavMeshRuntime : MonoBehaviour
 
         // Get the NavMeshLinks_AutoPlacer_Editor component
         editor = GetComponent<NavMeshLinks_AutoPlacer_Editor>();
-
     }
 
     // Update is called once per frame
