@@ -39,6 +39,16 @@ public class BossAttackScript : MonoBehaviour {
             alive = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GetComponent<BossLaserScript>().shoot();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GetComponent<BossLaserScript>().stop();
+        }
+
+
         /*
         if (Input.GetKeyDown(KeyCode.P))
         {
