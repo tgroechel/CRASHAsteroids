@@ -16,42 +16,11 @@ public class BossAttackScript : MonoBehaviour {
     private Animator animator;
     private bool alive = true;
 
-    private List<GameObject> bullets;
-
     private GameObject effect;
-
-
-    private void populatePool()
-    {
-        for (int i = 0; i < bulletPoolSize; i++)
-        {
-            GameObject vfx = Instantiate(effect, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
-            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
-            vfx.GetComponent<ProjectileMoveScript2>().accuracy = 100;
-            vfx.SetActive(false);
-            bullets.Add(vfx);
-        }
-    }
-
-    private GameObject getBullet()
-    {
-        Debug.Log(bullets.Count);
-        for (int i = 0; i < bullets.Count; i++)
-        {
-            
-            if (!bullets[i].activeInHierarchy)
-            {
-                bullets[i].SetActive(true);
-                return bullets[i];
-            }
-        }
-        return null;
-    }
 
     void Start() {
         effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
-        bullets = new List<GameObject>();
-        populatePool();
+        GetComponent<BulletPoolManager>().createPool("boss bullet", effect, bulletPoolSize);
         StartCoroutine("ShootPlayer");
         animator = GetComponent<Animator>();
     }
@@ -117,6 +86,12 @@ public class BossAttackScript : MonoBehaviour {
         }
     }
 
+    private GameObject getBullet() {
+        GameObject vfx = GetComponent<BulletPoolManager>().getInstance("boss bullet");
+        if (vfx != null)
+            vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
+        return vfx;
+    }
 
     private void Pattern1(int i) {
         int ii = i % 18;
@@ -135,6 +110,8 @@ public class BossAttackScript : MonoBehaviour {
         }
         
     }
+
+
 
     private void Pattern2(int i) {
         int ii = i % 3;
@@ -160,7 +137,6 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
-
     }
 
     private void Pattern3(int i) {
