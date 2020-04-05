@@ -166,7 +166,5 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
-
-
     }
 }
