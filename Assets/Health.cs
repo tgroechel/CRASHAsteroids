@@ -27,11 +27,11 @@ public class Health : MonoBehaviour
 
         if (health < maxHealth)
         {
-            healthBarUI.setActive(true);
+            //healthBarUI.setActive(true);
         }
         if (health <= 0)
         {
-            Destory(gameObject);
+            //Destory(gameObject);
         }
         if (health > maxHealth)
         {

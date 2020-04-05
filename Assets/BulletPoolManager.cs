@@ -9,11 +9,12 @@ public class BulletPoolManager : MonoBehaviour
 
     void Start()
     {
-        pools = new Dictionary<string, List<GameObject>>();
     }
 
     public void createPool(string name, GameObject target, int size)
     {
+        if (pools == null)
+            pools = new Dictionary<string, List<GameObject>>();
         pools.Add(name, new List<GameObject>());
         for (int i = 0; i < size; i++)
         {
