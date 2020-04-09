@@ -35,8 +35,8 @@ public class BossLaserScript : MonoBehaviour
         {
             if (timeElapsed < 5)
             {
-                Vector3 direction = GameObject.Find("PlayerHead").transform.position - aimLaser.transform.position;
-                Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(0, 0.2f), Random.Range(0, 0.2f), Random.Range(0, 0.2f));
+                Vector3 direction = GameObject.Find("PlayerHead").transform.position - new Vector3(0,0,0.02f) - aimLaser.transform.position;
+                Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
                 aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
             }
             else
