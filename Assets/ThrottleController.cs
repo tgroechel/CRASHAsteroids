@@ -1,11 +1,26 @@
 ﻿using Microsoft.MixedReality.Toolkit.Input;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Crash {
     public class ThrottleController : MonoBehaviour, IMixedRealityPointerHandler {
         public const float MAX_ANGLE = 130, RADIUS = 1.2f;
+        LineRenderer lr;
+        TextMeshProUGUI textMesh;
+
+        void Start() {
+            lr = GetComponent<LineRenderer>();
+            lr.SetPosition(0, transform.parent.position);
+            lr.SetPosition(1, transform.position);
+            textMesh = transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        void Update() {
+            lr.SetPosition(0, transform.parent.position);
+            lr.SetPosition(1, transform.position);
+        }
 
         public Vector3 ProjectPointToSphere(Vector3 point, Vector3 center, float radius) {
             return center + radius * (point - center).normalized;
@@ -42,18 +57,16 @@ namespace Crash {
 
             transform.localPosition = potentialPosition;
             KuriManager.instance.SetVelocity(percent);
+            textMesh.SetText(percent.ToString("#.00"));
         }
 
         // Needed for IMixedRealityPointerHandler
         public void OnPointerUp(MixedRealityPointerEventData eventData) {
-
         }
         public void OnPointerClicked(MixedRealityPointerEventData eventData) {
-
         }
 
         public void OnPointerDown(MixedRealityPointerEventData eventData) {
-
         }
     }
 }
