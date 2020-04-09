@@ -5,13 +5,7 @@ using UnityEngine;
 
 namespace Crash {
     public class ThrottleController : MonoBehaviour, IMixedRealityPointerHandler {
-        public void OnPointerClicked(MixedRealityPointerEventData eventData) {
-
-        }
-
-        public void OnPointerDown(MixedRealityPointerEventData eventData) {
-
-        }
+        public const float MAX_ANGLE = 130, RADIUS = 1.2f;
 
         public Vector3 ProjectPointToSphere(Vector3 point, Vector3 center, float radius) {
             return center + radius * (point - center).normalized;
@@ -24,13 +18,41 @@ namespace Crash {
         public void OnPointerDragged(MixedRealityPointerEventData eventData) {
             Vector3 pointerPos = eventData.Pointer.Position;
             Vector3 center = Vector3.zero;
-            Vector3 norm = transform.right;
+            Vector3 norm = transform.parent.right;
 
-            transform.localPosition = ProjectPointToCircle(pointerPos, center, norm, 1.2f);
+            Vector3 potentialPosition = ProjectPointToCircle(pointerPos, center, norm, RADIUS);
+            float angleFromOutward = Vector3.SignedAngle(transform.parent.forward, potentialPosition, norm);
+
+            // -120 up, 120 down
+            float percent = 0;
+            if (angleFromOutward < 0) {
+                if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
+                    potentialPosition = (Quaternion.Euler(-MAX_ANGLE, 0, 0) * transform.parent.forward).normalized * RADIUS;
+                    angleFromOutward = -MAX_ANGLE;
+                }
+                percent = (180 + angleFromOutward) / (180 - MAX_ANGLE);
+            }
+            else {
+                if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
+                    potentialPosition = (Quaternion.Euler(MAX_ANGLE, 0, 0) * transform.parent.forward).normalized * RADIUS;
+                    angleFromOutward = MAX_ANGLE;
+                }
+                percent = -(180 - angleFromOutward) / (180 - MAX_ANGLE);
+            }
+
+            transform.localPosition = potentialPosition;
+            KuriManager.instance.SetVelocity(percent);
+        }
+
+        // Needed for IMixedRealityPointerHandler
+        public void OnPointerUp(MixedRealityPointerEventData eventData) {
+
+        }
+        public void OnPointerClicked(MixedRealityPointerEventData eventData) {
 
         }
 
-        public void OnPointerUp(MixedRealityPointerEventData eventData) {
+        public void OnPointerDown(MixedRealityPointerEventData eventData) {
 
         }
     }
