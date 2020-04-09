@@ -65,7 +65,6 @@ namespace Crash {
         }
         public void OnPointerClicked(MixedRealityPointerEventData eventData) {
         }
-
         public void OnPointerDown(MixedRealityPointerEventData eventData) {
         }
     }

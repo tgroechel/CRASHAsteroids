@@ -10,7 +10,8 @@ namespace Crash {
         }
 
         private void UpdateRotationValue(SliderEventData sliderEvent) {
-            KuriManager.instance.SetRotation((sliderEvent.NewValue - 0.5f) * 357);
+            float newRotation = (sliderEvent.NewValue - 0.5f) * 357;
+            KuriManager.instance.SetRotation(newRotation);
         }
     }
 }
