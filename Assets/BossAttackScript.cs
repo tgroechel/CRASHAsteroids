@@ -118,7 +118,7 @@ public class BossAttackScript : MonoBehaviour {
             Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
         }
-        
+        vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 
 
@@ -147,6 +147,7 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
+        bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 
     private void Pattern3(int i) {
@@ -176,5 +177,6 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
+        bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 }

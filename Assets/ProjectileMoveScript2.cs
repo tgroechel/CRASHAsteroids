@@ -55,13 +55,15 @@ public class ProjectileMoveScript2 : MonoBehaviour
         timeElapsed = autoTimeout - 1; // so that the bullet will be active for one more second to allow the sound to play
     }
 
-    public void SetDirection(Vector3 dir)
-    {
+    public void playSpawnSound() {
         if (shotSFX != null && GetComponent<AudioSource>())
         {
             GetComponent<AudioSource>().PlayOneShot(shotSFX);
         }
+    }
 
+    public void SetDirection(Vector3 dir)
+    {
         timeElapsed = 0;
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
