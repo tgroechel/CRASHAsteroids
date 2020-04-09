@@ -21,6 +21,7 @@ public class ResourcePathManager : Singleton<ResourcePathManager>
     public static string bossProjectile = "Projectiles/Projectiles/vfx_Projectile_BlackHole01_Orange_Simple";
 
     public static string bossLaser = "Lasers/Laser beam 3";
+    public static string aimLaser = "Lasers/AimLaser";
 
 
 

@@ -70,4 +70,30 @@ public class CRASHSceneUnderstandingUtil : MonoBehaviour
         if (ShowDebugMessage) Debug.Log("Floor not detected, return object's original position");
         return Tuple.Create(false, Vector3.zero);
     }
+
+    /// <summary>
+    /// Returns whether there are semi-water-tight scene objects by instanciateing spheres and throw them around to see if a portion of spheres falls into infinity.
+    /// </summary>
+    /// <returns>
+    /// A tuple. First item is a bool that indicates whether a floor plane is detected.
+    /// Second item is a Vector3 that returns the hit point on floor. If no floor is found, this item would be (0,0,0)
+    /// </returns>
+    public static bool IsWaterTight(Vector3 startPoint, Vector3 direction)
+    {
+        /*
+        RaycastHit hit;
+        if (Physics.Raycast(startPoint, direction, out hit, Mathf.Infinity))
+        {
+            if (hit.collider.gameObject.name == "Floor")
+            {
+                if (ShowDebugMessage) Debug.Log("Floor detected");
+                return Tuple.Create(true, hit.point);
+            }
+        }
+
+        if (ShowDebugMessage) Debug.Log("Floor not detected, return object's original position");
+        return Tuple.Create(false, Vector3.zero);
+        */
+        return true;
+    }
 }
