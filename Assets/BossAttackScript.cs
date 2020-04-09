@@ -41,11 +41,11 @@ public class BossAttackScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GetComponent<BossLaserScript>().shoot();
+            GetComponent<BossLaserScript>().startLaser();
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GetComponent<BossLaserScript>().stop();
+            
         }
 
 
