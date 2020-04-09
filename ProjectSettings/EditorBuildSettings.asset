@@ -5,22 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: a70ed92714808e548987b795131f2793
-  - enabled: 0
-    path: Assets/Scenes/Zhaoqi.unity
-    guid: fe4015749328e1b4b88fa7611617c1c1
-  - enabled: 0
-    path: Assets/Scenes/Chia-Ming/SceneUnderstandingSample.unity
-    guid: fc54b48c95332ac4b897fe62a5ebe76b
-  - enabled: 0
-    path: Assets/Scenes/Chia-Ming/ZhaoqiWithSceneUnderstanding.unity
-    guid: c68b84c8849108541995a5e2398af649
-  - enabled: 0
-    path: Assets/Scenes/Chia-Ming/EnemyShootingYouWithSceneUnderstanding.unity
-    guid: 3a33e7752ee01fd4fb8cea7c82ddac46
   - enabled: 1
-    path: Assets/Scenes/Sid.unity
-    guid: 37039bfeed7c09d419e3fd300d550675
+    path: Assets/Scenes/Chia-Ming/CalibrationScene.unity
+    guid: ca6e16592de5a844990d861bf493b7f3
+  - enabled: 1
+    path: Assets/Scenes/Chia-Ming/EmptyMRTKScene.unity
+    guid: f7c17a91d232e4141b88328e4a643c12
   m_configObjects: {}
