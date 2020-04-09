@@ -6,12 +6,11 @@ namespace Crash {
         PinchSlider pinchSlider;
         private void Awake() {
             pinchSlider = GetComponent<PinchSlider>();
-            pinchSlider.OnValueUpdated.AddListener(UpdateVelocityValue);
+            pinchSlider.OnValueUpdated.AddListener(UpdateRotationValue);
         }
 
-        private void UpdateVelocityValue(SliderEventData sliderEvent) {
-            // Slider is value 0 to 1
-            KuriManager.instance.SetVelocity((sliderEvent.NewValue - 0.5f));
+        private void UpdateRotationValue(SliderEventData sliderEvent) {
+            KuriManager.instance.SetRotation((sliderEvent.NewValue - 0.5f) * 359);
         }
     }
 }
