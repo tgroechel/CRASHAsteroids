@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitDuration: 0.3
+  waitDuration: 300
   bulletSpeed: 2
   bulletPoolSize: 30
   explodePrefab: {fileID: 0}
@@ -461,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSFX: {fileID: 8300000, guid: 8623d4edb2e7ba64e9af37f3fa3241e6, type: 3}
   chargeSFX: {fileID: 8300000, guid: 93f764a33d4e24d4f9c43e7f8d24d415, type: 3}
+  finalChargeSFX: {fileID: 8300000, guid: cd2911669f56bd641bfb831baeed305d, type: 3}
 --- !u!82 &230023822
 AudioSource:
   m_ObjectHideFlags: 0

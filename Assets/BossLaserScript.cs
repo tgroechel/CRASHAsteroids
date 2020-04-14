@@ -12,10 +12,13 @@ public class BossLaserScript : MonoBehaviour
 
     private bool started;
     private bool laserShot;
+    private bool finalChargeStarted;
+    private Vector3 shootHere;
 
     public AudioClip shotSFX;
     public AudioClip chargeSFX;
-    
+    public AudioClip finalChargeSFX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,25 @@ public class BossLaserScript : MonoBehaviour
         {
             if (timeElapsed < 5)
             {
-                Vector3 direction = GameObject.Find("PlayerHead").transform.position - new Vector3(0,0,0.02f) - aimLaser.transform.position;
+                Vector3 direction = GameObject.Find("PlayerHead").transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
                 aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
+            }
+            else if (timeElapsed < 6)
+            {
+                if (!finalChargeStarted)
+                {
+                    if (GetComponent<AudioSource>())
+                    {
+                        GetComponent<AudioSource>().Stop();
+                    }
+                    if (finalChargeSFX != null && GetComponent<AudioSource>())
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(finalChargeSFX);
+                    }
+                    finalChargeStarted = true;
+                    shootHere = GameObject.Find("PlayerHead").transform.position;
+                }
             }
             else
             {
@@ -45,11 +64,16 @@ public class BossLaserScript : MonoBehaviour
                 {
                     shoot();
                 }
-                else {
+                else
+                {
                     RaycastHit hit;
                     Physics.Raycast(laser.transform.position, laser.transform.TransformDirection(Vector3.forward), out hit, 30f);
                     Debug.Log(hit.collider.gameObject.name);
-                    if (timeElapsed > 7f)
+                    if (hit.collider)
+                        if (hit.collider.gameObject.name == "PlayerHead")
+                            if (Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>())
+                                Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>().ShakeCamera();
+                    if (timeElapsed > 8f)
                         stop();
                 }
             }
@@ -62,6 +86,7 @@ public class BossLaserScript : MonoBehaviour
             return;
         started = true;
         laserShot = false;
+        finalChargeStarted = false;
         aimLaser.SetActive(true);
         aimLaser.transform.position = transform.position + new Vector3(0,0,0.3f);
         timeElapsed = 0;
@@ -84,7 +109,7 @@ public class BossLaserScript : MonoBehaviour
         }
         Destroy(laser);
         laser = Instantiate(effect, transform.position, transform.rotation);
-        Vector3 direction = GameObject.Find("PlayerHead").transform.position - laser.transform.position;
+        Vector3 direction = shootHere - laser.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         laser.transform.localRotation = Quaternion.Lerp(laser.transform.rotation, rotation, 1);
         laserScript = laser.GetComponent<EGA_Laser>();
