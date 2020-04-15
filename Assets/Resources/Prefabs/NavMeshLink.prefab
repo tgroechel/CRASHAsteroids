@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: -1923039037
   m_StartPoint: {x: 0, y: -1.099002, z: 0}
   m_EndPoint: {x: 0, y: -1.299002, z: -0.2}
   m_Width: 2.570331
