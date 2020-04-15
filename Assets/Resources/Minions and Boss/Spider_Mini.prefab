@@ -1923,7 +1923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793b3e0df96826c44a52c72b1c6fab17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  currHealth: 0
+  maxHealth: 100
   slider: {fileID: 0}
 --- !u!114 &7106275033914382720
 MonoBehaviour:
