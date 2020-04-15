@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sid
 {
@@ -14,10 +15,14 @@ namespace Sid
         public static float damageTime;
         public static Color colorOnDamage = new Color(1, 0, 0);
 
+        // Slider for health bar
+        public Slider slider;
+
         // Store original color of current object and its children (parts)
         void Awake()
         {
             health = 100;
+            slider.value = health / 100;
             damageTime = Time.deltaTime * 3;
 
             // Initialising object renderer and its original color
@@ -48,12 +53,14 @@ namespace Sid
             Time.timeScale = 1;
             if (health - damage <= 0)
             {
+                slider.value = 0;
                 gameObject.SetActive(false);
                 FindObjectOfType<AudioManager>().Play("GameWin");
             }
             else
             {
                 health -= damage;
+                slider.value = health / 100;
                 if (objRenderer != null)
                 {
                     objRenderer.material.color = colorOnDamage;
