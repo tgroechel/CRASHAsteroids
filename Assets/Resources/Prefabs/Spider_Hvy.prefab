@@ -703,6 +703,8 @@ GameObject:
   - component: {fileID: 7282992872709326917}
   - component: {fileID: 8861711356353635659}
   - component: {fileID: 1152886348624206108}
+  - component: {fileID: 1978140465}
+  - component: {fileID: 1978140462}
   m_Layer: 0
   m_Name: Shocker_lvl3 1
   m_TagString: Untagged
@@ -769,6 +771,117 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!82 &1978140465
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563634372927616415}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1978140462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563634372927616415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7565355d2bd2f40bf2db81879b40ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSFX: {fileID: 8300000, guid: 8623d4edb2e7ba64e9af37f3fa3241e6, type: 3}
+  chargeSFX: {fileID: 8300000, guid: 93f764a33d4e24d4f9c43e7f8d24d415, type: 3}
+  finalChargeSFX: {fileID: 8300000, guid: cd2911669f56bd641bfb831baeed305d, type: 3}
 --- !u!1 &2727347863221680988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &504765168132238018
 Transform:
   m_ObjectHideFlags: 0
@@ -1631,7 +1744,7 @@ Transform:
   m_GameObject: {fileID: 6005914753905962819}
   m_LocalRotation: {x: 0, y: 0, z: 0.40249, w: 0.9154244}
   m_LocalPosition: {x: -0.00020119548, y: -0.000051553827, z: 0.0000004172325}
-  m_LocalScale: {x: 1, y: 1, z: 0.49047196}
+  m_LocalScale: {x: 1, y: 1, z: 8}
   m_Children:
   - {fileID: 3831070529714604804}
   m_Father: {fileID: 6051457203500628376}
@@ -2393,8 +2506,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6051457202896764261}
   - component: {fileID: 6051457202906272389}
+  - component: {fileID: 1840983122}
   m_Layer: 0
-  m_Name: Legs_Spider_Hvy
+  m_Name: Spider_Hvy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2435,6 +2549,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1840983122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051457202896789829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6794bee6804614c488e87257577739c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6051457202896789831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3994,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2346114060070255661}
   - component: {fileID: 8539325081203845798}
+  - component: {fileID: 339515628}
+  - component: {fileID: 339515629}
   m_Layer: 0
   m_Name: Grenade_Launcher_lvl1_Geom
   m_TagString: Untagged
@@ -3945,6 +4073,35 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.44075075, y: 0.0065555573, z: -0.48113707}
     m_Extent: {x: 1.1036454, y: 0.7979157, z: 0.8050369}
   m_DirtyAABB: 0
+--- !u!114 &339515628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760821700800620195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitDuration: 0.3
+  bulletSpeed: 2
+  bulletPoolSize: 80
+  explodePrefab: {fileID: 0}
+  explodeSFX: {fileID: 0}
+--- !u!114 &339515629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760821700800620195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6843313494476628667
 GameObject:
   m_ObjectHideFlags: 0
