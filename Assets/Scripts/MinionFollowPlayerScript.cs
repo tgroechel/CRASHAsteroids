@@ -4,9 +4,9 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class MinionFollowPlayerScript : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public ThirdPersonCharacter character;
-    public Animator animator;
+    NavMeshAgent agent;
+    ThirdPersonCharacter character;
+    Animator animator;
     public bool followPlayer;
     public bool isonfloor;
     private LineRenderer lineRenderer;
