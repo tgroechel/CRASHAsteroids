@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sid
-{
-    public class HealthManager : MonoBehaviour
-    {
-        public float health;
+namespace Sid {
+    public class HealthManager : MonoBehaviour {
+        public float MAXHEALTH;
+        float currentHealth;
         Renderer objRenderer;
         Renderer[] childRenderers;
         Color objOriginalColor;
@@ -16,31 +15,28 @@ namespace Sid
         public static Color colorOnDamage = new Color(1, 0, 0);
 
         // Slider for health bar
-        public Slider slider;
+        Slider slider;
 
         // Store original color of current object and its children (parts)
-        void Awake()
-        {
-            health = 100;
-            slider.value = health / 100;
+        void Awake() {
+            currentHealth = MAXHEALTH;
+            slider.value = currentHealth / MAXHEALTH;
             damageTime = Time.deltaTime * 3;
+            slider = GetComponentInChildren<Canvas>().GetComponentInChildren<Slider>();
 
             // Initialising object renderer and its original color
-            if (GetComponent<Renderer>() != null)
-            {
+            if (GetComponent<Renderer>() != null) {
                 objRenderer = GetComponent<Renderer>();
                 objOriginalColor = objRenderer.material.color;
             }
-            else
-            {
+            else {
                 objRenderer = null;
             }
 
             // Initialising child renderers and their original colors
             childRenderers = GetComponentsInChildren<Renderer>();
             childOriginalColors = new List<Color>();
-            foreach (Renderer childRend in childRenderers)
-            {
+            foreach (Renderer childRend in childRenderers) {
                 childOriginalColors.Add(childRend.material.color);
             }
         }
@@ -48,35 +44,28 @@ namespace Sid
         /*  If an enemy object is hit by a bullet, change its color for a brief period and decrease its health.
             If the enemy object has child objects, then change the color of each child.
             If health becomes <0, then deactivate the enemy. */
-        public IEnumerator DecreaseHealth(float damage)
-        {
+        public IEnumerator DecreaseHealth(float damage) {
             Time.timeScale = 1;
-            if (health - damage <= 0)
-            {
+            if (currentHealth - damage <= 0) {
                 slider.value = 0;
                 gameObject.SetActive(false);
                 FindObjectOfType<AudioManager>().Play("GameWin");
             }
-            else
-            {
-                health -= damage;
-                slider.value = health / 100;
-                if (objRenderer != null)
-                {
+            else {
+                currentHealth -= damage;
+                slider.value = currentHealth / MAXHEALTH;
+                if (objRenderer != null) {
                     objRenderer.material.color = colorOnDamage;
                     yield return new WaitForSeconds(damageTime);
                     objRenderer.material.color = objOriginalColor;
                 }
-                else
-                {
-                    foreach (Renderer childRend in childRenderers)
-                    {
+                else {
+                    foreach (Renderer childRend in childRenderers) {
                         childRend.material.color = colorOnDamage;
                     }
                     yield return new WaitForSeconds(damageTime);
                     int i = 0;
-                    foreach (Renderer childRend in childRenderers)
-                    {
+                    foreach (Renderer childRend in childRenderers) {
                         childRend.material.color = childOriginalColors[i];
                         i++;
                     }
@@ -85,8 +74,7 @@ namespace Sid
         }
 
         // Decrease health of the gameobject by 'damage' amount
-        public void CallDecreaseHealth(float damage)
-        {
+        public void CallDecreaseHealth(float damage) {
             StartCoroutine(DecreaseHealth(damage));
         }
     }
