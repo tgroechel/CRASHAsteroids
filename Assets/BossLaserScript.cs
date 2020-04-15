@@ -33,12 +33,18 @@ public class BossLaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+            //startLaser();
+        //}
+
+
         timeElapsed += Time.deltaTime;
         if (started)
         {
             if (timeElapsed < 5)
             {
-                Vector3 direction = GameObject.Find("PlayerHead").transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
+                Vector3 direction = Camera.main.transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
                 aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
             }
@@ -55,7 +61,7 @@ public class BossLaserScript : MonoBehaviour
                         GetComponent<AudioSource>().PlayOneShot(finalChargeSFX);
                     }
                     finalChargeStarted = true;
-                    shootHere = GameObject.Find("PlayerHead").transform.position;
+                    shootHere = Camera.main.transform.position;
                 }
             }
             else
@@ -68,7 +74,7 @@ public class BossLaserScript : MonoBehaviour
                 {
                     RaycastHit hit;
                     Physics.Raycast(laser.transform.position, laser.transform.TransformDirection(Vector3.forward), out hit, 30f);
-                    Debug.Log(hit.collider.gameObject.name);
+                    //Debug.Log(hit.collider.gameObject.name);
                     if (hit.collider)
                         if (hit.collider.gameObject.name == "PlayerHead")
                             if (Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>())

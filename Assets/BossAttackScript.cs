@@ -26,6 +26,7 @@ public class BossAttackScript : MonoBehaviour {
     }
 
     void Update() {
+        /*
         Vector3 relativePos2Player = Camera.main.transform.position - transform.position;
         relativePos2Player.y = 0;
         Quaternion lookAtPlayerRotation = Quaternion.identity;
@@ -55,6 +56,7 @@ public class BossAttackScript : MonoBehaviour {
         {
             DiePattern();
         }
+        */
 
         /*
         if (Input.GetKeyDown(KeyCode.P))
@@ -88,6 +90,7 @@ public class BossAttackScript : MonoBehaviour {
 
     IEnumerator ShootPlayer() {
         yield return new WaitForSeconds(1f);
+        /*
         int i = 0;
         while (alive) {
             if (i % 13 == 0) {
@@ -100,7 +103,7 @@ public class BossAttackScript : MonoBehaviour {
                 Pattern1(i);
             i++;
             yield return new WaitForSeconds(waitDuration);
-        }
+        }*/
     }
 
     private GameObject getBullet() {
@@ -110,7 +113,21 @@ public class BossAttackScript : MonoBehaviour {
         return vfx;
     }
 
-    private void Pattern1(int i) {
+    public void Pattern0()
+    {
+        GameObject vfx = getBullet();
+        if (vfx != null)
+        {
+            vfx.transform.position = transform.position;
+            vfx.transform.rotation = Quaternion.identity;
+            Vector3 dir = Camera.main.transform.position - transform.position;
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+            vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
+        }
+
+    }
+
+    public void Pattern1(int i) {
         int ii = i % 18;
         if (ii >= 9)
             ii = 17 - ii;
@@ -120,17 +137,18 @@ public class BossAttackScript : MonoBehaviour {
         {
             vfx.transform.position = transform.position + new Vector3(0, 0.1f, 0);
             vfx.transform.rotation = Quaternion.identity;
-            Vector3 targetPos = GameObject.Find("PlayerHead").transform.position;
+            Vector3 targetPos = Camera.main.transform.position;
             targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
             Vector3 dir = Quaternion.AngleAxis(-16 + 4 * ii, Vector3.up) * (targetPos - transform.position);
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+            vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
         }
-        vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
+        
     }
 
 
 
-    private void Pattern2(int i) {
+    public void Pattern2(int i) {
         int ii = i % 3;
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
@@ -145,7 +163,7 @@ public class BossAttackScript : MonoBehaviour {
         int j = 0;
         Vector3 targetPos, dir;
         foreach (GameObject bullet in bullets) {
-            targetPos = GameObject.Find("PlayerHead").transform.position;
+            targetPos = Camera.main.transform.position;
             if (ii == 0)
                 targetPos.y += 0.15f;
             if (ii == 2)
@@ -154,16 +172,17 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
-        bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
+        if (bullets[0]!= null)
+            bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 
-    private void Pattern3(int i) {
+    public void Pattern3(int i) {
         int ii = i % 3;
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
         for (int jj = 0; jj < 7; jj++) {
-            GameObject head = GameObject.Find("Main Camera");
+            GameObject head = Camera.main.gameObject;
             Vector3 relativePos2Player = head.transform.position - transform.position;
             relativePos2Player.y = 0;
             relativePos2Player.Normalize();
@@ -179,15 +198,16 @@ public class BossAttackScript : MonoBehaviour {
         int j = 0;
         Vector3 targetPos, dir;
         foreach (GameObject bullet in bullets) {
-            targetPos = GameObject.Find("PlayerHead").transform.position;
+            targetPos = Camera.main.transform.position;
             dir = Quaternion.AngleAxis(-7.5f + 2.5f * j, Vector3.forward) * (targetPos - transform.position);
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
-        bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
+        if (bullets[0] != null)
+            bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 
-    private void CircularPattern(float offset = 0.2f) {
+    public void CircularPattern(float offset = 0.2f) {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
@@ -203,7 +223,7 @@ public class BossAttackScript : MonoBehaviour {
             vfx.transform.position = transform.position;
             vfx.transform.rotation = Quaternion.identity;
 
-            GameObject head = GameObject.Find("Main Camera");
+            GameObject head = Camera.main.gameObject;
             Vector3 relativePos2Player = head.transform.position - transform.position;
 
             Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
@@ -222,7 +242,7 @@ public class BossAttackScript : MonoBehaviour {
         }
     }
 
-    private void CrossPattern(float offset = 0.3f)
+    public void CrossPattern(float offset = 0.3f)
     {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
@@ -240,7 +260,7 @@ public class BossAttackScript : MonoBehaviour {
             vfx.transform.position = transform.position;
             vfx.transform.rotation = Quaternion.identity;
 
-            GameObject head = GameObject.Find("Main Camera");
+            GameObject head = Camera.main.gameObject;
             Vector3 relativePos2Player = head.transform.position - transform.position;
 
             Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
@@ -258,7 +278,7 @@ public class BossAttackScript : MonoBehaviour {
         }
     }
 
-    private void DiePattern(float offset = 0.15f)
+    public void DiePattern(float offset = 0.15f)
     {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
@@ -280,7 +300,7 @@ public class BossAttackScript : MonoBehaviour {
             vfx.transform.position = transform.position;
             vfx.transform.rotation = Quaternion.identity;
 
-            GameObject head = GameObject.Find("Main Camera");
+            GameObject head = Camera.main.gameObject;
             Vector3 relativePos2Player = head.transform.position - transform.position;
 
             Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
