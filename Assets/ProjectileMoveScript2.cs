@@ -56,6 +56,12 @@ public class ProjectileMoveScript2 : MonoBehaviour
         rb.position += new Vector3(100, 0, 0); // make it go away
 
         timeElapsed = autoTimeout - 1; // so that the bullet will be active for one more second to allow the sound to play
+
+
+
+        if (co.gameObject.name == "PlayerHead")
+            if (Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>())
+                Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>().ShakeCamera();
     }
 
     public void playSpawnSound() {

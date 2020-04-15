@@ -258,7 +258,7 @@ public class BossAttackScript : MonoBehaviour {
         }
     }
 
-    private void DiePattern(float offset = 0.2f)
+    private void DiePattern(float offset = 0.15f)
     {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
