@@ -45,9 +45,16 @@ public class BossAttackScript : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            
+            CrossPattern();
         }
-
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            CircularPattern();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            DiePattern();
+        }
 
         /*
         if (Input.GetKeyDown(KeyCode.P))
@@ -178,5 +185,116 @@ public class BossAttackScript : MonoBehaviour {
             j++;
         }
         bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
+    }
+
+    private void CircularPattern(float offset = 0.2f) {
+        GameObject vfx;
+        List<GameObject> bullets = new List<GameObject>();
+
+        bool soundPlayed = false;
+
+
+        offset = 0.3f;
+        for (int jj = 0; jj < 8; jj++)
+        {
+            vfx = getBullet();
+            if (vfx == null) continue;
+
+            vfx.transform.position = transform.position;
+            vfx.transform.rotation = Quaternion.identity;
+
+            GameObject head = GameObject.Find("Main Camera");
+            Vector3 relativePos2Player = head.transform.position - transform.position;
+
+            Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
+            Vector3 newY = relativeRotation * new Vector3(0, 1, 0);
+            Vector3 newZ = relativeRotation * new Vector3(0, 0, 1);
+
+            float angle = 2 * (float)Math.PI / 8 * jj;
+            Vector3 dir = head.transform.position + newY * (float)Math.Cos(angle) * offset
+                + newZ * (float)Math.Sin(angle) * offset - transform.position;
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+            if (!soundPlayed)
+            {
+                vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
+                soundPlayed = true;
+            }
+        }
+    }
+
+    private void CrossPattern(float offset = 0.3f)
+    {
+        GameObject vfx;
+        List<GameObject> bullets = new List<GameObject>();
+
+        bool soundPlayed = false;
+
+        float[] yOffsets = { -2, -1, 0, 1, 2, 0, 0, 0, 0};
+        float[] zOffsets = { 0, 0, 0, 0, 0, -2, -1, 1, 2};
+
+        for (int jj = 0; jj < 9; jj++)
+        {
+            vfx = getBullet();
+            if (vfx == null) continue;
+
+            vfx.transform.position = transform.position;
+            vfx.transform.rotation = Quaternion.identity;
+
+            GameObject head = GameObject.Find("Main Camera");
+            Vector3 relativePos2Player = head.transform.position - transform.position;
+
+            Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
+            Vector3 newY = relativeRotation * new Vector3(0, 1, 0);
+            Vector3 newZ = relativeRotation * new Vector3(0, 0, 1);
+
+            Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
+                + newZ * zOffsets[jj] * offset - transform.position;
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+            if (!soundPlayed)
+            {
+                vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
+                soundPlayed = true;
+            }
+        }
+    }
+
+    private void DiePattern(float offset = 0.2f)
+    {
+        GameObject vfx;
+        List<GameObject> bullets = new List<GameObject>();
+
+        bool soundPlayed = false;
+
+        float[] yOffsets = { -2, -2, -1, 0 , 1, 2, 2, 1, 0, -1,
+            -2, -2, -2, -1, 0, 1, 2, 2, 2,
+            -2, -2, -2, -1, 0, 0, 1, 2, 2, 2};
+        float[] zOffsets = { -5, -4, -3, -3, -3, -4, -5, -5, -5, -5,
+            -1, 0, 1, 0, 0, 0, -1, 0, 1,
+            3, 4, 5, 3, 3, 4, 3, 3, 4, 5};
+
+        for (int jj = 0; jj < 29; jj++)
+        {
+            vfx = getBullet();
+            if (vfx == null) continue;
+
+            vfx.transform.position = transform.position;
+            vfx.transform.rotation = Quaternion.identity;
+
+            GameObject head = GameObject.Find("Main Camera");
+            Vector3 relativePos2Player = head.transform.position - transform.position;
+
+            Quaternion relativeRotation = Quaternion.FromToRotation(new Vector3(1, 0, 0), relativePos2Player.normalized);
+            Vector3 newY = relativeRotation * new Vector3(0, 1, 0);
+            Vector3 newZ = relativeRotation * new Vector3(0, 0, 1);
+
+            Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
+                + newZ * zOffsets[jj] * offset - transform.position;
+            vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
+            if (!soundPlayed)
+            {
+                vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
+                soundPlayed = true;
+            }
+        }
     }
 }

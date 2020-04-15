@@ -22,6 +22,7 @@ public class ProjectileMoveScript2 : MonoBehaviour
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         timeElapsed = 0;
+        gameObject.tag = "Bullet";
     }
 
     void Update()
@@ -45,6 +46,8 @@ public class ProjectileMoveScript2 : MonoBehaviour
 
     void OnCollisionEnter(Collision co)
     {
+        if (co.gameObject.tag == "Bullet")
+            return;
         if (hitSFX != null && GetComponent<AudioSource>())
         {
             GetComponent<AudioSource>().PlayOneShot(hitSFX);

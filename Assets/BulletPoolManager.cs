@@ -22,6 +22,12 @@ public class BulletPoolManager : MonoBehaviour
             vfx.SetActive(false);
             pools[name].Add(vfx);
         }
+
+        foreach (GameObject go in pools[name])
+        {
+            foreach (GameObject go2 in pools[name])
+                Physics.IgnoreCollision(go.GetComponent<Collider>(), go2.GetComponent<Collider>(), ignore: true);
+        }
     }
 
     public GameObject getInstance(string name)
