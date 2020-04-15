@@ -11,25 +11,42 @@ namespace Crash {
         private float curTimeUntilRecharge;
         public bool rechargeCoroutineRunning = false;
 
+        PlayerEffectPlane playerEffectPlane;
+        private void Awake() {
+            playerEffectPlane = transform.GetComponentInChildren<PlayerEffectPlane>();
+        }
+
+
         public void GotHit(float damage) {
-            curHealth -= damage;
+            SetPlayerHealth(curHealth - damage);
             StartCoroutine(RechargeAfterTime());
         }
 
         IEnumerator RechargeAfterTime() {
             if (rechargeCoroutineRunning) {
-                // reset 
+                // reset
                 curTimeUntilRecharge = rechargeTimeInterval;
                 yield break;
             }
+            rechargeCoroutineRunning = true;
             curTimeUntilRecharge = rechargeTimeInterval;
             while (curTimeUntilRecharge > 0) {
                 yield return null;
                 Debug.Log(curHealth);
                 curTimeUntilRecharge -= Time.deltaTime;
             }
-            curHealth = 100;
+            SetPlayerHealth(MAX_PLAYER_HEALTH);
             rechargeCoroutineRunning = false;
+        }
+
+
+        public void SetPlayerHealth(float newHealth) {
+            curHealth = newHealth;
+            UpdatePlaneEffectColor();
+        }
+
+        public void UpdatePlaneEffectColor() {
+            playerEffectPlane.SetTransparency((MAX_PLAYER_HEALTH - curHealth) / MAX_PLAYER_HEALTH);
         }
     }
 }
