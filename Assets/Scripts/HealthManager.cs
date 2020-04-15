@@ -7,7 +7,8 @@ namespace Sid
 {
     public class HealthManager : MonoBehaviour
     {
-        public float health;
+        public float currHealth;
+        public float maxHealth;
         Renderer objRenderer;
         Renderer[] childRenderers;
         Color objOriginalColor;
@@ -21,8 +22,8 @@ namespace Sid
         // Store original color of current object and its children (parts)
         void Awake()
         {
-            health = 100;
-            slider.value = health / 100;
+            currHealth = maxHealth;
+            slider.value = currHealth / maxHealth;
             damageTime = Time.deltaTime * 3;
 
             // Initialising object renderer and its original color
@@ -51,7 +52,7 @@ namespace Sid
         public IEnumerator DecreaseHealth(float damage)
         {
             Time.timeScale = 1;
-            if (health - damage <= 0)
+            if (currHealth - damage <= 0)
             {
                 slider.value = 0;
                 gameObject.SetActive(false);
@@ -59,8 +60,8 @@ namespace Sid
             }
             else
             {
-                health -= damage;
-                slider.value = health / 100;
+                currHealth -= damage;
+                slider.value = currHealth / 100;
                 if (objRenderer != null)
                 {
                     objRenderer.material.color = colorOnDamage;
