@@ -135,7 +135,7 @@ public class BossAttackScript : MonoBehaviour {
         GameObject vfx = getBullet();
         if (vfx != null)
         {
-            vfx.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            vfx.transform.position = transform.position;// + new Vector3(0, 0.1f, 0);
             vfx.transform.rotation = Quaternion.identity;
             Vector3 targetPos = Camera.main.transform.position;
             targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
@@ -156,7 +156,7 @@ public class BossAttackScript : MonoBehaviour {
         for (int jj = 0; jj < 7; jj++) {
             vfx = getBullet();
             if (vfx == null) continue;
-            vfx.transform.position = transform.position + new Vector3(0, jj * 0.05f, 0);
+            vfx.transform.position = transform.position;// + new Vector3(0, jj * 0.05f, 0);
             vfx.transform.rotation = Quaternion.identity;
             bullets.Add(vfx);
         }
@@ -191,7 +191,7 @@ public class BossAttackScript : MonoBehaviour {
 
             vfx = getBullet();
             if (vfx == null) continue;
-            vfx.transform.position = transform.position + relativePos2Player;
+            vfx.transform.position = transform.position;// + relativePos2Player;
             vfx.transform.rotation = Quaternion.identity;
             bullets.Add(vfx);
         }

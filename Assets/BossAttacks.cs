@@ -10,8 +10,8 @@ public class BossAttacks : MonoBehaviour
 
     void Start()
     {
-        leftGun = GameObject.Find("Grenade_Launcher_lvl1_Geom").GetComponent<BossAttackScript>();
-        laser = GameObject.Find("Shocker_lvl3 1").GetComponent<BossLaserScript>();
+        leftGun = GameObject.Find("Barrel_end_1_right").GetComponent<BossAttackScript>();
+        laser = GameObject.Find("Barrel_end_laser").GetComponent<BossLaserScript>();
     }
 
     // Update is called once per frame
