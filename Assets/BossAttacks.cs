@@ -6,11 +6,13 @@ public class BossAttacks : MonoBehaviour
 {
 
     private BossAttackScript leftGun;
+    private BossAttackScript rightGun;
     private BossLaserScript laser;
 
     void Start()
     {
-        leftGun = GameObject.Find("Barrel_end_1_right").GetComponent<BossAttackScript>();
+        leftGun = GameObject.Find("Barrel_end_1_left").GetComponent<BossAttackScript>();
+        rightGun = GameObject.Find("Barrel_end_1_right").GetComponent<BossAttackScript>();
         laser = GameObject.Find("Barrel_end_laser").GetComponent<BossLaserScript>();
     }
 
@@ -19,78 +21,106 @@ public class BossAttacks : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            leftGun.Pattern0();
+            Pattern0('l');
+            Pattern0('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            leftGun.Pattern1(Random.Range(0, 1000));
+            Pattern1('l');
+            Pattern1('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            leftGun.Pattern2(Random.Range(0, 1000));
+            Pattern2('l');
+            Pattern2('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            leftGun.Pattern3(Random.Range(0, 1000));
+            Pattern3('l');
+            Pattern3('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            leftGun.CircularPattern();
+            CircularPattern('l');
+            CircularPattern('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            leftGun.CrossPattern();
+            CrossPattern('l');
+            CrossPattern('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            leftGun.DiePattern();
+            DiePattern('l');
+            DiePattern('r');
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            laser.startLaser();
+            Laser();
         }
     }
 
     // just a single boring bullet
-    public void Pattern0()
+    public void Pattern0(char c)
     {
-        leftGun.Pattern0();
+        if (c == 'l')
+            leftGun.Pattern0();
+        else
+            rightGun.Pattern0();
     }
 
     // one bullet with some random offeset
-    public void Pattern1()
+    public void Pattern1(char c)
     {
-        leftGun.Pattern1(Random.Range(0, 1000));
+        if (c == 'l')
+            leftGun.Pattern1(Random.Range(0, 1000));
+        else
+            rightGun.Pattern1(Random.Range(0, 1000));
     }
 
     // an array of bullets
-    public void Pattern2()
+    public void Pattern2(char c)
     {
-        leftGun.Pattern2(Random.Range(0, 1000));
+        if (c == 'l')
+            leftGun.Pattern2(Random.Range(0, 1000));
+        else
+            rightGun.Pattern2(Random.Range(0, 1000));
     }
 
     // an array of bullets but slightly different
-    public void Pattern3()
+    public void Pattern3(char c)
     {
-        leftGun.Pattern3(Random.Range(0, 1000));
+        if (c == 'l')
+            leftGun.Pattern3(Random.Range(0, 1000));
+        else
+            rightGun.Pattern3(Random.Range(0, 1000));
     }
 
     // a circle
-    public void CircularPatter()
+    public void CircularPattern(char c)
     {
-        leftGun.CircularPattern();
+        if (c == 'l')
+            leftGun.CircularPattern();
+        else
+            rightGun.CircularPattern();
     }
 
     // a cross
-    public void CrossPatter()
+    public void CrossPattern(char c)
     {
-        leftGun.CrossPattern();
+        if (c == 'l')
+            leftGun.CrossPattern();
+        else
+            rightGun.CrossPattern();
     }
 
     // die b**** !
-    public void DiePatter()
+    public void DiePattern(char c)
     {
-        leftGun.DiePattern();
+        if (c == 'l')
+            leftGun.DiePattern();
+        else
+            rightGun.DiePattern();
     }
 
     // laser!
