@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using eDmitriyAssets.NavmeshLinksGenerator;
 using UnityEngine;
 using UnityEngine.AI;
-using eDmitriyAssets.NavmeshLinksGenerator;
 
-public class BakeNavMeshRuntime : MonoBehaviour
-{
+public class BakeNavMeshRuntime : MonoBehaviour {
     private NavMeshSurface surface;
     private NavMeshLinks_AutoPlacer autoplacer;
+#if UNITY_EDITOR
     private NavMeshLinks_AutoPlacer_Editor editor;
+#endif
 
     // Start is called before the first frame update
-    void Awake()
-    {
+    void Awake() {
         // Get the NavMeshSurface component
         surface = GetComponent<NavMeshSurface>();
 

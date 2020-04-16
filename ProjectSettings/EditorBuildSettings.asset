@@ -5,16 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/MixedRealityToolkit.SDK/StandardAssets/Scenes/DefaultManagerScene.unity
     guid: ae7bb08d297fb69408695d8de0962524
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chia-Ming/CalibrationScene.unity
     guid: ca6e16592de5a844990d861bf493b7f3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chia-Ming/EmptyMRTKScene.unity
     guid: f7c17a91d232e4141b88328e4a643c12
-  - enabled: 1
+  - enabled: 0
     path: Assets/MixedRealityToolkit.SDK/StandardAssets/Scenes/DefaultLightingScene.unity
     guid: 7e54e36c44f826c438c95da79f8de638
+  - enabled: 1
+    path: Assets/Scenes/MainCalibration.unity
+    guid: e558208682d400542b3b5946a3446fd8
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 3a33e7752ee01fd4fb8cea7c82ddac46
   m_configObjects: {}
