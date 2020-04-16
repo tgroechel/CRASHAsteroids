@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitDuration: 1
-  bulletSpeed: 3
+  bulletSpeed: 2
   bulletPoolSize: 80
   explodePrefab: {fileID: 0}
   explodeSFX: {fileID: 0}
@@ -3559,7 +3559,7 @@ GameObject:
   - component: {fileID: 6665558032487706601}
   m_Layer: 2
   m_Name: Spider_Hvy
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4048,7 +4048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitDuration: 1
-  bulletSpeed: 3
+  bulletSpeed: 2
   bulletPoolSize: 80
   explodePrefab: {fileID: 0}
   explodeSFX: {fileID: 0}
@@ -5184,6 +5184,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789529563992707815, guid: e5d3abb05c78a6943a23d59feb46c892,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1789529563992707815, guid: e5d3abb05c78a6943a23d59feb46c892,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1789529564055801764, guid: e5d3abb05c78a6943a23d59feb46c892,
         type: 3}
