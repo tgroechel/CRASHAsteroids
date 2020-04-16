@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Crash {
     public class PlayerHealth : MonoBehaviour {
@@ -12,8 +13,10 @@ namespace Crash {
         public bool rechargeCoroutineRunning = false;
 
         PlayerEffectPlane playerEffectPlane;
+        Slider healthBarSlider;
         private void Awake() {
             playerEffectPlane = transform.GetComponentInChildren<PlayerEffectPlane>();
+            healthBarSlider = transform.parent.GetComponentInChildren<Slider>();
         }
 
 
@@ -43,6 +46,7 @@ namespace Crash {
         public void SetPlayerHealth(float newHealth) {
             curHealth = newHealth;
             UpdatePlaneEffectColor();
+            healthBarSlider.value = curHealth / MAX_PLAYER_HEALTH;
         }
 
         public void UpdatePlaneEffectColor() {
