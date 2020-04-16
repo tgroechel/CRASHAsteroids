@@ -15,6 +15,8 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
         attachNavMeshes();
 
+        // Note: NavMeshes (NavMesh prefab) get automatically built after attaching them to an object due to BakeNavMeshRuntime script
+
         // Create NavMeshLinks for every child NavMesh
         // Note: This has to take place after NavMeshes have been attached
         agentTypeID = floorNavMesh.agentTypeID;

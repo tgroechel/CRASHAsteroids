@@ -593,7 +593,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMeshes
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2488913289474147839, guid: 06960767e6870ed428eae8fe54f77f76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2488913289297727756, guid: 06960767e6870ed428eae8fe54f77f76, type: 3}
+    - {fileID: 2488913288952212851, guid: 06960767e6870ed428eae8fe54f77f76, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 06960767e6870ed428eae8fe54f77f76, type: 3}
 --- !u!114 &545508882 stripped
 MonoBehaviour:
@@ -1652,7 +1660,7 @@ PrefabInstance:
     - target: {fileID: 6695888345873434395, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9219426493778527230, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}

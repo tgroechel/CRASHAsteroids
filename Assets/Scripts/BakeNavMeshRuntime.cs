@@ -11,7 +11,7 @@ public class BakeNavMeshRuntime : MonoBehaviour
     private NavMeshLinks_AutoPlacer_Editor editor;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         // Get the NavMeshSurface component
         surface = GetComponent<NavMeshSurface>();
