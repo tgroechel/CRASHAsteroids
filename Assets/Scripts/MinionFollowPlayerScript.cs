@@ -2,8 +2,7 @@
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class MinionFollowPlayerScript : MonoBehaviour
-{
+public class MinionFollowPlayerScript : MonoBehaviour {
     NavMeshAgent agent;
     ThirdPersonCharacter character;
     Animator animator;
@@ -13,8 +12,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
     private bool pathDrawn;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // Get Components
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacter>();
@@ -28,25 +26,20 @@ public class MinionFollowPlayerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // Set destination only if the current path has been calculated
-        if (!agent.pathPending)                                      
-        {
+        if (!agent.pathPending) {
             // Draw path if not already drawn
-            if(!pathDrawn)
-            {
+            if (!pathDrawn) {
                 DrawPath(agent.path);
                 pathDrawn = true;
             }
 
             // Go to the point where ray cast hits 
-            if (Input.GetMouseButtonDown(0) && !followPlayer)    
-            {
+            if (Input.GetMouseButtonDown(0) && !followPlayer) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
+                if (Physics.Raycast(ray, out hit)) {
                     // Reset the path so that the agent moves to the new destination
                     agent.ResetPath();
 
@@ -59,8 +52,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
             }
 
             // Follow the player when left mouse button is clicked
-            if (followPlayer)                                        
-            {
+            if (followPlayer) {
                 // Reset the path so that the agent moves to the new destination
                 //agent.ResetPath();
 
@@ -72,8 +64,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
             }
 
             // Follow player only when F is pressed
-            if (Input.GetKeyDown(KeyCode.F) && !followPlayer)       
-            {
+            if (Input.GetKeyDown(KeyCode.F) && !followPlayer) {
                 // Reset the path so that the agent moves to the new destination
                 agent.ResetPath();
 
@@ -93,8 +84,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
 
     }
 
-    void DrawPath(NavMeshPath path)
-    {
+    void DrawPath(NavMeshPath path) {
         if (path.corners.Length < 2) //if the path has 1 or no corners, there is no need
             return;
 
@@ -102,8 +92,7 @@ public class MinionFollowPlayerScript : MonoBehaviour
 
         lineRenderer.SetPosition(0, transform.position); //set the first point to the current position of the GameObject
 
-        for (var i = 1; i < path.corners.Length; i++)
-        {
+        for (var i = 1; i < path.corners.Length; i++) {
             lineRenderer.SetPosition(i, path.corners[i]); //go through each corner and set that to the line renderer's position
         }
     }

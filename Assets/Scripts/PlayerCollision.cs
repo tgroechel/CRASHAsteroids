@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Crash {
     public class PlayerCollision : MonoBehaviour {
 
-        private void OnTriggerEnter(Collider other) {
-            if (other.gameObject.GetComponent<PracticeBullet>()) {
+        private void OnCollisionEnter(Collision collision) {
+            if (collision.gameObject.GetComponent<ProjectileMoveScript2>()) {
                 GetComponent<PlayerHealth>().GotHit(10);
             }
         }
