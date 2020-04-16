@@ -1338,6 +1338,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7658130800489467652}
+  - component: {fileID: 5820195737798575563}
+  - component: {fileID: 7789581155781861538}
   m_Layer: 11
   m_Name: Barrel_End_1
   m_TagString: Untagged
@@ -1359,6 +1361,35 @@ Transform:
   m_Father: {fileID: 7658130800489467648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5820195737798575563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658130800489042722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitDuration: 1
+  bulletSpeed: 2
+  bulletPoolSize: 50
+  explodePrefab: {fileID: 0}
+  explodeSFX: {fileID: 0}
+--- !u!114 &7789581155781861538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658130800489042722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7658130800489042724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,9 +1733,10 @@ GameObject:
   - component: {fileID: 7106275033914382778}
   - component: {fileID: 7106275033914382721}
   - component: {fileID: 7106275033914382720}
+  - component: {fileID: 114542996277759576}
   m_Layer: 11
   m_Name: Spider_Mini
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1923,9 +1955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793b3e0df96826c44a52c72b1c6fab17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currHealth: 0
-  maxHealth: 100
-  slider: {fileID: 0}
+  MAXHEALTH: 0
 --- !u!114 &7106275033914382720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1938,11 +1968,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2b014537d53842946759b3f673311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  character: {fileID: 0}
-  animator: {fileID: 0}
   followPlayer: 0
   isonfloor: 0
+--- !u!114 &114542996277759576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379526961395193074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073b4c2f20a8c9b409bc3c22e1be4634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8390217977841876598
 GameObject:
   m_ObjectHideFlags: 0
