@@ -5,6 +5,7 @@ using Crash;
 
 public class ResourcePathManager : Singleton<ResourcePathManager>
 {
+    public static string JunkMaterialPath = "junk";
     public static string navMeshLink = "NM_Link";
     public static string navMesh = "NavMesh";
     public static string projectilesFolder = "Projectiles/Projectiles/";
