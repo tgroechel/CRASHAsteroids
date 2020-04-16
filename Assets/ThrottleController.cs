@@ -11,8 +11,9 @@ namespace Crash {
         public const float MAX_ANGLE = 130, RADIUS = 1.2f;
         LineRenderer lr;
         TextMeshProUGUI textMesh;
-        public Transform sphere;
+        public Transform sphereWhite, sphereGreen;
         PointerData curPointer;
+        public Transform relativeTransform;
 
         private struct PointerData {
             public IMixedRealityPointer pointer;
@@ -52,38 +53,41 @@ namespace Crash {
         }
 
         public Vector3 ProjectPointToCircle(Vector3 point, Vector3 center, Vector3 circleNormal, float radius) {
-            sphere.localPosition = Vector3.ProjectOnPlane(point, circleNormal);
-            return ProjectPointToSphere(Vector3.ProjectOnPlane(point, circleNormal), center, radius);
+            sphereWhite.localPosition = Vector3.ProjectOnPlane(point, circleNormal);
+            return ProjectPointToSphere(point, center, radius);
         }
 
         public void OnPointerDragged(MixedRealityPointerEventData eventData) {
-
-            Vector3 pointerPos = curPointer.GrabPoint;
-            Vector3 center = Vector3.zero;
-            Vector3 norm = transform.up;
-            Debug.DrawRay(transform.position, transform.up);
+            Vector3 pointerPos = eventData.Pointer.Position;
+            Vector3 center = relativeTransform.position;
+            Vector3 norm = relativeTransform.right;
+            Vector3 forwardReference = relativeTransform.forward;
+            Debug.DrawRay(transform.position, norm);
+            pointerPos.x = relativeTransform.position.x;
+            sphereGreen.transform.position = pointerPos;
 
             Vector3 potentialPosition = ProjectPointToCircle(pointerPos, center, norm, RADIUS);
-            float angleFromOutward = Vector3.SignedAngle(transform.parent.forward, potentialPosition, norm);
-
+            float angleFromOutward = Vector3.SignedAngle(forwardReference, potentialPosition, norm);
+            Debug.Log(angleFromOutward);
             // -120 up, 120 down
             float percent = 0;
+
             if (angleFromOutward < 0) {
                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                    potentialPosition = (Quaternion.Euler(-MAX_ANGLE, 0, 0) * transform.parent.forward).normalized * RADIUS;
+                    potentialPosition = (Quaternion.Euler(-MAX_ANGLE, 0, 0) * forwardReference).normalized * RADIUS;
                     angleFromOutward = -MAX_ANGLE;
                 }
                 percent = (180 + angleFromOutward) / (180 - MAX_ANGLE);
             }
             else {
                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                    potentialPosition = (Quaternion.Euler(MAX_ANGLE, 0, 0) * transform.parent.forward).normalized * RADIUS;
+                    potentialPosition = (Quaternion.Euler(MAX_ANGLE, 0, 0) * forwardReference).normalized * RADIUS;
                     angleFromOutward = MAX_ANGLE;
                 }
                 percent = -(180 - angleFromOutward) / (180 - MAX_ANGLE);
             }
 
-            transform.localPosition = potentialPosition;
+            transform.position = potentialPosition;
             KuriManager.instance.SetVelocity(percent);
             textMesh.SetText(percent.ToString("#.00"));
         }
