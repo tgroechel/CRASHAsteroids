@@ -74,14 +74,14 @@ namespace Crash {
 
             if (angleFromOutward < 0) {
                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                    potentialPosition = (Quaternion.Euler(-MAX_ANGLE, 0, 0) * forwardReference).normalized * RADIUS;
+                    potentialPosition = center + (Quaternion.Euler(-MAX_ANGLE, 0, 0) * forwardReference - center).normalized * RADIUS;
                     angleFromOutward = -MAX_ANGLE;
                 }
                 percent = (180 + angleFromOutward) / (180 - MAX_ANGLE);
             }
             else {
                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                    potentialPosition = (Quaternion.Euler(MAX_ANGLE, 0, 0) * forwardReference).normalized * RADIUS;
+                    potentialPosition = center + (Quaternion.Euler(MAX_ANGLE, 0, 0) * forwardReference - center).normalized * RADIUS;
                     angleFromOutward = MAX_ANGLE;
                 }
                 percent = -(180 - angleFromOutward) / (180 - MAX_ANGLE);
