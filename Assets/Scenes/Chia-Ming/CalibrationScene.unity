@@ -1092,7 +1092,7 @@ MonoBehaviour:
   ballCount: 100
   threshold: 0.8
   checkInterval: 2
-  nextScene: EmptyMRTKScene
+  nextScene: Main
 --- !u!4 &1130688520
 Transform:
   m_ObjectHideFlags: 0
@@ -1806,7 +1806,7 @@ PrefabInstance:
     - target: {fileID: 6695888344297780986, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: RunOnDevice
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6695888344483589155, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
