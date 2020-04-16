@@ -3,54 +3,51 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
+
 using UnityEngine.AI;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
 #endif
 
 
-namespace eDmitriyAssets.NavmeshLinksGenerator
-{
-    
-    public class NavMeshLinks_AutoPlacer : MonoBehaviour
-    {
+namespace eDmitriyAssets.NavmeshLinksGenerator {
+
+    public class NavMeshLinks_AutoPlacer : MonoBehaviour {
         #region Variables
 
         public Transform linkPrefab;
         public float tileWidth = 5f;
 
-        [Header( "OffMeshLinks" )] 
+        [Header("OffMeshLinks")]
         public float maxJumpHeight = 3f;
         public LayerMask raycastLayerMask = -1;
 
 
-        [Header( "EdgeNormal" )] public bool invertFacingNormal = false;
+        [Header("EdgeNormal")] public bool invertFacingNormal = false;
         public bool dontAllignYAxis = false;
 
 
         //private List< Vector3 > spawnedLinksPositionsList = new List< Vector3 >();
         private Mesh currMesh;
-        private List< Edge > edges = new List< Edge >();
+        private List<Edge> edges = new List<Edge>();
 
         private float agentRadius = 2;
 
         #endregion
 
         // Initializing the navmesh link prefab
-        private void Awake()
-        {
+        private void Awake() {
             linkPrefab = (Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMeshLink) as GameObject).transform;
         }
 
         #region GridGen
 
-        public void Generate()
-        {
-            if( linkPrefab == null ) return;
-            agentRadius = NavMesh.GetSettingsByIndex( 0 ).agentRadius;
+        public void Generate() {
+            if (linkPrefab == null) return;
+            agentRadius = NavMesh.GetSettingsByIndex(0).agentRadius;
 
             edges.Clear();
             //spawnedLinksPositionsList.Clear();
@@ -59,49 +56,45 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
             PlaceTiles();
 
 
-            #if UNITY_EDITOR
-            if( !Application.isPlaying ) EditorSceneManager.MarkSceneDirty( gameObject.scene );
-            #endif
+#if UNITY_EDITOR
+            if (!Application.isPlaying) EditorSceneManager.MarkSceneDirty(gameObject.scene);
+#endif
 
         }
 
 
 
-        public void ClearLinks()
-        {
-            List< NavMeshLink > navMeshLinkList = GetComponentsInChildren<NavMeshLink> ( ).ToList ( );
-            while ( navMeshLinkList.Count > 0 )
-            {
+        public void ClearLinks() {
+            List<NavMeshLink> navMeshLinkList = GetComponentsInChildren<NavMeshLink>().ToList();
+            while (navMeshLinkList.Count > 0) {
                 GameObject obj = navMeshLinkList[0].gameObject;
-                if ( obj != null ) DestroyImmediate ( obj );
-                navMeshLinkList.RemoveAt ( 0 );
+                if (obj != null) DestroyImmediate(obj);
+                navMeshLinkList.RemoveAt(0);
             }
         }
 
-        private void PlaceTiles()
-        {
-            if( edges.Count == 0 ) return;
+        private void PlaceTiles() {
+            if (edges.Count == 0) return;
 
             ClearLinks();
 
 
-            foreach ( Edge edge in edges )
-            {
-                int tilesCountWidth = ( int ) Mathf.Clamp( edge.length / tileWidth, 0, 10000 );
+            foreach (Edge edge in edges) {
+                int tilesCountWidth = (int)Mathf.Clamp(edge.length / tileWidth, 0, 10000);
                 float heightShift = 0;
 
 
-                for ( int columnN = 0; columnN < tilesCountWidth; columnN++ ) //every edge length segment
+                for (int columnN = 0; columnN < tilesCountWidth; columnN++) //every edge length segment
                 {
                     Vector3 placePos = Vector3.Lerp(
                                            edge.start,
                                            edge.end,
-                                           ( float ) columnN / ( float ) tilesCountWidth //position on edge
-                                           + 0.5f / ( float ) tilesCountWidth //shift for half tile width
+                                           (float)columnN / (float)tilesCountWidth //position on edge
+                                           + 0.5f / (float)tilesCountWidth //shift for half tile width
                                        ) + edge.facingNormal * Vector3.up * heightShift;
 
                     //spawn
-                    CheckPlacePos( placePos, edge.facingNormal );
+                    CheckPlacePos(placePos, edge.facingNormal);
                 }
             }
         }
@@ -109,8 +102,7 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
 
 
 
-        bool CheckPlacePos( Vector3 pos, Quaternion normal )
-        {
+        bool CheckPlacePos(Vector3 pos, Quaternion normal) {
             bool result = false;
 
             Vector3 startPos = pos + normal * Vector3.forward * agentRadius * 2;
@@ -121,15 +113,12 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
 
             NavMeshHit navMeshHit;
             RaycastHit raycastHit = new RaycastHit();
-            if( Physics.Linecast( startPos, endPos, out raycastHit, raycastLayerMask.value,
-                QueryTriggerInteraction.Ignore ) )
-            {
-                if( NavMesh.SamplePosition( raycastHit.point, out navMeshHit, 0.5f, NavMesh.AllAreas ) )
-                {
+            if (Physics.Linecast(startPos, endPos, out raycastHit, raycastLayerMask.value,
+                QueryTriggerInteraction.Ignore)) {
+                if (NavMesh.SamplePosition(raycastHit.point, out navMeshHit, 0.5f, NavMesh.AllAreas)) {
                     //Debug.DrawLine( pos, navMeshHit.position, Color.black, 15 );
 
-                    if( Vector3.Distance( pos, navMeshHit.position ) > 1.1f )
-                    {
+                    if (Vector3.Distance(pos, navMeshHit.position) > 1.1f) {
                         //SPAWN NAVMESH LINKS
                         Transform spawnedTransf = Instantiate(
                             linkPrefab.transform,
@@ -137,12 +126,12 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
                             normal
                         ) as Transform;
 
-                        var nmLink = spawnedTransf.GetComponent< NavMeshLink >();
+                        var nmLink = spawnedTransf.GetComponent<NavMeshLink>();
                         nmLink.startPoint = Vector3.zero;
-                        nmLink.endPoint = nmLink.transform.InverseTransformPoint( navMeshHit.position );
+                        nmLink.endPoint = nmLink.transform.InverseTransformPoint(navMeshHit.position);
                         nmLink.UpdateLink();
 
-                        spawnedTransf.SetParent( transform );
+                        spawnedTransf.SetParent(transform);
                     }
                 }
             }
@@ -162,99 +151,88 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
 
         float triggerAngle = 0.999f;
 
-        private void CalcEdges()
-        {
+        private void CalcEdges() {
             var tr = NavMesh.CalculateTriangulation();
 
 
-            currMesh = new Mesh()
-            {
+            currMesh = new Mesh() {
                 vertices = tr.vertices,
                 triangles = tr.indices
             };
 
 
-            for ( int i = 0; i < currMesh.triangles.Length - 1; i += 3 )
-            {
+            for (int i = 0; i < currMesh.triangles.Length - 1; i += 3) {
                 //CALC FROM MESH OPEN EDGES vertices
 
-                TrisToEdge( currMesh, i, i + 1 );
-                TrisToEdge( currMesh, i + 1, i + 2 );
-                TrisToEdge( currMesh, i + 2, i );
+                TrisToEdge(currMesh, i, i + 1);
+                TrisToEdge(currMesh, i + 1, i + 2);
+                TrisToEdge(currMesh, i + 2, i);
             }
 
 
 
-            foreach ( Edge edge in edges )
-            {
+            foreach (Edge edge in edges) {
                 //EDGE LENGTH
                 edge.length = Vector3.Distance(
                     edge.start,
-                    edge.end 
+                    edge.end
                 );
 
                 //FACING NORMAL 
-                if( !edge.facingNormalCalculated )
-                {
-                    edge.facingNormal = Quaternion.LookRotation( Vector3.Cross( edge.end - edge.start, Vector3.up ) );
+                if (!edge.facingNormalCalculated) {
+                    edge.facingNormal = Quaternion.LookRotation(Vector3.Cross(edge.end - edge.start, Vector3.up));
 
 
-                    if( edge.startUp.sqrMagnitude > 0 )
-                    {
-                        var vect = Vector3.Lerp( edge.endUp, edge.startUp, 0.5f ) -
-                                   Vector3.Lerp( edge.end, edge.start, 0.5f );
-                        edge.facingNormal = Quaternion.LookRotation( Vector3.Cross( edge.end - edge.start, vect ) );
+                    if (edge.startUp.sqrMagnitude > 0) {
+                        var vect = Vector3.Lerp(edge.endUp, edge.startUp, 0.5f) -
+                                   Vector3.Lerp(edge.end, edge.start, 0.5f);
+                        edge.facingNormal = Quaternion.LookRotation(Vector3.Cross(edge.end - edge.start, vect));
 
 
                         //FIX FOR NORMALs POINTING DIRECT TO UP/DOWN
-                        if( Mathf.Abs( Vector3.Dot( Vector3.up, ( edge.facingNormal * Vector3.forward ).normalized ) ) >
-                            triggerAngle )
-                        {
-                            edge.startUp += new Vector3( 0, 0.1f, 0 );
-                            vect = Vector3.Lerp( edge.endUp, edge.startUp, 0.5f ) -
-                                   Vector3.Lerp( edge.end, edge.start, 0.5f );
-                            edge.facingNormal = Quaternion.LookRotation( Vector3.Cross( edge.end - edge.start, vect ) );
+                        if (Mathf.Abs(Vector3.Dot(Vector3.up, (edge.facingNormal * Vector3.forward).normalized)) >
+                            triggerAngle) {
+                            edge.startUp += new Vector3(0, 0.1f, 0);
+                            vect = Vector3.Lerp(edge.endUp, edge.startUp, 0.5f) -
+                                   Vector3.Lerp(edge.end, edge.start, 0.5f);
+                            edge.facingNormal = Quaternion.LookRotation(Vector3.Cross(edge.end - edge.start, vect));
                         }
                     }
 
-                    if( dontAllignYAxis )
-                    {
+                    if (dontAllignYAxis) {
                         edge.facingNormal = Quaternion.LookRotation(
                             edge.facingNormal * Vector3.forward,
-                            Quaternion.LookRotation( edge.end - edge.start ) * Vector3.up
+                            Quaternion.LookRotation(edge.end - edge.start) * Vector3.up
                         );
                     }
 
                     edge.facingNormalCalculated = true;
                 }
-                if( invertFacingNormal ) edge.facingNormal = Quaternion.Euler( Vector3.up * 180 ) * edge.facingNormal;
+                if (invertFacingNormal) edge.facingNormal = Quaternion.Euler(Vector3.up * 180) * edge.facingNormal;
 
             }
         }
 
 
 
-        private void TrisToEdge( Mesh currMesh, int n1, int n2 )
-        {
-            Vector3 val1 =  currMesh.vertices[ currMesh.triangles[ n1 ] ] ;
-            Vector3 val2 =  currMesh.vertices[ currMesh.triangles[ n2 ] ] ;
+        private void TrisToEdge(Mesh currMesh, int n1, int n2) {
+            Vector3 val1 = currMesh.vertices[currMesh.triangles[n1]];
+            Vector3 val2 = currMesh.vertices[currMesh.triangles[n2]];
 
-            Edge newEdge = new Edge( val1, val2 );
+            Edge newEdge = new Edge(val1, val2);
 
             //remove duplicate edges
-            foreach ( Edge edge in edges )
-            {
-                if( ( edge.start == val1 & edge.end == val2 )
-                    || ( edge.start == val2 & edge.end == val1 )
-                )
-                {
+            foreach (Edge edge in edges) {
+                if ((edge.start == val1 & edge.end == val2)
+                    || (edge.start == val2 & edge.end == val1)
+                ) {
                     //print("Edges duplicate " + newEdge.start + " " + newEdge.end);
-                    edges.Remove( edge );
+                    edges.Remove(edge);
                     return;
                 }
             }
 
-            edges.Add( newEdge );
+            edges.Add(newEdge);
         }
 
         #endregion
@@ -263,8 +241,7 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
 
 
     [Serializable]
-    public class Edge
-    {
+    public class Edge {
         public Vector3 start;
         public Vector3 end;
 
@@ -276,8 +253,7 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
         public bool facingNormalCalculated = false;
 
 
-        public Edge( Vector3 startPoint, Vector3 endPoint )
-        {
+        public Edge(Vector3 startPoint, Vector3 endPoint) {
             start = startPoint;
             end = endPoint;
         }
@@ -287,39 +263,32 @@ namespace eDmitriyAssets.NavmeshLinksGenerator
 
 
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
-    [CustomEditor( typeof( NavMeshLinks_AutoPlacer ) )]
+    [CustomEditor(typeof(NavMeshLinks_AutoPlacer))]
     [CanEditMultipleObjects]
-    public class NavMeshLinks_AutoPlacer_Editor : Editor
-    {
-        public UnityEngine.Object[] returnTargets()
-        {
+    public class NavMeshLinks_AutoPlacer_Editor : Editor {
+        public UnityEngine.Object[] returnTargets() {
             return targets;
         }
-        public override void OnInspectorGUI()
-        {
+        public override void OnInspectorGUI() {
             DrawDefaultInspector();
 
-            if( GUILayout.Button( "Generate" ) )
-            {
-                foreach ( var targ in targets )
-                {
-                    ( ( NavMeshLinks_AutoPlacer ) targ ).Generate();
+            if (GUILayout.Button("Generate")) {
+                foreach (var targ in targets) {
+                    ((NavMeshLinks_AutoPlacer)targ).Generate();
                 }
             }
 
-            if ( GUILayout.Button ( "ClearLinks" ) )
-            {
-                foreach ( var targ in targets )
-                {
-                    ( (NavMeshLinks_AutoPlacer) targ ).ClearLinks();
+            if (GUILayout.Button("ClearLinks")) {
+                foreach (var targ in targets) {
+                    ((NavMeshLinks_AutoPlacer)targ).ClearLinks();
                 }
             }
         }
     }
 
-    
+
 
 #endif
 }
