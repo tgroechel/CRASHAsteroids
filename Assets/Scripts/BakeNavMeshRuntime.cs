@@ -11,40 +11,29 @@ public class BakeNavMeshRuntime : MonoBehaviour
     private NavMeshLinks_AutoPlacer_Editor editor;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Get the NavMeshSurface component
         surface = GetComponent<NavMeshSurface>();
 
+        // Build NavMesh
+        surface.BuildNavMesh();
+
+        /* Left the following statements commented as a reference for future work
+        // Remove NavMesh
+        surface.RemoveData();
+
         // Get the NavMeshLinks_AutoPlacer component
         autoplacer = GetComponent<NavMeshLinks_AutoPlacer>();
 
+        // Generate NavMesh Links
+        autoplacer.Generate();
+
+        // Remove NavMesh Links
+        autoplacer.ClearLinks();
+
         // Get the NavMeshLinks_AutoPlacer_Editor component
         editor = GetComponent<NavMeshLinks_AutoPlacer_Editor>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            // Build NavMesh
-            surface.BuildNavMesh();
-        }
-        else if(Input.GetKeyDown(KeyCode.G))
-        {
-            // Generate NavMesh Links
-            GetComponent<NavMeshLinks_AutoPlacer>().Generate();
-        }
-        else if(Input.GetKeyDown(KeyCode.N))
-        {
-            // Remove NavMesh
-            surface.RemoveData();
-        }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
-            // Remove NavMesh Links
-            GetComponent<NavMeshLinks_AutoPlacer>().ClearLinks();
-        }
+        */
     }
 }

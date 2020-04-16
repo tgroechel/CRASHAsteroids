@@ -26,10 +26,12 @@ namespace Sid
             /* If HealthManager script exists on the collided object then
                we assume it is an enemy and we decrease its health,
                else the bullet simply vanishes upon collision */
-            if (other.gameObject.GetComponent<HealthManager>() != null)
+            GameObject rootGameObject = other.gameObject;
+            //print("Name of gameobject entered before HealthManager check is " + other.gameObject.name);
+            if (rootGameObject.GetComponent<HealthManager>() != null)
             {
-                print("Name of gameobject entered is " + other.gameObject.name);
-                HealthManager healthManager = other.gameObject.GetComponent<HealthManager>();
+                print("Name of gameobject entered is " + rootGameObject.name);
+                HealthManager healthManager = rootGameObject.GetComponent<HealthManager>();
                 healthManager.CallDecreaseHealth(bulletDamage);
             }
         }

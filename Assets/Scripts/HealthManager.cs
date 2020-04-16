@@ -7,6 +7,7 @@ namespace Sid {
     public class HealthManager : MonoBehaviour {
         public float MAXHEALTH;
         float currentHealth;
+        GameObject rootGameObject;
         Renderer objRenderer;
         Renderer[] childRenderers;
         Color objOriginalColor;
@@ -19,14 +20,15 @@ namespace Sid {
 
         // Store original color of current object and its children (parts)
         void Awake() {
+            slider = GetComponentInChildren<Canvas>().GetComponentInChildren<Slider>();
             currentHealth = MAXHEALTH;
             slider.value = currentHealth / MAXHEALTH;
             damageTime = Time.deltaTime * 3;
-            slider = GetComponentInChildren<Canvas>().GetComponentInChildren<Slider>();
+            rootGameObject = gameObject;
 
             // Initialising object renderer and its original color
-            if (GetComponent<Renderer>() != null) {
-                objRenderer = GetComponent<Renderer>();
+            if (rootGameObject.GetComponent<Renderer>() != null) {
+                objRenderer = rootGameObject.GetComponent<Renderer>();
                 objOriginalColor = objRenderer.material.color;
             }
             else {
@@ -34,7 +36,7 @@ namespace Sid {
             }
 
             // Initialising child renderers and their original colors
-            childRenderers = GetComponentsInChildren<Renderer>();
+            childRenderers = rootGameObject.GetComponentsInChildren<Renderer>();
             childOriginalColors = new List<Color>();
             foreach (Renderer childRend in childRenderers) {
                 childOriginalColors.Add(childRend.material.color);
@@ -59,7 +61,7 @@ namespace Sid {
                     yield return new WaitForSeconds(damageTime);
                     objRenderer.material.color = objOriginalColor;
                 }
-                else {
+                if (childRenderers.Length > 0) {
                     foreach (Renderer childRend in childRenderers) {
                         childRend.material.color = colorOnDamage;
                     }
