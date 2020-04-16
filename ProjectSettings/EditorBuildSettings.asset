@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/MixedRealityToolkit.SDK/StandardAssets/Scenes/DefaultManagerScene.unity
+    guid: ae7bb08d297fb69408695d8de0962524
+  - enabled: 1
     path: Assets/Scenes/Chia-Ming/CalibrationScene.unity
     guid: ca6e16592de5a844990d861bf493b7f3
   - enabled: 1
     path: Assets/Scenes/Chia-Ming/EmptyMRTKScene.unity
     guid: f7c17a91d232e4141b88328e4a643c12
+  - enabled: 1
+    path: Assets/MixedRealityToolkit.SDK/StandardAssets/Scenes/DefaultLightingScene.unity
+    guid: 7e54e36c44f826c438c95da79f8de638
   m_configObjects: {}
