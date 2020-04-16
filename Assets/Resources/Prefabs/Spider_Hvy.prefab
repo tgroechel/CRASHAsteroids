@@ -3557,6 +3557,7 @@ GameObject:
   - component: {fileID: 3848065465991938561}
   - component: {fileID: 3848065465991938565}
   - component: {fileID: 6665558032487706601}
+  - component: {fileID: 114254746110127804}
   m_Layer: 2
   m_Name: Spider_Hvy
   m_TagString: Boss
@@ -3766,7 +3767,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7393797216063824767}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: -902729914
   m_Radius: 3.62
   m_Speed: 1
@@ -3793,6 +3794,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6794bee6804614c488e87257577739c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114254746110127804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393797216063824767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793b3e0df96826c44a52c72b1c6fab17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAXHEALTH: 1000
 --- !u!1 &7393797216264979156
 GameObject:
   m_ObjectHideFlags: 0
