@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2488913288952212850}
   - component: {fileID: 2488913288952212849}
   - component: {fileID: 2488913288952212848}
-  - component: {fileID: 2488913288952212851}
   m_Layer: 0
   m_Name: FloorNavMesh-SpiderHvy
   m_TagString: Untagged
@@ -74,26 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde484fc1138b124380a1fc9d7c9d123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2488913288952212851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488913288952212853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535f35baca0f8d3439c205394a6f2fd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkPrefab: {fileID: 0}
-  tileWidth: 2
-  maxJumpHeight: 2
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  invertFacingNormal: 0
-  dontAllignYAxis: 0
 --- !u!1 &2488913289297727744
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +84,6 @@ GameObject:
   - component: {fileID: 2488913289297727758}
   - component: {fileID: 2488913289297727745}
   - component: {fileID: 2488913289297727759}
-  - component: {fileID: 2488913289297727756}
   m_Layer: 0
   m_Name: FloorNavMesh-SpiderMini
   m_TagString: Untagged
@@ -168,26 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde484fc1138b124380a1fc9d7c9d123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2488913289297727756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488913289297727744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535f35baca0f8d3439c205394a6f2fd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkPrefab: {fileID: 0}
-  tileWidth: 2
-  maxJumpHeight: 2
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  invertFacingNormal: 0
-  dontAllignYAxis: 0
 --- !u!1 &2488913289474147839
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +155,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2488913289474147836}
-  - component: {fileID: 2488913289474147837}
   m_Layer: 0
   m_Name: NavMeshes
   m_TagString: Untagged
@@ -221,23 +178,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2488913289474147837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488913289474147839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -2.5}
-  m_EndPoint: {x: 0, y: 0, z: 2.5}
-  m_Width: 0
-  m_CostModifier: -1
-  m_Bidirectional: 1
-  m_AutoUpdatePosition: 0
-  m_Area: 0

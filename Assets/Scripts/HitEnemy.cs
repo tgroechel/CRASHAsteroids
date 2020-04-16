@@ -8,8 +8,8 @@ namespace Sid
     {
         // Default, can be changed using GUI for different bullets
         public float bulletDamage = 10;
-        public Collider objCollider;
-        public Rigidbody objRigidbody;
+        Collider objCollider;
+        Rigidbody objRigidbody;
 
 
         // Start is called before the first frame update

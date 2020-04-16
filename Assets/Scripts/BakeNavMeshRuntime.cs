@@ -10,7 +10,8 @@ public class BakeNavMeshRuntime : MonoBehaviour {
 #endif
 
     // Start is called before the first frame update
-    void Awake() {
+    void Start()
+    {
         // Get the NavMeshSurface component
         surface = GetComponent<NavMeshSurface>();
 
