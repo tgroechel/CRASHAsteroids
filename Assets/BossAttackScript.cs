@@ -113,11 +113,9 @@ public class BossAttackScript : MonoBehaviour {
         return vfx;
     }
 
-    public void Pattern0()
-    {
+    public void Pattern0() {
         GameObject vfx = getBullet();
-        if (vfx != null)
-        {
+        if (vfx != null) {
             vfx.transform.position = transform.position;
             vfx.transform.rotation = Quaternion.identity;
             Vector3 dir = Camera.main.transform.position - transform.position;
@@ -133,8 +131,7 @@ public class BossAttackScript : MonoBehaviour {
             ii = 17 - ii;
 
         GameObject vfx = getBullet();
-        if (vfx != null)
-        {
+        if (vfx != null) {
             vfx.transform.position = transform.position;// + new Vector3(0, 0.1f, 0);
             vfx.transform.rotation = Quaternion.identity;
             Vector3 targetPos = Camera.main.transform.position;
@@ -143,7 +140,7 @@ public class BossAttackScript : MonoBehaviour {
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
         }
-        
+
     }
 
 
@@ -172,7 +169,7 @@ public class BossAttackScript : MonoBehaviour {
             bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
             j++;
         }
-        if (bullets[0]!= null)
+        if (bullets[0] != null)
             bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
     }
 
@@ -215,8 +212,7 @@ public class BossAttackScript : MonoBehaviour {
 
 
         offset = 0.3f;
-        for (int jj = 0; jj < 8; jj++)
-        {
+        for (int jj = 0; jj < 8; jj++) {
             vfx = getBullet();
             if (vfx == null) continue;
 
@@ -234,26 +230,23 @@ public class BossAttackScript : MonoBehaviour {
             Vector3 dir = head.transform.position + newY * (float)Math.Cos(angle) * offset
                 + newZ * (float)Math.Sin(angle) * offset - transform.position;
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-            if (!soundPlayed)
-            {
+            if (!soundPlayed) {
                 vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                 soundPlayed = true;
             }
         }
     }
 
-    public void CrossPattern(float offset = 0.3f)
-    {
+    public void CrossPattern(float offset = 0.3f) {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
         bool soundPlayed = false;
 
-        float[] yOffsets = { -2, -1, 0, 1, 2, 0, 0, 0, 0};
-        float[] zOffsets = { 0, 0, 0, 0, 0, -2, -1, 1, 2};
+        float[] yOffsets = { -2, -1, 0, 1, 2, 0, 0, 0, 0 };
+        float[] zOffsets = { 0, 0, 0, 0, 0, -2, -1, 1, 2 };
 
-        for (int jj = 0; jj < 9; jj++)
-        {
+        for (int jj = 0; jj < 9; jj++) {
             vfx = getBullet();
             if (vfx == null) continue;
 
@@ -270,16 +263,14 @@ public class BossAttackScript : MonoBehaviour {
             Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
                 + newZ * zOffsets[jj] * offset - transform.position;
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-            if (!soundPlayed)
-            {
+            if (!soundPlayed) {
                 vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                 soundPlayed = true;
             }
         }
     }
 
-    public void DiePattern(float offset = 0.15f)
-    {
+    public void DiePattern(float offset = 0.15f) {
         GameObject vfx;
         List<GameObject> bullets = new List<GameObject>();
 
@@ -292,8 +283,7 @@ public class BossAttackScript : MonoBehaviour {
             -1, 0, 1, 0, 0, 0, -1, 0, 1,
             3, 4, 5, 3, 3, 4, 3, 3, 4, 5};
 
-        for (int jj = 0; jj < 29; jj++)
-        {
+        for (int jj = 0; jj < 29; jj++) {
             vfx = getBullet();
             if (vfx == null) continue;
 
@@ -310,8 +300,7 @@ public class BossAttackScript : MonoBehaviour {
             Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
                 + newZ * zOffsets[jj] * offset - transform.position;
             vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-            if (!soundPlayed)
-            {
+            if (!soundPlayed) {
                 vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                 soundPlayed = true;
             }
