@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BehaviorDesigner.Runtime;
 
 namespace Sid {
     public class HealthManager : MonoBehaviour {
+
         public float MAXHEALTH;
         float currentHealth;
         GameObject rootGameObject;
@@ -17,10 +19,12 @@ namespace Sid {
 
         // Slider for health bar
         Slider slider;
+        public BehaviorTree behaviorTree;
 
         // Store original color of current object and its children (parts)
         void Awake() {
             slider = GetComponentInChildren<Canvas>().GetComponentInChildren<Slider>();
+            //behaviorTree = GetComponent<BehaviorTree>(); //TODO get this properly
             currentHealth = MAXHEALTH;
             slider.value = currentHealth / MAXHEALTH;
             damageTime = Time.deltaTime * 3;
@@ -54,6 +58,10 @@ namespace Sid {
                 FindObjectOfType<AudioManager>().Play("GameWin");
             }
             else {
+                if (currentHealth > MAXHEALTH / 2 && currentHealth - damage < MAXHEALTH / 2)
+                {
+                    behaviorTree.SendEvent<float>("HalfHealth",currentHealth);
+                }
                 currentHealth -= damage;
                 slider.value = currentHealth / MAXHEALTH;
                 if (objRenderer != null) {
