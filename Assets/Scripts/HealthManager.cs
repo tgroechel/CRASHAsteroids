@@ -60,7 +60,7 @@ namespace Sid {
             else {
                 if (currentHealth > MAXHEALTH / 2 && currentHealth - damage < MAXHEALTH / 2)
                 {
-                    behaviorTree.SendEvent<float>("HalfHealth",currentHealth);
+                    behaviorTree.SendEvent<object>("HalfHealth",currentHealth);
                 }
                 currentHealth -= damage;
                 slider.value = currentHealth / MAXHEALTH;
