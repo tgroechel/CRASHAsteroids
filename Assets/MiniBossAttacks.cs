@@ -2,44 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniBossAttacks : MonoBehaviour
+namespace Crash
 {
-    private BossAttackScript gun;
-    void Start()
+    public class MiniBossAttacks : MonoBehaviour
     {
-        gun = GameObject.Find("Barrel_End_1").GetComponent<BossAttackScript>();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
+        private BossAttackScript gun;
+        void Start()
         {
-            Pattern0();
+            gun = GameObject.Find("Barrel_End_1").GetComponent<BossAttackScript>();
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        void Update()
         {
-            CircularPattern();
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                Pattern0();
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                CircularPattern();
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                CrossPattern();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        public void Pattern0()
         {
-            CrossPattern();
+            gun.Pattern0();
         }
-    }
 
-    public void Pattern0()
-    {
-        gun.Pattern0();
-    }
+        public void CircularPattern()
+        {
+            gun.CircularPattern();
+        }
 
-    public void CircularPattern()
-    {
-        gun.CircularPattern();
-    }
-
-    public void CrossPattern()
-    {
-        gun.CrossPattern();
+        public void CrossPattern()
+        {
+            gun.CrossPattern();
+        }
     }
 }

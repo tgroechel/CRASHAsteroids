@@ -5,11 +5,15 @@ using UnityEngine;
 namespace Crash {
     public class BossAttacks : MonoBehaviour {
 
+        public enum FirePatterns { Single, OffsetSingle, HorizontalLines, VerticalLines, Circle, Cross, Die, laser };
+        public enum GunsToUse { Left, Right, Both };
+
         private BossAttackScript leftGun;
         private BossAttackScript rightGun;
         private BossLaserScript laser;
 
-        void Start() {
+        void Awake()
+        {
             leftGun = GameObject.Find("Barrel_end_1_left").GetComponent<BossAttackScript>();
             rightGun = GameObject.Find("Barrel_end_1_right").GetComponent<BossAttackScript>();
             laser = GameObject.Find("Barrel_end_laser").GetComponent<BossLaserScript>();
@@ -18,92 +22,155 @@ namespace Crash {
         // Update is called once per frame
         void Update() {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                Pattern0('l');
-                Pattern0('r');
+                Pattern0(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) {
-                Pattern1('l');
-                Pattern1('r');
+                Pattern1(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3)) {
-                Pattern2('l');
-                Pattern2('r');
+                Pattern2(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4)) {
-                Pattern3('l');
-                Pattern3('r');
+                Pattern3(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha5)) {
-                CircularPattern('l');
-                CircularPattern('r');
+                CircularPattern(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha6)) {
-                CrossPattern('l');
-                CrossPattern('r');
+                CrossPattern(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha7)) {
-                DiePattern('l');
-                DiePattern('r');
+                DiePattern(GunsToUse.Both);
             }
             if (Input.GetKeyDown(KeyCode.Alpha8)) {
                 Laser();
             }
         }
 
+        public void PatternSelector(FirePatterns pattern, GunsToUse guns)
+        {
+            switch (pattern)
+            {
+                case FirePatterns.Single:
+                    Pattern0(guns);
+                    break;
+                case FirePatterns.OffsetSingle:
+                    Pattern1(guns);
+                    break;
+                case FirePatterns.HorizontalLines:
+                    Pattern2(guns);
+                    break;
+                case FirePatterns.VerticalLines:
+                    Pattern3(guns);
+                    break;
+                case FirePatterns.Circle:
+                    CircularPattern(guns);
+                    break;
+                case FirePatterns.Cross:
+                    CrossPattern(guns);
+                    break;
+                case FirePatterns.Die:
+                    DiePattern(guns);
+                    break;
+                case FirePatterns.laser:
+                    Laser();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         // just a single boring bullet
-        public void Pattern0(char c) {
-            if (c == 'l')
+        public void Pattern0(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.Pattern0();
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.Pattern0();
+            else
+            {
+                leftGun.Pattern0();
+                rightGun.Pattern0();
+            }
         }
 
         // one bullet with some random offeset
-        public void Pattern1(char c) {
-            if (c == 'l')
+        public void Pattern1(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.Pattern1(Random.Range(0, 1000));
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.Pattern1(Random.Range(0, 1000));
+            else
+            {
+                leftGun.Pattern1(Random.Range(0, 1000));
+                rightGun.Pattern1(Random.Range(0, 1000));
+            }
         }
 
-        // an array of bullets
-        public void Pattern2(char c) {
-            if (c == 'l')
+        // an array of bullets - horizontal
+        public void Pattern2(GunsToUse guns)
+        {
+            if (guns == GunsToUse.Left)
                 leftGun.Pattern2(Random.Range(0, 1000));
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.Pattern2(Random.Range(0, 1000));
+            else
+            {
+                leftGun.Pattern2(Random.Range(0, 1000));
+                rightGun.Pattern2(Random.Range(0, 1000));
+            }
         }
 
-        // an array of bullets but slightly different
-        public void Pattern3(char c) {
-            if (c == 'l')
+        // an array of bullets but slightly different - vertical
+        public void Pattern3(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.Pattern3(Random.Range(0, 1000));
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.Pattern3(Random.Range(0, 1000));
+            else
+            {
+                leftGun.Pattern3(Random.Range(0, 1000));
+                rightGun.Pattern3(Random.Range(0, 1000));
+            }
         }
 
         // a circle
-        public void CircularPattern(char c) {
-            if (c == 'l')
+        public void CircularPattern(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.CircularPattern();
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.CircularPattern();
+            else
+            {
+                leftGun.CircularPattern();
+                rightGun.CircularPattern();
+            }
         }
 
         // a cross
-        public void CrossPattern(char c) {
-            if (c == 'l')
+        public void CrossPattern(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.CrossPattern();
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.CrossPattern();
+            else
+            {
+                leftGun.CrossPattern();
+                rightGun.CrossPattern();
+            }
         }
 
         // die b**** !
-        public void DiePattern(char c) {
-            if (c == 'l')
+        public void DiePattern(GunsToUse guns) {
+            if (guns == GunsToUse.Left)
                 leftGun.DiePattern();
-            else
+            else if (guns == GunsToUse.Right)
                 rightGun.DiePattern();
+            else
+            {
+                leftGun.DiePattern();
+                rightGun.DiePattern();
+            }
         }
 
         // laser!

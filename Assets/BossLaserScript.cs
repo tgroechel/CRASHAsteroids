@@ -8,6 +8,7 @@ namespace Crash {
         private GameObject aimLaser;
         private GameObject laser;
         private GameObject laserGun;
+        private GameObject laserGunMount;
         private EGA_Laser laserScript;
         private float timeElapsed;
 
@@ -27,12 +28,13 @@ namespace Crash {
 
         void Start() {
             effect = Resources.Load<GameObject>(ResourcePathManager.bossLaser) as GameObject;
-            //GameObject aimLaserEffect = Resources.Load<GameObject>(ResourcePathManager.aimLaser) as GameObject;
-            laserGun = transform.parent.parent.parent.gameObject; //TODO change this to get rotation platform in a better way.
-            //aimLaser = Instantiate(aimLaserEffect, transform.position, transform.rotation);
-            aimLaser = transform.GetChild(0).gameObject;
+            //laserGun = transform.parent.gameObject;
+            //laserGunMount = laserGun.transform.parent.gameObject;
+            //aimLaser = transform.GetChild(0).gameObject; //for using the FX game object
+
+            GameObject aimLaserEffect = Resources.Load<GameObject>(ResourcePathManager.aimLaser) as GameObject;
+            aimLaser = Instantiate(aimLaserEffect, transform.position, transform.rotation);
             aimLaser.SetActive(false);
-            
             started = false;
         }
 
@@ -40,15 +42,36 @@ namespace Crash {
             timeElapsed += Time.deltaTime;
             if (started) {
                 if (timeElapsed < 5) {
-                    //Vector3 direction = Camera.main.transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
-                    //Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
-                    //aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
-                    Vector3 direction = laserGun.transform.InverseTransformPoint(Camera.main.transform.position) - laserGun.transform.localPosition - new Vector3(0, 0, 0.02f);
-                    direction = direction / direction.magnitude;
-                    Quaternion rotation = Quaternion.LookRotation(direction,laserGun.transform.up);//* Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
-                    rotation = Quaternion.RotateTowards(laserGun.transform.localRotation, rotation, Time.deltaTime * gunRotationSpeed);
-                    laserGun.transform.rotation = rotation;
+                    //method0 - just rotate the laser instead of the entire gun; looks a bit unrealistic
+                    Vector3 direction = Camera.main.transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
+                    Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+                    aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
+
+                    //method1 -- depending on localEulerAngles may cause issues since quaternions are underlying.
+                    //Vector3 direction = laserGun.transform.InverseTransformPoint(Camera.main.transform.position) - laserGun.transform.localPosition - new Vector3(0, 0, 0.02f);
+                    //direction.z = 0;
+                    //direction = direction / direction.magnitude;
+                    //Quaternion rotation = Quaternion.LookRotation(direction, laserGunMount.transform.up);//* Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+                    //rotation = RotateLimited(Quaternion.RotateTowards(laserGun.transform.localRotation, rotation, Time.deltaTime * gunRotationSpeed));
                     //laserGun.transform.localEulerAngles = new Vector3(rotation.eulerAngles.x, rotation.eulerAngles.y, 0); //constrained z method
+
+                    //method2 -- depending on localEulerAngles may cause issues since quaternions are underlying.
+                    //laserGun.transform.LookAt(Camera.main.transform, laserGunMount.transform.up);
+                    //laserGun.transform.localEulerAngles = RotateLimited(laserGun.transform.localEulerAngles);
+
+                    //method3 - difficult to implement angle limits
+                    //Vector3 direction = (Camera.main.transform.position - laserGun.transform.position).normalized;
+                    //float angleDif = Vector3.SignedAngle(laserGun.transform.forward, direction, Vector3.up);
+                    //print(angleDif);
+                    //print(laserGun.transform.localEulerAngles);
+                    //if (angleDif > 5f)
+                    //{
+                    //    laserGun.transform.Rotate(new Vector3(-1f, 0f));
+                    //}
+                    //else if (angleDif < -5)
+                    //{
+                    //    laserGun.transform.Rotate(new Vector3(1f, 0f));
+                    //}
                 }
                 else if (timeElapsed < 6) {
                     if (!finalChargeStarted) {
@@ -81,14 +104,23 @@ namespace Crash {
             }
         }
 
-        //Applies rotation limits to a rotation vector.
+        //Applies rotation limits to a rotation quaternion.
         private Quaternion RotateLimited(Quaternion rotation)
         {
             Vector3 eulerRot = rotation.eulerAngles;
-            float x = Mathf.Abs(eulerRot.x) > LaserGunRotationLimitX ? Mathf.Sign(eulerRot.x) * LaserGunRotationLimitX : eulerRot.x;
-            float y = Mathf.Abs(eulerRot.y) > LaserGunRotationLimitY ? Mathf.Sign(eulerRot.y) * LaserGunRotationLimitY : eulerRot.y;
-            float z = Mathf.Abs(eulerRot.z) > LaserGunRotationLimitZ ? Mathf.Sign(eulerRot.z) * LaserGunRotationLimitZ : eulerRot.z;
+            eulerRot.x = Mathf.Abs(eulerRot.x) > LaserGunRotationLimitX ? Mathf.Sign(eulerRot.x) * LaserGunRotationLimitX : eulerRot.x;
+            eulerRot.y = Mathf.Abs(eulerRot.y) > LaserGunRotationLimitY ? Mathf.Sign(eulerRot.y) * LaserGunRotationLimitY : eulerRot.y;
+            eulerRot.z = Mathf.Abs(eulerRot.z) > LaserGunRotationLimitZ ? Mathf.Sign(eulerRot.z) * LaserGunRotationLimitZ : eulerRot.z;
             return Quaternion.Euler(eulerRot);
+        }
+
+        //Applies rotation limits to a rotation vector
+        private Vector3 RotateLimited(Vector3 angles)
+        {
+            angles.x = Mathf.Abs(angles.x) > LaserGunRotationLimitX ? Mathf.Sign(angles.x) * LaserGunRotationLimitX : angles.x;
+            angles.y = Mathf.Abs(angles.y) > LaserGunRotationLimitY ? Mathf.Sign(angles.y) * LaserGunRotationLimitY : angles.y;
+            angles.z = Mathf.Abs(angles.z) > LaserGunRotationLimitZ ? Mathf.Sign(angles.z) * LaserGunRotationLimitZ : angles.z;
+            return angles;
         }
 
         private void shoot() {
