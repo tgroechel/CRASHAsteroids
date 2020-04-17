@@ -10,7 +10,7 @@ namespace Crash {
         public float curHealth = 100;
         public float rechargeTimeInterval = 5;
         private float curTimeUntilRecharge;
-        public bool rechargeCoroutineRunning = false;
+        public bool rechargeCoroutineRunning = false, justHit = false;
 
         PlayerEffectPlane playerEffectPlane;
         Slider healthBarSlider;
@@ -21,8 +21,17 @@ namespace Crash {
 
 
         public void GotHit(float damage) {
-            SetPlayerHealth(curHealth - damage);
+            if (!justHit) {
+                SetPlayerHealth(curHealth - damage);
+                StartCoroutine(JustHit());
+            }
             StartCoroutine(RechargeAfterTime());
+        }
+
+        IEnumerator JustHit() {
+            justHit = true;
+            yield return new WaitForSeconds(0.5f);
+            justHit = false;
         }
 
         IEnumerator RechargeAfterTime() {
@@ -35,7 +44,7 @@ namespace Crash {
             curTimeUntilRecharge = rechargeTimeInterval;
             while (curTimeUntilRecharge > 0) {
                 yield return null;
-                Debug.Log(curHealth);
+                //  Debug.Log(curHealth);
                 curTimeUntilRecharge -= Time.deltaTime;
             }
             SetPlayerHealth(MAX_PLAYER_HEALTH);

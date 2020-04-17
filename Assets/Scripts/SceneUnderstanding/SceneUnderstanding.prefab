@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606f19126055cd48a66e66be73fba0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunOnDevice: 1
+  RunOnDevice: 0
   SUSerializedScenePath: {fileID: 4900000, guid: 82ce9e90cb0010645b80557a1d4a4263,
     type: 3}
   BoundingSphereRadiusInMeters: 10
@@ -127,13 +127,13 @@ MonoBehaviour:
   SceneObjectWireframeMaterial: {fileID: 2100000, guid: 86ec9582d8dcbc34bac58ae621e24af9,
     type: 2}
   WorldMeshMaterial: {fileID: 2100000, guid: 86ec9582d8dcbc34bac58ae621e24af9, type: 2}
-  DisplayTextLabels: 1
+  DisplayTextLabels: 0
   LabelFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   StatusText: {fileID: 6695888345797946499}
   AutoRefresh: 1
   AutoRefreshIntervalInSeconds: 10
   RenderSceneObjects: 1
-  SceneObjectVisualizationMode: 2
+  SceneObjectVisualizationMode: 3
   RenderPlatformSceneObjects: 1
   RenderBackgroundSceneObjects: 1
   RenderUnknownSceneObjects: 1
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6695888344483589153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a158227883d3584d8f44c109251c5cc, type: 3}
   m_Name: 
@@ -674,13 +674,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6695888345873434394}
+  - component: {fileID: 1734553116}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6695888345873434394
 Transform:
   m_ObjectHideFlags: 0
@@ -695,6 +696,19 @@ Transform:
   m_Father: {fileID: 5413088185640505357}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734553116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695888345873434395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba65add173461944838975d6ddf20de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorNavMesh: {fileID: 0}
 --- !u!1 &9219426493778527230
 GameObject:
   m_ObjectHideFlags: 0
