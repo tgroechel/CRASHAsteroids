@@ -16,6 +16,9 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
     public float threshold = 0.8f;
     public int checkInterval = 2;
     public String nextScene;
+    public GameObject navMeshes;
+    public GameObject worldManager;
+    public GameObject enemyParent;
 
     private bool isWaterTight = false;
     private List<GameObject> spheres = new List<GameObject>();
@@ -147,6 +150,9 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
             Debug.Log("Switch to next scene");
             SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
             DontDestroyOnLoad(SC);
+            DontDestroyOnLoad(navMeshes);
+            DontDestroyOnLoad(worldManager);
+            DontDestroyOnLoad(enemyParent);
             SceneManager.LoadScene(nextScene);
         }
     }

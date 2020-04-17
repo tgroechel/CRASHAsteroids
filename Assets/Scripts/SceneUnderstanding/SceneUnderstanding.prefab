@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606f19126055cd48a66e66be73fba0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunOnDevice: 0
+  RunOnDevice: 1
   SUSerializedScenePath: {fileID: 4900000, guid: 82ce9e90cb0010645b80557a1d4a4263,
     type: 3}
   BoundingSphereRadiusInMeters: 10
@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6695888345873434394
 Transform:
   m_ObjectHideFlags: 0

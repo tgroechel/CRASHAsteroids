@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 
-namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
-{
+namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -13,8 +12,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
     /// When running on device (HoloLens 2), this class interacts with the Scene Understanding runtime and keeps on retrieving the latest scene data.
     /// When running on PC, this class reads a passed in serialized scene and serves it as the latest scene.
     /// </summary>
-    public class SceneUnderstandingDataProvider : MonoBehaviour
-    {
+    public class SceneUnderstandingDataProvider : MonoBehaviour {
         /// <summary>
         /// When enabled, the device path will get exercised. Otherwise, previously saved, serialized scenes will be loaded and served.
         /// </summary>
@@ -51,20 +49,17 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         private byte[] _latestSerializedScene = null;
         private readonly object _latestSerializedSceneLock = new object();
         private Guid _latestSceneGuid;
-        
+
         /// <summary>
         /// Gets the latest scene from the Scene Understanding runtime when running on device. In the PC case, returns the serialized scene as a byte array.
         /// </summary>
         /// <returns>A tuple composed of a guid and the serialized scene buffer.</returns>
-        public Tuple<Guid, byte[]> GetLatestSerializedScene()
-        {
+        public Tuple<Guid, byte[]> GetLatestSerializedScene() {
             byte[] sceneToReturn = null;
             Guid sceneGuidToReturn;
 
-            lock (_latestSerializedSceneLock)
-            {
-                if (_latestSerializedScene != null)
-                {
+            lock (_latestSerializedSceneLock) {
+                if (_latestSerializedScene != null) {
                     sceneToReturn = new byte[_latestSerializedScene.Length];
                     Array.Copy(_latestSerializedScene, sceneToReturn, _latestSerializedScene.Length);
 
@@ -79,11 +74,9 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         /// Gets the guid of the latest scene.
         /// </summary>
         /// <returns>Guid of the latest scene.</returns>
-        public Guid GetLatestSceneGuid()
-        {
+        public Guid GetLatestSceneGuid() {
             Guid sceneGuidToReturn;
-            lock (_latestSerializedSceneLock)
-            {
+            lock (_latestSerializedSceneLock) {
                 sceneGuidToReturn = _latestSceneGuid;
             }
             return sceneGuidToReturn;
@@ -92,20 +85,18 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         /// <summary>
         /// Initialization.
         /// </summary>
-        private async void Start()
-        {
-            if (RunOnDevice)
-            {
-                if (Application.isEditor)
-                {
+        private async void Start() {
+#if WINDOWS_UWP
+            RunOnDevice = true; // Makes it so it will always run on Hololens when compiled to it
+#endif
+            if (RunOnDevice) {
+                if (Application.isEditor) {
                     Logger.LogWarning("SceneUnderstandingDataProvider.Start: Running in editor with the RunOnDevice mode set is not supported.");
                 }
 
-                if (SceneUnderstanding.SceneObserver.IsSupported())
-                {
+                if (SceneUnderstanding.SceneObserver.IsSupported()) {
                     var access = await SceneUnderstanding.SceneObserver.RequestAccessAsync();
-                    if (access != SceneObserverAccessStatus.Allowed)
-                    {
+                    if (access != SceneObserverAccessStatus.Allowed) {
                         Logger.LogError("SceneUnderstandingDataProvider.Start: Access to Scene Understanding has been denied. Reason: " + access);
                         return;
                     }
@@ -116,18 +107,14 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
                     // Then, spin off a background thread to continually retrieve SU data.
                     Task.Run(() => RetrieveDataContinuously());
                 }
-                else
-                {
+                else {
                     Logger.LogError("SceneUnderstandingDataProvider.Start: Scene Understanding not supported.");
                     return;
                 }
             }
-            else
-            {
-                if (SUSerializedScenePath != null)
-                {
-                    lock (_latestSerializedSceneLock)
-                    {
+            else {
+                if (SUSerializedScenePath != null) {
+                    lock (_latestSerializedSceneLock) {
                         _latestSerializedScene = SUSerializedScenePath.bytes;
                         _latestSceneGuid = Guid.NewGuid();
                     }
@@ -138,10 +125,8 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         /// <summary>
         /// Retrieves Scene Understanding data continuously from the runtime.
         /// </summary>
-        private void RetrieveDataContinuously()
-        {
-            while (true)
-            {
+        private void RetrieveDataContinuously() {
+            while (true) {
                 // Always request quads, meshes and the world mesh. SceneUnderstandingDisplayManager will take care of rendering only what the user has asked for.
                 RetrieveData(BoundingSphereRadiusInMeters, true, true, RequestInferredRegions, true, WorldMeshLOD);
             }
@@ -155,15 +140,13 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         /// <param name="enableInference">When enabled, both observed and inferred scene objects are retrieved. Otherwise, only observed scene objects are retrieved.</param>
         /// <param name="enableWorldMesh">When enabled, retrieves the world mesh.</param>
         /// <param name="lod">If world mesh is enabled, lod controls the resolution of the mesh returned.</param>
-        private void RetrieveData(float boundingSphereRadiusInMeters, bool enableQuads, bool enableMeshes, bool enableInference, bool enableWorldMesh, SceneUnderstanding.SceneMeshLevelOfDetail lod)
-        {
+        private void RetrieveData(float boundingSphereRadiusInMeters, bool enableQuads, bool enableMeshes, bool enableInference, bool enableWorldMesh, SceneUnderstanding.SceneMeshLevelOfDetail lod) {
             Logger.Log("SceneUnderstandingDataProvider.RetrieveData: Started.");
-            
+
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            try
-            {
+            try {
                 SceneUnderstanding.SceneQuerySettings querySettings;
                 querySettings.EnableSceneObjectQuads = enableQuads;
                 querySettings.EnableSceneObjectMeshes = enableMeshes;
@@ -173,17 +156,15 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
 
                 // Ensure that the bounding radius is within the min/max range.
                 boundingSphereRadiusInMeters = Mathf.Clamp(boundingSphereRadiusInMeters, _minBoundingSphereRadiusInMeters, _maxBoundingSphereRadiusInMeters);
-                
+
                 var serializedScene = SceneUnderstanding.SceneObserver.ComputeSerializedAsync(querySettings, boundingSphereRadiusInMeters).GetAwaiter().GetResult();
-                lock(_latestSerializedSceneLock)
-                {
+                lock (_latestSerializedSceneLock) {
                     _latestSerializedScene = new byte[serializedScene.Size];
                     serializedScene.GetData(_latestSerializedScene);
                     _latestSceneGuid = Guid.NewGuid();
                 }
             }
-            catch(Exception e)
-            {
+            catch (Exception e) {
                 Logger.LogException(e);
             }
 
