@@ -18,6 +18,8 @@ namespace Sid {
         public static Color colorOnDamage = new Color(1, 0, 0);
         public bool isBoss;
         public float resurrectionTime;
+        public float resurrectedHealthPercentage;
+        public float phase2HealthPercentage;
         private Animator animator;
 
         // Slider for health bar
@@ -112,7 +114,7 @@ namespace Sid {
             yield return new WaitForSeconds(resurrectionTime);
 
             // Refill health of boss
-            currentHealth = MAXHEALTH;
+            currentHealth = MAXHEALTH * resurrectedHealthPercentage / 100;
             slider.value = currentHealth / MAXHEALTH;
 
             // Reactivate the boss
