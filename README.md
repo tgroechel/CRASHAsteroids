@@ -71,5 +71,6 @@ Here is an example.
 1. Every enemy is in __Locomotion__ state at game start.
 2. To make use of activation/deactivation behaviour, set the `isBoss` bool on `HealthManager` component of the respective enemy to `true` by checking the box.
 3. Then, set the value of the `Resurrection Time` float on `HealthManager` component. This is the time in seconds for which the boss is deactivated.
+4. Also set the value of the `Recurrected Health Percentage` float. For example `50`, which means 50%.
 4. While the boss is deactivated, you can prevent certain actions such as navigation and shooting at the player by making use of the `Activate` bool parameter on the `Animator` component of the boss. Just check if `GetComponent<Animator>.getBool("Activate")` is `true` and only then should you execute these tasks.
-5. The boss will automatically go back to activated state after his `Resurrection Time` is complete and his health will be restored to `MAXHEALTH`. 
+5. The boss will automatically go back to activated state after his `Resurrection Time` is complete and his health will be restored to `MAXHEALTH * (Resurrected Health Percentage) / 100`. 
