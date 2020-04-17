@@ -74,6 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAXHEALTH: 200
+  isBoss: 0
+  resurrectionTime: 0
   behaviorTree: {fileID: 0}
 --- !u!1 &183922630209901288
 GameObject:
@@ -3870,7 +3872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followPlayer: 0
-  isonfloor: 0
 --- !u!114 &3848065465991938561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3938,6 +3939,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAXHEALTH: 1000
+  isBoss: 1
+  resurrectionTime: 30
   behaviorTree: {fileID: 265695822}
 --- !u!114 &114308107089333424
 MonoBehaviour:

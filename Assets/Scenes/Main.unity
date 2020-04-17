@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &135933994
 Transform:
   m_ObjectHideFlags: 0
@@ -4723,6 +4723,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135933994}
     m_Modifications:
+    - target: {fileID: 114254746110127804, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
+        type: 3}
+      propertyPath: MAXHEALTH
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114254746110127804, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
+        type: 3}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114254746110127804, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
+        type: 3}
+      propertyPath: resurrectionTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7393797216063824767, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
         type: 3}
       propertyPath: m_Name
@@ -4786,12 +4801,12 @@ PrefabInstance:
     - target: {fileID: 7933960638314941140, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7933960638314941140, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc19f3f9a99cec47b5dbdbd55ebc67d, type: 3}

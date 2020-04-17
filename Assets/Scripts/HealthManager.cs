@@ -16,6 +16,9 @@ namespace Sid {
         List<Color> childOriginalColors;
         public static float damageTime;
         public static Color colorOnDamage = new Color(1, 0, 0);
+        public bool isBoss;
+        public float resurrectionTime;
+        private Animator animator;
 
         // Slider for health bar
         Slider slider;
@@ -23,6 +26,7 @@ namespace Sid {
 
         // Store original color of current object and its children (parts)
         void Awake() {
+            animator = GetComponent<Animator>();
             slider = GetComponentInChildren<Canvas>().GetComponentInChildren<Slider>();
             //behaviorTree = GetComponent<BehaviorTree>(); //TODO get this properly
             currentHealth = MAXHEALTH;
@@ -53,8 +57,27 @@ namespace Sid {
         public IEnumerator DecreaseHealth(float damage) {
             Time.timeScale = 1;
             if (currentHealth - damage <= 0) {
-                slider.value = 0;
-                gameObject.SetActive(false);
+
+                if (!isBoss) {
+                    // Make slider value zero and deactivate the enemy from the scene
+                    slider.value = 0;
+                    gameObject.SetActive(false);
+                }
+                else {
+                    // Make slider value zero and deactivate the enemy using animation
+                    // Note: Boss can still be seen in the scene
+                    // and automatically reactivates after some time
+                    slider.value = 0;
+
+                    // Check to ensure that a bullet does not affect
+                    // the boss in deactivated state
+                    if(animator.GetBool("Activate")){
+                        animator.SetBool("Activate", false);
+                        CallResurrectionTime();
+                    }
+                    
+                }
+                
                 FindObjectOfType<AudioManager>().Play("GameWin");
             }
             else {
@@ -83,9 +106,28 @@ namespace Sid {
             }
         }
 
+        /* Sets the Activate bool to true after resurrection time is complete */
+        public IEnumerator ResurrectionTime()
+        {
+            yield return new WaitForSeconds(resurrectionTime);
+
+            // Refill health of boss
+            currentHealth = MAXHEALTH;
+            slider.value = currentHealth / MAXHEALTH;
+
+            // Reactivate the boss
+            animator.SetBool("Activate", true);
+        }
+
         // Decrease health of the gameobject by 'damage' amount
         public void CallDecreaseHealth(float damage) {
             StartCoroutine(DecreaseHealth(damage));
+        }
+
+        // Wait for some time (resurrection time) before reviving dead boss
+        public void CallResurrectionTime()
+        {
+            StartCoroutine(ResurrectionTime());
         }
     }
 }
