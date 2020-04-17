@@ -76,6 +76,8 @@ MonoBehaviour:
   MAXHEALTH: 200
   isBoss: 0
   resurrectionTime: 0
+  resurrectedHealthPercentage: 0
+  phase2HealthPercentage: 0
   behaviorTree: {fileID: 0}
 --- !u!1 &183922630209901288
 GameObject:
@@ -3941,6 +3943,8 @@ MonoBehaviour:
   MAXHEALTH: 1000
   isBoss: 1
   resurrectionTime: 30
+  resurrectedHealthPercentage: 50
+  phase2HealthPercentage: 0
   behaviorTree: {fileID: 265695822}
 --- !u!114 &114308107089333424
 MonoBehaviour:
