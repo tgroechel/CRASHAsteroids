@@ -73,4 +73,14 @@ Here is an example.
 3. Then, set the value of the `Resurrection Time` float on `HealthManager` component. This is the time in seconds for which the boss is deactivated.
 4. Also set the value of the `Recurrected Health Percentage` float. For example `50`, which means 50%.
 4. While the boss is deactivated, you can prevent certain actions such as navigation and shooting at the player by making use of the `Activate` bool parameter on the `Animator` component of the boss. Just check if `GetComponent<Animator>.getBool("Activate")` is `true` and only then should you execute these tasks.
-5. The boss will automatically go back to activated state after his `Resurrection Time` is complete and his health will be restored to `MAXHEALTH * (Resurrected Health Percentage) / 100`. 
+5. The boss will automatically go back to activated state after his `Resurrection Time` is complete and his health will be restored to `MAXHEALTH * (Resurrected Health Percentage) / 100`.
+
+## Path Indicator for Kuri
+
+When the Boss is in deactivated state, we want to show a path along which the player can navigate Kuri to kill the boss. Here is the current implementation of this,
+
+1. You need to drag and drop the `Spider_Hvy` object (or whatever the boss object is) into the `Boss` variable of `ComputePathToBoss` component on __Kuri__.
+2. The path is calculated and shown only when the `Boss` is in deactivated state.
+3. A voice over may be added which says, "Navigate Kuri, along the path shown, to kill the boss!" (not yet implemented). A message can also be shown on the screen.
+3. The path is continuously redrawn according to the current position of __Kuri__.
+4. The path that was drawn disappears once the `Boss` is reactivated (before Kuri can kill it).
