@@ -37,9 +37,12 @@ public class ComputePathToBoss : MonoBehaviour
                 pathDrawn = true;
             }
 
-            // Calculate and show path only if boss is deactivated
-            if (!animator.GetBool("Activate"))
+            // Calculate and show path only if the boss is deactivated
+            // and is visible in the scene (Enemies object is active and Boss is present and active)
+            if (!animator.GetBool("Activate") && (boss?.activeSelf ?? false))
             {
+                print("Activate value is -> " + animator.GetBool("Activate"));
+
                 // Calculate path to boss
                 agent.CalculatePath(boss.transform.position, path = new NavMeshPath());
 

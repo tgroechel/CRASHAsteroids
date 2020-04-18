@@ -1,22 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 {
     public NavMeshSurface floorNavMesh;
+    public GameObject navMeshesObject, bossObject, kuri;
+    public WaterTightDetector waterTightDetector;
     private static GameObject navMeshPrefab;
     private int agentTypeID;
+    private bool navMeshBuildDone;
 
     void Awake()
     {
-        // All the code should run in a thread, hence using a subroutine
-        BuildNavMeshesAndNavMeshLinks();
+        // Loading NavMesh prefab
+        navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
+
+        // Obtaining agent ID
+        agentTypeID = floorNavMesh.agentTypeID;
+
+        // Initialising navMeshBuildDone to false
+        navMeshBuildDone = false;
+    }
+
+    private void Update()
+    {
+        // If Scene Understanding is complete, build navmeshes and navmeshlinks
+        // Do this only once
+        if(waterTightDetector.isWaterTight && !navMeshBuildDone)
+        {
+            // Set navMeshBuildDone to true
+            navMeshBuildDone = true;
+
+            // Do all the heavy work in a coroutine to prevent the game from freezing
+            StartCoroutine(BuildNavMeshesAndNavMeshLinks());
+        }
+
     }
 
     // Attach NavMesh prefab to each wall
-    void attachNavMeshes()
+    private IEnumerator AttachNavMeshes()
     {
         // Angle by which the navMesh prefab should be rotated locally
         float angleX = -90;
@@ -44,11 +69,13 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
                 // Rotating the navMesh so that its y-axis protrudes out of the wall (its parent)
                 navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
-            //}            
+            //}
+
+            yield return null;
         }
     }
 
-    public void createWallLinks() // Links between walls and floor
+    private IEnumerator CreateWallLinks() // Links between walls and floor
     {
         float offset = 0.2f;
         int no_of_children = transform.childCount;
@@ -83,23 +110,32 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
             // Set width of link
             sc.width = collider.size.x;
+
+            yield return null;
         }
     }
 
-    public IEnumerator BuildNavMeshesAndNavMeshLinks()
+    private IEnumerator BuildNavMeshesAndNavMeshLinks()
     {
-        // Wait for 1 second
-        yield return new WaitForSeconds(1.0f);
-
         // Attach NavMeshes to every child surface
-        navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
-        attachNavMeshes();
+        yield return StartCoroutine(AttachNavMeshes());
 
         // Note: NavMeshes (NavMesh prefab) get automatically built after attaching them to an object due to BakeNavMeshRuntime script
 
         // Create NavMeshLinks for every child NavMesh
         // Note: This has to take place after NavMeshes have been attached
-        agentTypeID = floorNavMesh.agentTypeID;
-        createWallLinks();
+        yield return StartCoroutine(CreateWallLinks());
+
+        // Activating objects
+        // Note: They must be activated in this exact same order to prevent warnings!
+
+        // Activate NavMeshes object
+        navMeshesObject.SetActive(true);
+
+        // Activate Kuri object
+        kuri.SetActive(true);
+
+        // Activate Boss object
+        bossObject.SetActive(true);
     }
 }

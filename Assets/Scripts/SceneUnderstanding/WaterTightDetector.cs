@@ -20,7 +20,7 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
     public GameObject worldManager;
     public GameObject enemyParent;
 
-    private bool isWaterTight = false;
+    public bool isWaterTight = false;
     private List<GameObject> spheres = new List<GameObject>();
     private DateTime lastLaunch;
     private static String detectionText = "Scanning environment ... ";
@@ -146,6 +146,7 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
     }
 
     void IMixedRealityPointerHandler.OnPointerClicked(MixedRealityPointerEventData eventData) {
+        /*
         if (isWaterTight) {
             Debug.Log("Switch to next scene");
             SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
@@ -155,5 +156,6 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
             DontDestroyOnLoad(enemyParent);
             SceneManager.LoadScene(nextScene);
         }
+        */
     }
 }
