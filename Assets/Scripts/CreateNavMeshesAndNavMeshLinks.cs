@@ -11,16 +11,8 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
     void Awake()
     {
-        // Attach NavMeshes to every child surface
-        navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
-        attachNavMeshes();
-
-        // Note: NavMeshes (NavMesh prefab) get automatically built after attaching them to an object due to BakeNavMeshRuntime script
-
-        // Create NavMeshLinks for every child NavMesh
-        // Note: This has to take place after NavMeshes have been attached
-        agentTypeID = floorNavMesh.agentTypeID;
-        createWallLinks();
+        // All the code should run in a thread, hence using a subroutine
+        BuildNavMeshesAndNavMeshLinks();
     }
 
     // Attach NavMesh prefab to each wall
@@ -92,5 +84,22 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Set width of link
             sc.width = collider.size.x;
         }
+    }
+
+    public IEnumerator BuildNavMeshesAndNavMeshLinks()
+    {
+        // Wait for 1 second
+        yield return new WaitForSeconds(1.0f);
+
+        // Attach NavMeshes to every child surface
+        navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
+        attachNavMeshes();
+
+        // Note: NavMeshes (NavMesh prefab) get automatically built after attaching them to an object due to BakeNavMeshRuntime script
+
+        // Create NavMeshLinks for every child NavMesh
+        // Note: This has to take place after NavMeshes have been attached
+        agentTypeID = floorNavMesh.agentTypeID;
+        createWallLinks();
     }
 }

@@ -1968,6 +1968,11 @@ PrefabInstance:
       propertyPath: RunOnDevice
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6695888345873434395, guid: e5ceb5438b55ccc408f88a414b7946a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9219426493778527230, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: m_Name
