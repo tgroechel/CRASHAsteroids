@@ -26,5 +26,5 @@ public class ResourcePathManager : Singleton<ResourcePathManager>
     public static string minion = "Spider_Mini"; 
 
 
-
+    public static string bossGunFire = "Projectiles/vfx_Muzzle_Orb05_Orange";
 }

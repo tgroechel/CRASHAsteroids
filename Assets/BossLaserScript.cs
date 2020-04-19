@@ -8,7 +8,7 @@ namespace Crash {
         private GameObject aimLaser;
         private GameObject laser;
         private GameObject laserGun;
-        private GameObject laserGunMount;
+        private GameObject laserGunPlatform;
         private EGA_Laser laserScript;
         private float timeElapsed;
 
@@ -27,11 +27,10 @@ namespace Crash {
         public float gunRotationSpeed;
 
         void Start() {
-            effect = Resources.Load<GameObject>(ResourcePathManager.bossLaser) as GameObject;
-            //laserGun = transform.parent.gameObject;
-            //laserGunMount = laserGun.transform.parent.gameObject;
-            //aimLaser = transform.GetChild(0).gameObject; //for using the FX game object
+            laserGun = transform.parent.gameObject;
+            laserGunPlatform = laserGun.transform.parent.parent.gameObject;
 
+            effect = Resources.Load<GameObject>(ResourcePathManager.bossLaser) as GameObject;
             GameObject aimLaserEffect = Resources.Load<GameObject>(ResourcePathManager.aimLaser) as GameObject;
             aimLaser = Instantiate(aimLaserEffect, transform.position, transform.rotation);
             aimLaser.SetActive(false);
@@ -40,12 +39,24 @@ namespace Crash {
 
         void Update() {
             timeElapsed += Time.deltaTime;
-            if (started) {
-                if (timeElapsed < 5) {
+            if (started)
+            {
+                if (timeElapsed < 5)
+                {
                     //method0 - just rotate the laser instead of the entire gun; looks a bit unrealistic
                     Vector3 direction = Camera.main.transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
                     Quaternion rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
                     aimLaser.transform.localRotation = Quaternion.Lerp(aimLaser.transform.rotation, rotation, 1);
+
+                    // rotate laser gun to face player
+                    Vector3 relativePos2Player = Camera.main.transform.position - laserGunPlatform.transform.position;
+                    relativePos2Player.y = 0;
+                    Quaternion lookAtPlayerRotation = Quaternion.identity;
+                    if (relativePos2Player != Vector3.zero)
+                    {
+                        lookAtPlayerRotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
+                    }
+                    laserGunPlatform.transform.rotation = lookAtPlayerRotation;
 
                     //method1 -- depending on localEulerAngles may cause issues since quaternions are underlying.
                     //Vector3 direction = laserGun.transform.InverseTransformPoint(Camera.main.transform.position) - laserGun.transform.localPosition - new Vector3(0, 0, 0.02f);
@@ -73,27 +84,35 @@ namespace Crash {
                     //    laserGun.transform.Rotate(new Vector3(1f, 0f));
                     //}
                 }
-                else if (timeElapsed < 6) {
-                    if (!finalChargeStarted) {
-                        if (GetComponent<AudioSource>()) {
+                else if (timeElapsed < 6)
+                {
+                    if (!finalChargeStarted)
+                    {
+                        if (GetComponent<AudioSource>())
+                        {
                             GetComponent<AudioSource>().Stop();
                         }
-                        if (finalChargeSFX != null && GetComponent<AudioSource>()) {
+                        if (finalChargeSFX != null && GetComponent<AudioSource>())
+                        {
                             GetComponent<AudioSource>().PlayOneShot(finalChargeSFX);
                         }
                         finalChargeStarted = true;
                         shootHere = Camera.main.transform.position;
                     }
                 }
-                else {
-                    if (!laserShot) {
+                else
+                {
+                    if (!laserShot)
+                    {
                         shoot();
                     }
-                    else {
+                    else
+                    {
                         RaycastHit hit;
                         Physics.Raycast(laser.transform.position, laser.transform.TransformDirection(Vector3.forward), out hit, 30f);
 
-                        if (hit.collider && hit.collider.gameObject.GetComponent<PlayerCollision>()) {
+                        if (hit.collider && hit.collider.gameObject.GetComponent<PlayerCollision>())
+                        {
                             Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>()?.ShakeCamera();
                         }
 
@@ -102,9 +121,14 @@ namespace Crash {
                     }
                 }
             }
+            else
+            {
+                laserGunPlatform.transform.rotation = GameObject.Find("Mount_Top_Hvy").transform.rotation * Quaternion.Euler(0,0,0);
+            }
         }
 
         //Applies rotation limits to a rotation quaternion.
+        /*
         private Quaternion RotateLimited(Quaternion rotation)
         {
             Vector3 eulerRot = rotation.eulerAngles;
@@ -122,6 +146,7 @@ namespace Crash {
             angles.z = Mathf.Abs(angles.z) > LaserGunRotationLimitZ ? Mathf.Sign(angles.z) * LaserGunRotationLimitZ : angles.z;
             return angles;
         }
+        */
 
         private void shoot() {
             aimLaser.SetActive(false);

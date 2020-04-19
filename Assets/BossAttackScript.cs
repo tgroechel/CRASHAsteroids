@@ -8,27 +8,42 @@ using Random = UnityEngine.Random;
 namespace Crash {
     public class BossAttackScript : MonoBehaviour
     {
-
-        public float waitDuration = 1f;
         public float bulletSpeed = 2;
         public int bulletPoolSize;
         public GameObject explodePrefab;
         public AudioClip explodeSFX;
 
+        public GameObject gun;
+
         private Animator animator;
         private bool alive = true;
 
         private GameObject effect;
+        private GameObject fireEffect;
 
         void Start()
         {
             effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
+            fireEffect = Resources.Load<GameObject>(ResourcePathManager.bossGunFire) as GameObject;
             GetComponent<BulletPoolManager>().createPool("boss bullet", effect, bulletPoolSize);
             animator = GetComponent<Animator>();
         }
 
+        private void gunFire()
+        {
+            GameObject fire = Instantiate(fireEffect, transform.position, Quaternion.identity);
+        }
+
         private GameObject getBullet()
         {
+            if (gun)
+            {
+                gun.GetComponent<Animator>().ResetTrigger("Fold");
+                gun.GetComponent<Animator>().ResetTrigger("Unfold");
+                gun.GetComponent<Animator>().SetTrigger("Shoot");
+                //Debug.Log("shooooot!");
+            }
+                
             GameObject vfx = GetComponent<BulletPoolManager>().getInstance("boss bullet");
             if (vfx != null)
                 vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;
@@ -37,6 +52,7 @@ namespace Crash {
 
         public void Pattern0()
         {
+            gunFire();
             GameObject vfx = getBullet();
             if (vfx != null)
             {
@@ -51,6 +67,7 @@ namespace Crash {
 
         public void Pattern1(int i)
         {
+            gunFire();
             int ii = i % 18;
             if (ii >= 9)
                 ii = 17 - ii;
@@ -73,6 +90,7 @@ namespace Crash {
 
         public void Pattern2(int i)
         {
+            gunFire();
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
@@ -104,6 +122,7 @@ namespace Crash {
 
         public void Pattern3(int i)
         {
+            gunFire();
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
@@ -138,6 +157,7 @@ namespace Crash {
 
         public void CircularPattern(float offset = 0.2f)
         {
+            gunFire();
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
@@ -174,6 +194,7 @@ namespace Crash {
 
         public void CrossPattern(float offset = 0.3f)
         {
+            gunFire();
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
@@ -210,6 +231,7 @@ namespace Crash {
 
         public void DiePattern(float offset = 0.15f)
         {
+            gunFire();
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 

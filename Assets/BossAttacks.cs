@@ -8,6 +8,9 @@ namespace Crash {
         public enum FirePatterns { Single, OffsetSingle, HorizontalLines, VerticalLines, Circle, Cross, Die, laser };
         public enum GunsToUse { Left, Right, Both };
 
+        public float rotationSpeed = 1;
+        public bool rotatingToPlayer;
+
         private BossAttackScript leftGun;
         private BossAttackScript rightGun;
         private BossLaserScript laser;
@@ -21,6 +24,51 @@ namespace Crash {
 
         // Update is called once per frame
         void Update() {
+            // rotate to player
+            GameObject MountTop = GameObject.Find("Mount_Top_Hvy");
+            Vector3 relativePos2Player = Camera.main.transform.position - MountTop.transform.position;
+            relativePos2Player.y = 0;
+            Quaternion lookAtPlayerRotation = Quaternion.identity;
+            if (relativePos2Player != Vector3.zero)
+            {
+                lookAtPlayerRotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
+            }
+
+            if (rotatingToPlayer)
+            {
+                if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) < 180)
+                {
+                    float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
+                    if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
+                        MountTop.transform.rotation *= Quaternion.Euler(0, sign * 4 * rotationSpeed, 0);
+                    else
+                        MountTop.transform.rotation *= Quaternion.Euler(0, sign * rotationSpeed, 0);
+                }
+                else
+                {
+                    float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
+                    if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
+                        MountTop.transform.rotation *= Quaternion.Euler(0, -sign * 4 * rotationSpeed, 0);
+                    else
+                        MountTop.transform.rotation *= Quaternion.Euler(0, -sign * rotationSpeed, 0);
+                }
+            }
+
+
+            /*
+            if (lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y > 30)
+                MountTop.transform.rotation *= Quaternion.Euler(0, 5 * rotationSpeed, 0);
+            else if (lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y < -30)
+                MountTop.transform.rotation *= Quaternion.Euler(0, -5 * rotationSpeed, 0);
+            if (lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y > 1)
+                MountTop.transform.rotation *= Quaternion.Euler(0, rotationSpeed, 0);
+            else if (lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y < -1)
+                MountTop.transform.rotation *= Quaternion.Euler(0, - rotationSpeed, 0);
+                */
+            //MountTop.transform.rotation = lookAtPlayerRotation.normalized;
+
+
+
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 Pattern0(GunsToUse.Both);
             }
