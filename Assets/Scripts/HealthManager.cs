@@ -61,9 +61,9 @@ namespace Sid {
             if (currentHealth - damage <= 0) {
 
                 if (!isBoss) {
-                    // Make slider value zero and deactivate the enemy from the scene
+                    // Make slider value zero and destroy the enemy from the scene
                     slider.value = 0;
-                    gameObject.SetActive(false);
+                    Destroy(gameObject);
                 }
                 else {
                     // Make slider value zero and deactivate the enemy using animation
@@ -85,7 +85,7 @@ namespace Sid {
             else {
                 if (currentHealth > MAXHEALTH / 2 && currentHealth - damage < MAXHEALTH / 2)
                 {
-                    behaviorTree.SendEvent<object>("HalfHealth",currentHealth);
+                    behaviorTree?.SendEvent<object>("HalfHealth",currentHealth);
                 }
                 currentHealth -= damage;
                 slider.value = currentHealth / MAXHEALTH;

@@ -3692,6 +3692,7 @@ GameObject:
   - component: {fileID: 114254746110127804}
   - component: {fileID: 114308107089333424}
   - component: {fileID: 265695822}
+  - component: {fileID: 114624279523496640}
   m_Layer: 8
   m_Name: Spider_Hvy
   m_TagString: Boss
@@ -3754,7 +3755,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7393797216063824767}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3874,6 +3875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followPlayer: 0
+  mouseClickDestination: 1
 --- !u!114 &3848065465991938561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4034,6 +4036,21 @@ MonoBehaviour:
       Version: 1.6.4
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &114624279523496640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393797216063824767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5e1be3d235bc744b76289f5f83cf7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTime: 10
+  numberOfMinions: 2
+  forwardOffset: 1
 --- !u!1 &7393797216264979156
 GameObject:
   m_ObjectHideFlags: 0

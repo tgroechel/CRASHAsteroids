@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -8,9 +9,10 @@ namespace Sid {
         private ThirdPersonCharacter character;
         private Animator animator;
         public bool followPlayer;
+        public bool mouseClickDestination;
         private LineRenderer lineRenderer;
-        private bool pathDrawn;
-        private bool isBoss;
+        private bool pathDrawn, isBoss, coroutineRunning;
+        private Vector3 randomOffsetFromPlayer;
 
         // Start is called before the first frame update
         void Start() {
@@ -22,8 +24,9 @@ namespace Sid {
 
             // Initialize states of variables
             agent.updateRotation = false;
-            followPlayer = false;
             pathDrawn = true;
+            coroutineRunning = false;
+            randomOffsetFromPlayer = Random.onUnitSphere * 2;
 
             // Check if this object is the boss
             isBoss = GetComponent<HealthManager>().isBoss;
@@ -45,8 +48,8 @@ namespace Sid {
                         pathDrawn = true;
                     }
 
-                    // Go to the point where ray cast hits 
-                    if (Input.GetMouseButtonDown(0) && !followPlayer) {
+                    // Go to the point where ray cast hits if mouseClickDestination is true
+                    if (mouseClickDestination && Input.GetMouseButtonDown(0) && !followPlayer) {
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit;
                         if (Physics.Raycast(ray, out hit)) {
@@ -62,15 +65,25 @@ namespace Sid {
                     }
 
                     // Follow the player when left mouse button is clicked
-                    if (followPlayer) {
+                    if (followPlayer && !coroutineRunning) {
+                        // Set coroutine running bool
+                        coroutineRunning = true;
+
                         // Reset the path so that the agent moves to the new destination
                         //agent.ResetPath();
 
                         // Agent follows the player
-                        agent.SetDestination(Camera.main.transform.position);
+                        // If agent is minion, add random offset
+                        Vector3 destination = Camera.main.transform.position;
+                        if(!isBoss)
+                            destination += randomOffsetFromPlayer;
+                        agent.SetDestination(destination);
 
                         // Set pathDrawn to false
                         pathDrawn = false;
+
+                        // Reset coroutine running bool
+                        coroutineRunning = false;
                     }
 
                     // Follow player only when F is pressed
@@ -79,7 +92,11 @@ namespace Sid {
                         agent.ResetPath();
 
                         // Agent follows the player
-                        agent.SetDestination(Camera.main.transform.position);
+                        // If agent is minion, add random offset
+                        Vector3 destination = Camera.main.transform.position;
+                        if (!isBoss)
+                            destination += randomOffsetFromPlayer;
+                        agent.SetDestination(destination);
 
                         // Set pathDrawn to false
                         pathDrawn = false;

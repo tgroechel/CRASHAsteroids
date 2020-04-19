@@ -90,7 +90,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Get collider attached to the current child
             BoxCollider collider = child.GetComponent<BoxCollider>();
 
-            // Add a NavMeshLink component
+            // Add a NavMeshLink component (Link between wall and floor)
             NavMeshLink sc = child.AddComponent<NavMeshLink>() as NavMeshLink;
 
             // Set agentType for the link
@@ -106,6 +106,27 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             float endX = 0;
             float endY = -collider.size.y / 2;
             float endZ = -offset;
+            sc.endPoint = new Vector3(endX, endY, endZ);
+
+            // Set width of link
+            sc.width = collider.size.x;
+
+            // Add a NavMeshLink component (Link between wall and ceiling)
+            sc = child.AddComponent<NavMeshLink>() as NavMeshLink;
+
+            // Set agentType for the link
+            sc.agentTypeID = agentTypeID;
+
+            // Set start point of link
+            startX = 0;
+            startY = collider.size.y / 2 - offset;
+            startZ = 0;
+            sc.startPoint = new Vector3(startX, startY, startZ);
+
+            // Set end point of link
+            endX = 0;
+            endY = collider.size.y / 2;
+            endZ = -offset;
             sc.endPoint = new Vector3(endX, endY, endZ);
 
             // Set width of link
