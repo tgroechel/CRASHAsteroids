@@ -25,5 +25,5 @@ public class ResourcePathManager : Singleton<ResourcePathManager>
     public static string aimLaser = "Lasers/AimLaser";
 
 
-
+    public static string bossGunFire = "Projectiles/vfx_Muzzle_Orb05_Orange";
 }
