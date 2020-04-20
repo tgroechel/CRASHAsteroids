@@ -75,6 +75,9 @@ Here is an example.
 4. While the boss is deactivated, you can prevent certain actions such as navigation and shooting at the player by making use of the `Activate` bool parameter on the `Animator` component of the boss. Just check if `GetComponent<Animator>.getBool("Activate")` is `true` and only then should you execute these tasks.
 5. The boss will automatically go back to activated state after his `Resurrection Time` is complete and his health will be restored to `MAXHEALTH * (Resurrected Health Percentage) / 100`.
 
+![Boss Activation/Deactivation GUI](https://user-images.githubusercontent.com/18630586/79704700-77b7d480-8267-11ea-8e16-445e50b8d573.png)
+
+
 ## Path Indicator for Kuri
 
 When the Boss is in deactivated state, we want to show a path along which the player can navigate Kuri to kill the boss. Here is the current implementation of this,
@@ -84,3 +87,36 @@ When the Boss is in deactivated state, we want to show a path along which the pl
 3. A voice over may be added which says, "Navigate Kuri, along the path shown, to kill the boss!" (not yet implemented). A message can also be shown on the screen.
 3. The path is continuously redrawn according to the current position of __Kuri__.
 4. The path that was drawn disappears once the `Boss` is reactivated (before Kuri can kill it).
+
+## Manual/Auto Spawning of Minions
+
+There are two ways to spawn minions. Either enable auto-spawning or use a manual function call.
+
+Before we discuss both of these, you need to ensure that you have added the `MinionSpawner` component on the boss object.
+
+### Auto-Spawning
+
+1. In order to auto-spawn enemies, you need to edit the `MinionSpawner` script by setting the `coroutineRunning` variable in its `Start()` function to `false`. This is not a public variable since this coroutine keeps running, so its status cannot be changed after the game has started.
+2. You can edit the maximum number of enemies the boss will auto-spawn by changing the `autoNumberOfMinions` public variable of `MinionSpawner`.
+3. You can also change the time between successive minion spawns by changing the `autoSpawnTime` public variable of `MinionSpawner`. This time should be in seconds.
+4. Provided auto-spawning is enabled using point 1, the boss will keep spawning minions until the number of spawned minions that are alive reaches `autoNumberOfMinions`. If any of these minions dies, the boss will spawn another one ensuring that the previous statement is always true.
+5. The minions are spawned in the forward direction of the camera and behind the boss i.e. an __offset__ is added to the __position of the boss__ in the __direction of the camera gaze__ to determine where the minion should be spawned. This offset value is a public float called `forwardOffset` on the `MinionSpawner`.
+6. The spawned minions immediately start following the player.
+
+![MinionSpawner GUI](https://user-images.githubusercontent.com/18630586/79704586-f9f3c900-8266-11ea-8e0f-00369487032c.png)
+
+### Manual Spawning
+
+1. You can call the `SpawnMinion()` function of `MinionSpawner` to spawn a new minion. This function returns a reference to the newly created minion object.
+2. The minion is spawned at the position mentioned in point 5 under __Auto Spawning__.
+3. `MinionSpawner` remembers the way a minion was spawned. So if you kill a minion that was spawned manually, the boss won't spawn a new minion to replace him. That behaviour is only exhibited by the minions spawned automatically.
+3. The spawned minions immediately start following the player.
+
+## Determining where the minions can walk
+
+1. At game start, the minions can only walk on the floor.
+2. NavMeshLinks are nothing but bridges to connect two surfaces. So to enable walking on walls, links are required between the walls and the floor. Similarly, to enable walking on the ceiling, links are required between the walls and the ceiling. Without the links, a minion on the floor cannot jump on a wall and a minion on a wall cannot jump on the ceiling.
+3. At runtime, you can change the walkable surfaces (for minions only) using the `enableWallFloorLinks` and `enableWallCeilingLinks` public bools present on the `CreateNavMeshesAndNavMeshLinks` component of `SceneUnderstanding -> Root` game object.
+4. Enjoy!
+
+![Set Minion-Walkable Surfaces](https://user-images.githubusercontent.com/18630586/79704647-31fb0c00-8267-11ea-961a-705f999ce43e.png)
