@@ -510,12 +510,12 @@ PrefabInstance:
     - target: {fileID: 3729134089494767864, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3729134089494767864, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4266242873510970345, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -535,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 4271549883062845779, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4271549883063016819, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -632,6 +632,11 @@ PrefabInstance:
       propertyPath: MAXHEALTH
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6651384053596998800, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: resurrectionTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7547065126947840016, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_Enabled
@@ -645,6 +650,11 @@ PrefabInstance:
     - target: {fileID: 7547065126947840046, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547065126947840047, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2369,7 +2379,7 @@ PrefabInstance:
     - target: {fileID: 1007446047174314439, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1007446047174314456, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
@@ -2595,6 +2605,20 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!136 &1227241080
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227241076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.78
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.67, z: 0}
 --- !u!1 &1349406999
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class MinionSpawner : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Initialize coroutineRunning bool to true to prevent autospawn (make this false here for auto spawning minions)
-        coroutineRunning = false;
+        coroutineRunning = true;
 
         // Create new minionsAlive list
         minionsAlive = new List<GameObject>();

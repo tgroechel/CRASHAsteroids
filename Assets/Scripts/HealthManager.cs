@@ -63,7 +63,7 @@ namespace Sid {
                 if (!isBoss) {
                     // Make slider value zero and destroy the enemy from the scene
                     slider.value = 0;
-                    Destroy(gameObject);
+                    animator.SetBool("isDead", true);
                 }
                 else {
                     // Make slider value zero and deactivate the enemy using animation
@@ -77,7 +77,6 @@ namespace Sid {
                         animator.SetBool("Activate", false);
                         CallResurrectionTime();
                     }
-                    
                 }
                 
                 FindObjectOfType<AudioManager>().Play("GameWin");
@@ -130,6 +129,23 @@ namespace Sid {
         public void CallResurrectionTime()
         {
             StartCoroutine(ResurrectionTime());
+        }
+
+        // If Kuri collides with the boss in deactivated state, kill the boss
+        public void OnCollisionEnter(Collision collision)
+        {
+            if(!animator.GetBool("Activate") && collision.gameObject.name == "Kuri")
+            {
+                // Set isDead bool to true so that 'Death' animation is played
+                animator.SetBool("isDead", true);
+            }
+        }
+
+        // Destroy the object
+        // Note: This function is called after the Death animation finishes playing
+        void DestroyEnemy()
+        {
+            Destroy(gameObject);
         }
     }
 }
