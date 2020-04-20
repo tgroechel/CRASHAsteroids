@@ -555,12 +555,12 @@ PrefabInstance:
     - target: {fileID: 4271549883063016819, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.94
+      value: 1.792
       objectReference: {fileID: 0}
     - target: {fileID: 4271549883063016819, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01
+      value: -4.32
       objectReference: {fileID: 0}
     - target: {fileID: 4271549883063016827, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -612,10 +612,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6650874044817158380, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: autoSpawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650874044817158380, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: autoNumberOfMinions
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650874044817158380, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: forwardOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6651384053596998800, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: MAXHEALTH
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547065126947840016, guid: 1803d430158e9224f84d665d6a685733,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7547065126947840018, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -1017,6 +1037,7 @@ GameObject:
   - component: {fileID: 735788688}
   - component: {fileID: 735788687}
   - component: {fileID: 735788686}
+  - component: {fileID: 735788689}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1149,6 +1170,18 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &735788689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735788682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1561ad5ecde53f84bae260b308e51a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &760253202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3213,6 +3246,14 @@ PrefabInstance:
       propertyPath: kuri
       value: 
       objectReference: {fileID: 1227241076}
+    - target: {fileID: 1734553116, guid: e5ceb5438b55ccc408f88a414b7946a6, type: 3}
+      propertyPath: enableWallFloorLinks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734553116, guid: e5ceb5438b55ccc408f88a414b7946a6, type: 3}
+      propertyPath: enableWallCeilingLinks
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5413088185640505357, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: m_LocalPosition.x

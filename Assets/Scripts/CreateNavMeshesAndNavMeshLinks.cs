@@ -9,9 +9,15 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     public NavMeshSurface floorNavMesh;
     public GameObject navMeshesObject, bossObject, kuri;
     public WaterTightDetector waterTightDetector;
+    public bool enableWallFloorLinks, enableWallCeilingLinks, showLoading;
+    public float percentageCompleted;
+    private float doneCount;
+    private bool pastEnableWallFloorLinks, pastEnableWallCeilingLinks;
     private static GameObject navMeshPrefab;
     private int agentTypeID;
-    private bool navMeshBuildDone;
+    private bool navMeshBuildDone, updateLinks, updateLinksRunning;
+    private List<NavMeshLink> wallFloorLinks, wallCeilingLinks;
+
 
     void Awake()
     {
@@ -23,12 +29,31 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // Initialising navMeshBuildDone to false
         navMeshBuildDone = false;
+
+        // Initialising the state of the two types of links
+        pastEnableWallFloorLinks = false;
+        pastEnableWallCeilingLinks = false;
+
+        // Initialising updateLinks to false (both types of links are present by default)
+        updateLinks = false;
+
+        // This is to make sure that only one updateLinks call is running at a time
+        // to prevent erroneous behaviour
+        updateLinksRunning = false; 
+
+        // Creating lists to store wall-floor and wall-ceiling links
+        wallFloorLinks = new List<NavMeshLink>();
+        wallCeilingLinks = new List<NavMeshLink>();
+
+        // Initialising showLoading to false and doneCount to 0
+        showLoading = false;
+        doneCount = 0;
     }
 
     private void Update()
     {
         // If Scene Understanding is complete, build navmeshes and navmeshlinks
-        // Do this only once
+        // Do this only once for the entire duration of the game
         if(waterTightDetector.isWaterTight && !navMeshBuildDone)
         {
             // Set navMeshBuildDone to true
@@ -36,6 +61,25 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
             // Do all the heavy work in a coroutine to prevent the game from freezing
             StartCoroutine(BuildNavMeshesAndNavMeshLinks());
+        }
+
+        // Update State of NavMeshLinks according to the checkboxes chosen
+        // Note: Update will happen only when past bool is not equal to current bool
+        if(updateLinks)
+        {
+            if(pastEnableWallFloorLinks != enableWallFloorLinks && !updateLinksRunning)
+            {
+                updateLinksRunning = true;
+                pastEnableWallFloorLinks = enableWallFloorLinks;
+                changeStateOfLinks(wallFloorLinks, enableWallFloorLinks);
+            }
+            
+            if(pastEnableWallCeilingLinks != enableWallCeilingLinks && !updateLinksRunning)
+            {
+                updateLinksRunning = true;
+                pastEnableWallCeilingLinks = enableWallCeilingLinks;
+                changeStateOfLinks(wallCeilingLinks, enableWallCeilingLinks);
+            }
         }
 
     }
@@ -71,11 +115,15 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
                 navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
             //}
 
+            // Increase done count and re-evaulate percentageCompleted
+            doneCount++;
+            percentageCompleted = (doneCount / (2 * no_of_children)) * 100;
+
             yield return null;
         }
     }
 
-    private IEnumerator CreateWallLinks() // Links between walls and floor
+    private IEnumerator CreateWallLinks() // Links between walls-floor and wall-ceiling
     {
         float offset = 0.2f;
         int no_of_children = transform.childCount;
@@ -90,11 +138,20 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Get collider attached to the current child
             BoxCollider collider = child.GetComponent<BoxCollider>();
 
-            // Add a NavMeshLink component (Link between wall and floor)
+            /* Two kinds of NavMeshLinks exist:
+             * 1. Links between walls and the floor
+             * 2. Links between walls and the ceiling */
+
+            // 1. Add a NavMeshLink component (Link between wall and floor)
             NavMeshLink sc = child.AddComponent<NavMeshLink>() as NavMeshLink;
+            wallFloorLinks.Add(sc);
 
             // Set agentType for the link
             sc.agentTypeID = agentTypeID;
+
+            // Before setting the start and end points,
+            // Set the state of the link
+            sc.enabled = pastEnableWallFloorLinks;
 
             // Set start point of link
             float startX = 0;
@@ -111,11 +168,16 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Set width of link
             sc.width = collider.size.x;
 
-            // Add a NavMeshLink component (Link between wall and ceiling)
+            // 2. Add a NavMeshLink component (Link between wall and ceiling)
             sc = child.AddComponent<NavMeshLink>() as NavMeshLink;
+            wallCeilingLinks.Add(sc);
 
             // Set agentType for the link
             sc.agentTypeID = agentTypeID;
+
+            // Before setting the start and end points,
+            // Set the state of the link
+            sc.enabled = pastEnableWallCeilingLinks;
 
             // Set start point of link
             startX = 0;
@@ -132,12 +194,19 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Set width of link
             sc.width = collider.size.x;
 
+            // Increase done count and re-evaulate percentageCompleted
+            doneCount++;
+            percentageCompleted = (doneCount / (2 * no_of_children)) * 100;
+
             yield return null;
         }
     }
 
     private IEnumerator BuildNavMeshesAndNavMeshLinks()
     {
+        // Set showLoading to true
+        showLoading = true;
+
         // Attach NavMeshes to every child surface
         yield return StartCoroutine(AttachNavMeshes());
 
@@ -158,5 +227,25 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // Activate Boss object
         bossObject.SetActive(true);
+
+        // Reset showLoading to false
+        showLoading = false;
+
+        // Set updateLinks to true to allow NavMeshLinks to be updated.
+        // We want links to be updated to user settings
+        // only after NavMeshes and NavMeshLinks have been built.
+        updateLinks = true;
+    }
+
+    void changeStateOfLinks(List<NavMeshLink> navMeshLinks, bool setState)
+    {
+        // Change state of each link
+        navMeshLinks.ForEach(link => {
+            if (link.enabled != setState)
+                link.enabled = setState;
+        });
+
+        // Change updateLinksRunning to false
+        updateLinksRunning = false;
     }
 }

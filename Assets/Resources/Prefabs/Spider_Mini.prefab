@@ -1500,11 +1500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitDuration: 1
   bulletSpeed: 2
   bulletPoolSize: 50
   explodePrefab: {fileID: 0}
   explodeSFX: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!114 &7789581155781861538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2003,7 +2003,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8379526961395193074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2182,6 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2b014537d53842946759b3f673311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noOfFrames: 1
   followPlayer: 1
   mouseClickDestination: 0
 --- !u!114 &114542996277759576

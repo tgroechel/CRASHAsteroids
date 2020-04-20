@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MinionSpawner : MonoBehaviour
 {
-    public float spawnTime;
-    public float numberOfMinions;
+    public float autoSpawnTime;
+    public float autoNumberOfMinions;
     public float forwardOffset;
     private List<GameObject> minionsAlive;
     private GameObject minionPrefab;
@@ -21,7 +21,7 @@ public class MinionSpawner : MonoBehaviour
         // Get Animator component
         animator = GetComponent<Animator>();
 
-        // Initialize coroutineRunning bool to false
+        // Initialize coroutineRunning bool to true to prevent autospawn (make this false here for auto spawning minions)
         coroutineRunning = false;
 
         // Create new minionsAlive list
@@ -36,43 +36,40 @@ public class MinionSpawner : MonoBehaviour
 
         // Create more minions if the number of minions alive is < numberOfMinions
         // and the boss is in activated state
-        if (!coroutineRunning && minionsAlive.Count < numberOfMinions && animator.GetBool("Activate"))
+        if (!coroutineRunning && minionsAlive.Count < autoNumberOfMinions && animator.GetBool("Activate"))
         {
             coroutineRunning = true;
-            StartCoroutine(SpawnMinions());
-        }
-
-        // for debugging
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            print("Number of Minions Alive: " + minionsAlive.Count);
-            int i = 0;
-            foreach(GameObject minion in minionsAlive)
-            {
-                i++;
-                print("Minion No. "+ i +" name is -> " + minion.name);
-            }
-        }
-            
+            StartCoroutine(AutoSpawnMinions());
+        }   
     }
 
-    private IEnumerator SpawnMinions()
+    private IEnumerator AutoSpawnMinions()
     {
-        for(int i=0;i<numberOfMinions - minionsAlive.Count;i++)
+        for(int i=0;i<autoNumberOfMinions - minionsAlive.Count;i++)
         {
-            // Instantiate new minion 
-            GameObject newMinion = Instantiate(minionPrefab, transform.parent);
-
-            // Position the minion w.r.t. the boss using offset
-            newMinion.transform.position = transform.position + (transform.forward.normalized * forwardOffset);
+            // Spawn a new minion
+            GameObject newMinion = SpawnMinion();
 
             // Add this minion to the list of spawned minions
             minionsAlive.Add(newMinion);
 
             // Spawn a minion every spawnTime seconds
-            yield return new WaitForSeconds(spawnTime);
+            yield return new WaitForSeconds(autoSpawnTime);
         }
 
         coroutineRunning = false;
+    }
+
+    public GameObject SpawnMinion()
+    {
+        // Instantiate new minion 
+        GameObject newMinion = Instantiate(minionPrefab, transform.parent);
+
+        // Position the minion w.r.t. the boss using offset vector determined by camera direction
+        // (i.e. minion will be spawned on the side of the boss which is opposite to the camera)
+        newMinion.transform.position = transform.position + (Camera.main.transform.forward.normalized * forwardOffset);
+
+        // Return the newly spawned minion
+        return newMinion;
     }
 }

@@ -3874,6 +3874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2b014537d53842946759b3f673311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noOfFrames: 1
   followPlayer: 0
   mouseClickDestination: 1
 --- !u!114 &3848065465991938561
@@ -4050,8 +4051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5e1be3d235bc744b76289f5f83cf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 10
-  numberOfMinions: 2
+  autoSpawnTime: 10
+  autoNumberOfMinions: 2
   forwardOffset: 1
 --- !u!1 &7393797216264979156
 GameObject:

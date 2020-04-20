@@ -8,6 +8,7 @@ namespace Sid {
         private NavMeshAgent agent;
         private ThirdPersonCharacter character;
         private Animator animator;
+        public int noOfFrames;
         public bool followPlayer;
         public bool mouseClickDestination;
         private LineRenderer lineRenderer;
@@ -64,26 +65,13 @@ namespace Sid {
                         }
                     }
 
-                    // Follow the player when left mouse button is clicked
-                    if (followPlayer && !coroutineRunning) {
+                    // Follow the player if that checkBox is checked
+                    if (followPlayer) {
                         // Set coroutine running bool
                         coroutineRunning = true;
 
-                        // Reset the path so that the agent moves to the new destination
-                        //agent.ResetPath();
-
-                        // Agent follows the player
-                        // If agent is minion, add random offset
-                        Vector3 destination = Camera.main.transform.position;
-                        if(!isBoss)
-                            destination += randomOffsetFromPlayer;
-                        agent.SetDestination(destination);
-
-                        // Set pathDrawn to false
-                        pathDrawn = false;
-
-                        // Reset coroutine running bool
-                        coroutineRunning = false;
+                        // Call coroutine to follow player
+                        StartCoroutine(FollowPlayer());
                     }
 
                     // Follow player only when F is pressed
@@ -122,6 +110,25 @@ namespace Sid {
             for (var i = 1; i < path.corners.Length; i++) {
                 lineRenderer.SetPosition(i, path.corners[i]); //go through each corner and set that to the line renderer's position
             }
+        }
+
+        private IEnumerator FollowPlayer()
+        {
+            // Wait for some frames before recalculating path
+            yield return new WaitForSeconds(Time.deltaTime * noOfFrames);
+
+            // Agent follows the player
+            // If agent is minion, add random offset
+            Vector3 destination = Camera.main.transform.position;
+            if (!isBoss)
+                destination += randomOffsetFromPlayer;
+            agent.SetDestination(destination);
+
+            // Set pathDrawn to false
+            pathDrawn = false;
+
+            // Reset coroutine running bool
+            coroutineRunning = false;
         }
     }
 }
