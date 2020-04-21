@@ -2185,6 +2185,8 @@ MonoBehaviour:
   noOfFrames: 1
   followPlayer: 1
   mouseClickDestination: 0
+  inShootingDistance: 0
+  shootingDistance: 1
 --- !u!114 &114542996277759576
 MonoBehaviour:
   m_ObjectHideFlags: 0

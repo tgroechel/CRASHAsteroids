@@ -5,12 +5,13 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace Sid {
     public class MinionFollowPlayerScript : MonoBehaviour {
+        public int noOfFrames;
+        public bool followPlayer;
+        public bool mouseClickDestination, inShootingDistance;
+        public float shootingDistance;
         private NavMeshAgent agent;
         private ThirdPersonCharacter character;
         private Animator animator;
-        public int noOfFrames;
-        public bool followPlayer;
-        public bool mouseClickDestination;
         private LineRenderer lineRenderer;
         private bool pathDrawn, isBoss, coroutineRunning;
         private Vector3 randomOffsetFromPlayer;
@@ -28,6 +29,9 @@ namespace Sid {
             pathDrawn = true;
             coroutineRunning = false;
             randomOffsetFromPlayer = Random.onUnitSphere * 2;
+
+            // To check if enemy should shoot at the player
+            inShootingDistance = false;
 
             // Check if this object is the boss
             isBoss = GetComponent<HealthManager>().isBoss;
@@ -97,6 +101,12 @@ namespace Sid {
             else
                 character.Move(Vector3.zero, false, false);
 
+            // If enemy is within a particular distance from the player (camera), set this to true
+            if (Vector3.Distance(agent.transform.position, Camera.main.transform.position) < shootingDistance)
+                inShootingDistance = true;
+            else
+                inShootingDistance = false;
+
         }
 
         void DrawPath(NavMeshPath path) {
@@ -105,7 +115,7 @@ namespace Sid {
 
             lineRenderer.positionCount = path.corners.Length; //set the array of positions to the amount of corners
 
-            lineRenderer.SetPosition(0, transform.position); //set the first point to the current position of the GameObject
+            lineRenderer.SetPosition(0, agent.transform.position); //set the first point to the current position of the GameObject
 
             for (var i = 1; i < path.corners.Length; i++) {
                 lineRenderer.SetPosition(i, path.corners[i]); //go through each corner and set that to the line renderer's position

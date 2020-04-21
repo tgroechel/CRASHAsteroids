@@ -79,7 +79,7 @@ namespace Sid {
                     }
                 }
                 
-                FindObjectOfType<AudioManager>().Play("GameWin");
+                
             }
             else {
                 if (currentHealth > MAXHEALTH / 2 && currentHealth - damage < MAXHEALTH / 2)
@@ -146,6 +146,10 @@ namespace Sid {
         void DestroyEnemy()
         {
             Destroy(gameObject);
+
+            // Play Game Win music if player just killed the boss
+            if(isBoss)
+                FindObjectOfType<AudioManager>().Play("GameWin");
         }
     }
 }

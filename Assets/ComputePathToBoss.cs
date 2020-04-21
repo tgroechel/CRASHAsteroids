@@ -39,10 +39,8 @@ public class ComputePathToBoss : MonoBehaviour
 
             // Calculate and show path only if the boss is deactivated
             // and is visible in the scene (Enemies object is active and Boss is present and active)
-            if (!animator.GetBool("Activate") && (boss?.activeSelf ?? false))
+            if ((boss != null ? boss.activeSelf : false) && !animator.GetBool("Activate"))
             {
-                print("Activate value is -> " + animator.GetBool("Activate"));
-
                 // Calculate path to boss
                 agent.CalculatePath(boss.transform.position, path = new NavMeshPath());
 
@@ -55,6 +53,10 @@ public class ComputePathToBoss : MonoBehaviour
                 lineRenderer.positionCount = 0;
             }
         }
+
+        print("Is boss null -> " + (boss == null));
+
+        
     }
 
     void DrawPath(NavMeshPath path)
@@ -64,7 +66,7 @@ public class ComputePathToBoss : MonoBehaviour
 
         lineRenderer.positionCount = path.corners.Length; //set the array of positions to the amount of corners
 
-        lineRenderer.SetPosition(0, transform.position); //set the first point to the current position of the GameObject
+        lineRenderer.SetPosition(0, agent.transform.position); //set the first point to the current position of the GameObject
 
         for (var i = 1; i < path.corners.Length; i++)
         {

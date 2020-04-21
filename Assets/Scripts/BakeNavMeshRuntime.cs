@@ -3,18 +3,21 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class BakeNavMeshRuntime : MonoBehaviour {
-    private NavMeshSurface surface;
+    public NavMeshSurface surface;
     private NavMeshLinks_AutoPlacer autoplacer;
 #if UNITY_EDITOR
     private NavMeshLinks_AutoPlacer_Editor editor;
 #endif
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Get the NavMeshSurface component
         surface = GetComponent<NavMeshSurface>();
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         // Build NavMesh
         surface.BuildNavMesh();
 

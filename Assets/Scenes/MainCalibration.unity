@@ -510,12 +510,12 @@ PrefabInstance:
     - target: {fileID: 3729134089494767864, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3729134089494767864, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4266242873510970345, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -535,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 4271549883062845779, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4271549883063016819, guid: 1803d430158e9224f84d665d6a685733,
         type: 3}
@@ -1209,10 +1209,25 @@ PrefabInstance:
       propertyPath: m_LayerMask.m_Bits
       value: 2147483699
       objectReference: {fileID: 0}
+    - target: {fileID: 1174857440573457688, guid: 06960767e6870ed428eae8fe54f77f76,
+        type: 3}
+      propertyPath: m_DefaultArea
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2488913288952212849, guid: 06960767e6870ed428eae8fe54f77f76,
         type: 3}
       propertyPath: m_LayerMask.m_Bits
       value: 2147483699
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488913288952212849, guid: 06960767e6870ed428eae8fe54f77f76,
+        type: 3}
+      propertyPath: m_DefaultArea
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488913288952212853, guid: 06960767e6870ed428eae8fe54f77f76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2488913289297727745, guid: 06960767e6870ed428eae8fe54f77f76,
         type: 3}
@@ -1278,6 +1293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NavMeshes
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488913289474147839, guid: 06960767e6870ed428eae8fe54f77f76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06960767e6870ed428eae8fe54f77f76, type: 3}
@@ -2379,7 +2399,7 @@ PrefabInstance:
     - target: {fileID: 1007446047174314439, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1007446047174314456, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
@@ -2389,7 +2409,7 @@ PrefabInstance:
     - target: {fileID: 1007446047174314456, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1007446047174314458, guid: 1ee2245cb9540e94fa7880488285fc80,
         type: 3}
@@ -2887,6 +2907,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 199790471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1457949334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457949333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1557435f681e14a9abbbe7781b9b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GameWin
+    clip: {fileID: 8300000, guid: 3c88741fe1778be46a248aee5dca044a, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &1492071312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3278,6 +3317,14 @@ PrefabInstance:
       propertyPath: enableWallCeilingLinks
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734553116, guid: e5ceb5438b55ccc408f88a414b7946a6, type: 3}
+      propertyPath: delayBeforeActivation
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734553116, guid: e5ceb5438b55ccc408f88a414b7946a6, type: 3}
+      propertyPath: kuriObject
+      value: 
+      objectReference: {fileID: 1227241076}
     - target: {fileID: 5413088185640505357, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: m_LocalPosition.x
