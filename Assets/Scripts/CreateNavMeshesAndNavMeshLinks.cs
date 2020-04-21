@@ -7,23 +7,29 @@ using UnityEngine.AI;
 public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 {
     public NavMeshSurface floorNavMesh;
-    public GameObject navMeshesObject, bossObject, kuriObject;
+    public GameObject navMeshesObject, enemiesObject;
     public WaterTightDetector waterTightDetector;
     public bool enableWallFloorLinks, enableWallCeilingLinks, showLoading;
-    public float percentageCompleted, delayBeforeActivation;
+    public float percentageCompleted, delayBeforeActivation, addedHeightBoss;
     private float doneCount;
     private bool pastEnableWallFloorLinks, pastEnableWallCeilingLinks;
-    private static GameObject navMeshPrefab;
+    private static GameObject navMeshPrefab, bossPrefab, kuriPrefab;
     private int agentTypeID;
     private bool navMeshBuildDone, updateLinks, updateLinksRunning;
     private List<NavMeshLink> wallFloorLinks, wallCeilingLinks;
     private List<BakeNavMeshRuntime> floorNavMeshBakeScripts;
-    private NavMeshAgent kuriAgent, bossAgent;
+    private CapsuleCollider kuriCollider;
 
     void Awake()
     {
         // Loading NavMesh prefab
         navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
+
+        // Loading Boss prefab
+        bossPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.boss) as GameObject;
+
+        // Loading Kuri prefab
+        kuriPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.kuri) as GameObject;
 
         // Obtaining agent ID
         agentTypeID = floorNavMesh.agentTypeID;
@@ -57,9 +63,8 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             floorNavMeshBakeScripts.Add(navMeshesObject.transform.GetChild(i).GetComponent<BakeNavMeshRuntime>());
         }
 
-        // Obtaining the kuri and boss agents
-        kuriAgent = kuriObject.GetComponent<NavMeshAgent>();
-        bossAgent = bossObject.GetComponent<NavMeshAgent>();
+        // Obtaining CapsuleCollider on Kuri
+        kuriCollider = kuriPrefab.GetComponent<CapsuleCollider>();
     }
 
     private void Update()
@@ -236,6 +241,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // While all builds are complete
         int count = 0;
+        print("Count of floorNavMeshBakeScripts is -> " + floorNavMeshBakeScripts.Count);
         while(count != floorNavMeshBakeScripts.Count)
         {
             count = 0;
@@ -249,22 +255,32 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             yield return null;
         }
 
-        // Place Kuri at a random point on her navmesh
-        kuriAgent.transform.position = GetAgentSpawnPosition("KuriWalkable");
-        print("Kuri Location is -> " + kuriAgent.transform.position);
 
-        // Activate Kuri object
-        kuriObject.SetActive(true);
+        // Wait for a few seconds before instantiating Kuri and Boss objects
+        yield return new WaitForSeconds(delayBeforeActivation);
 
-        // Place boss at a random point on its navmesh
-        bossAgent.transform.position = GetAgentSpawnPosition("BossWalkable");
-        print("Boss Location is -> " + bossAgent.transform.position);
+        // Instantiate Boss object
+        Vector3 spawnPosition = GetAgentSpawnPosition("BossWalkable");
+        spawnPosition.y = kuriCollider.height + addedHeightBoss;
+        GameObject bossObject = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, enemiesObject.transform);
+        bossObject.name = ResourcePathManager.boss;
+        print("Boss Location is -> " + bossObject.transform.position);
 
-        // Activate Boss object
-        bossObject.SetActive(true);
+        // Instantiate Kuri object and initialize some of her attributes
+        spawnPosition = GetAgentSpawnPosition("KuriWalkable");
+        spawnPosition.y += kuriCollider.height + 0.2f;
+        GameObject kuriObject = Instantiate(kuriPrefab, spawnPosition, Quaternion.identity, enemiesObject.transform.parent.transform);
+        kuriObject.name = ResourcePathManager.kuri;
+        kuriObject.GetComponent<ComputePathToBoss>().boss = bossObject;
+        print("Kuri Location is -> " + kuriObject.transform.position);
+
 
         // Reset showLoading to false
         showLoading = false;
+
+        // Bake floor meshes again
+        foreach (BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts)
+            floorNavMeshBakeScript.surface.BuildNavMesh();
 
         // Set updateLinks to true to allow NavMeshLinks to be updated.
         // We want links to be updated to user settings
@@ -284,7 +300,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         updateLinksRunning = false;
     }
 
-    // Get Random Point on a Navmesh surface
+    // Get Random Point on a Navmesh surface (For future reference)
     public static bool GetRandomPoint(Vector3 center, float maxDistance, int areaMask, out Vector3 position)
     {
         // Get Random Point inside Sphere which position is center, radius is maxDistance
@@ -325,11 +341,10 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     // As a future reference if we want to show navMeshes in the "Game" itself
     void showNavMeshes()
     {
-        // Material to be used to draw the triangles
-        Material material = null;
-
         // Obtain all the info about the triangles in the Global Common NavMesh
         NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
+
+        Material material = null;
 
         if (material == null)
         {
@@ -339,16 +354,19 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         material.SetPass(0);
         GL.Begin(GL.TRIANGLES);
+        
         for (int i = 0; i < triangulation.indices.Length; i += 3)
         {
             var triangleIndex = i / 3;
+            var areaIndex = triangulation.areas[triangleIndex];
+            
             var i1 = triangulation.indices[i];
             var i2 = triangulation.indices[i + 1];
             var i3 = triangulation.indices[i + 2];
             var p1 = triangulation.vertices[i1];
             var p2 = triangulation.vertices[i2];
             var p3 = triangulation.vertices[i3];
-            var areaIndex = triangulation.areas[triangleIndex];
+
             Color color;
             Color walkableColor = Color.green;
             Color nonWalkableColor = Color.blue;
@@ -366,6 +384,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             GL.Vertex(p1);
             GL.Vertex(p2);
             GL.Vertex(p3);
+            
         }
         GL.End();
 

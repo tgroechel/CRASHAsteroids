@@ -132,12 +132,16 @@ namespace Sid {
         }
 
         // If Kuri collides with the boss in deactivated state, kill the boss
-        public void OnCollisionEnter(Collision collision)
+        public void OnTriggerEnter(Collider collider)
         {
-            if(!animator.GetBool("Activate") && collision.gameObject.name == "Kuri")
+            if(!animator.GetBool("Activate") && collider.gameObject.name == "Kuri")
             {
                 // Set isDead bool to true so that 'Death' animation is played
                 animator.SetBool("isDead", true);
+
+                // Play Game Win music if player just killed the boss
+                if (isBoss)
+                    collider.gameObject.GetComponent<AudioManager>().Play("GameWin");
             }
         }
 
@@ -146,10 +150,6 @@ namespace Sid {
         void DestroyEnemy()
         {
             Destroy(gameObject);
-
-            // Play Game Win music if player just killed the boss
-            if(isBoss)
-                FindObjectOfType<AudioManager>().Play("GameWin");
         }
     }
 }

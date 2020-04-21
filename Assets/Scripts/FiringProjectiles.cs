@@ -101,12 +101,12 @@ namespace Sid
             }
 
             // To check which source was used for pointer click
-            var currentText = AlignAmmo.textComponent.textInfo.textComponent.text;
+            /*var currentText = AlignAmmo.textComponent.textInfo.textComponent.text;
             var actionDescription = eventData.MixedRealityInputAction.Description;
             var actionSource = eventData.InputSource.SourceName;
             var stringToAppend = "Pointer Action Completed: " + actionDescription + "\n" + "By Input Source: " + actionSource;
             //AlignAmmo.textComponent.SetText(currentText + "\n\n" + stringToAppend);
-            AlignAmmo.textComponent.SetText(stringToAppend);
+            AlignAmmo.textComponent.SetText(stringToAppend);*/
         }
     }
 }

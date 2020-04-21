@@ -106,7 +106,6 @@ namespace Sid {
                 inShootingDistance = true;
             else
                 inShootingDistance = false;
-
         }
 
         void DrawPath(NavMeshPath path) {

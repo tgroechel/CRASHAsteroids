@@ -11,6 +11,7 @@ public class ComputePathToBoss : MonoBehaviour
     private bool pathDrawn;
     private NavMeshPath path;
     private Animator animator;
+    private CapsuleCollider capsuleCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class ComputePathToBoss : MonoBehaviour
         // Initialize states of variables
         agent.updateRotation = false;
         pathDrawn = true;
+
+        // Get Collider Component
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -53,10 +57,6 @@ public class ComputePathToBoss : MonoBehaviour
                 lineRenderer.positionCount = 0;
             }
         }
-
-        print("Is boss null -> " + (boss == null));
-
-        
     }
 
     void DrawPath(NavMeshPath path)
@@ -66,7 +66,9 @@ public class ComputePathToBoss : MonoBehaviour
 
         lineRenderer.positionCount = path.corners.Length; //set the array of positions to the amount of corners
 
-        lineRenderer.SetPosition(0, agent.transform.position); //set the first point to the current position of the GameObject
+        Vector3 startPoint = agent.transform.position;
+        startPoint.y -= capsuleCollider.height;
+        lineRenderer.SetPosition(0, startPoint); //set the first point to the current position of the GameObject
 
         for (var i = 1; i < path.corners.Length; i++)
         {

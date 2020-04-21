@@ -17,7 +17,7 @@ namespace Sid
         {
             cam = GameObject.Find("Main Camera");
             textComponent = GetComponent<TextMeshProUGUI>();
-            textComponent.SetText("Ammo Remaining " + FiringProjectilesReuse.magazineSize);
+            //textComponent.SetText("Ammo Remaining " + FiringProjectilesReuse.magazineSize);
         }
 
         // Update is called once per frame
