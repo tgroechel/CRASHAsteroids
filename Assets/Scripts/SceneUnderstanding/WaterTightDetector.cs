@@ -8,43 +8,60 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
+public class WaterTightDetector : MonoBehaviour{
     public GameObject SC;
     public GameObject root;
     public Text progressText;
+    public Slider progressBar;
     public int ballCount = 100;
     public float threshold = 0.8f;
     public int checkInterval = 2;
-    public String nextScene;
-    public GameObject navMeshes;
-    public GameObject worldManager;
-    public GameObject enemyParent;
+
+    public CreateNavMeshesAndNavMeshLinks navObj;
+    public Canvas loadCanvas;
+    public Canvas hudCanvas;
 
     public bool isWaterTight = false;
+    private bool detectionDone = false;
     private List<GameObject> spheres = new List<GameObject>();
     private DateTime lastLaunch;
     private static String detectionText = "Scanning environment ... ";
-    private static String completeText = "Scanning complete, tap to start game";
+    private static String generatingText = "Scanning complete, Generating NavMesh";
 
-    public static string firingHandHoloLens2 = "Mixed Reality Controller Right";
-    public static string firingHandUnity = "Right Hand";
-
-    void Awake() {
-        CoreServices.InputSystem?.RegisterHandler<IMixedRealityPointerHandler>(this);
-    }
-
+    
     // Start is called before the first frame update
     void Start() {
+        navObj = root.GetComponent<CreateNavMeshesAndNavMeshLinks>();
+        hudCanvas.gameObject.SetActive(false);
         // Instanciate sphere objects, disable them and put them in object pool
         InstanciateSpheres(ballCount);
         LaunchSpheres();
     }
 
     void Update() {
+        if (detectionDone)
+        {
+            progressBar.value = (float) navObj.percentageCompleted/100;
+            if (!navObj.showLoading)
+            {
+                loadCanvas.gameObject.SetActive(false);
+                hudCanvas.gameObject.SetActive(true);
+            }
+            return;
+        }
+
         checkSpheres(GetSceneObjectsCenter());
         if (isWaterTight) {
-            progressText.text = completeText;
+            detectionDone = true;
+            progressText.text = generatingText;
+            progressBar.value = progressBar.maxValue;
+            for (int i = 0; i < spheres.Count; i++)
+            {
+                Destroy(spheres[i]);
+            }
+            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
         }
+        
     }
 
     public bool IsWaterTight() {
@@ -84,6 +101,8 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
         lastLaunch = DateTime.Now;
         for (int i = 0; i < spheres.Count; i++) {
             spheres[i].SetActive(true);
+            MeshRenderer mr = spheres[i].GetComponent<MeshRenderer>();
+            mr.enabled = false;
             Rigidbody rb = spheres[i].GetComponent<Rigidbody>();
 
             float force = 300f;
@@ -118,8 +137,11 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
             }
         }
 
-        if ((float)(ballCount - fallCount) / ballCount < threshold) {
-            progressText.text = detectionText + ((float)(ballCount - fallCount) / ballCount).ToString("P");
+        float progress = (float)(ballCount - fallCount) / ballCount;
+        progressText.text = detectionText + progress.ToString("P");
+        progressBar.value = progress;
+
+        if (progress < threshold) {
             isWaterTight = false;
             ResetSpheres(position);
             LaunchSpheres();
@@ -129,33 +151,4 @@ public class WaterTightDetector : MonoBehaviour, IMixedRealityPointerHandler {
         isWaterTight = true;
     }
 
-    public void OnPointerDown(MixedRealityPointerEventData eventData) {
-        //throw new NotImplementedException();
-    }
-
-    public void OnPointerDragged(MixedRealityPointerEventData eventData) {
-        //throw new NotImplementedException();
-    }
-
-    public void OnPointerUp(MixedRealityPointerEventData eventData) {
-        //throw new NotImplementedException();
-    }
-
-    public void OnPointerClicked(MixedRealityPointerEventData eventData) {
-        //throw new NotImplementedException();
-    }
-
-    void IMixedRealityPointerHandler.OnPointerClicked(MixedRealityPointerEventData eventData) {
-        /*
-        if (isWaterTight) {
-            Debug.Log("Switch to next scene");
-            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
-            DontDestroyOnLoad(SC);
-            DontDestroyOnLoad(navMeshes);
-            DontDestroyOnLoad(worldManager);
-            DontDestroyOnLoad(enemyParent);
-            SceneManager.LoadScene(nextScene);
-        }
-        */
-    }
 }
