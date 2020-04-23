@@ -1351,6 +1351,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2337784325010846144}
   - component: {fileID: 4141332384081186838}
+  - component: {fileID: 1813547181416037350}
+  - component: {fileID: 1778254083220836183}
   m_Layer: 8
   m_Name: Weapon_GLauncher_lvl1
   m_TagString: Untagged
@@ -1393,6 +1395,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1813547181416037350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3284589561095707730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 2
+  bulletPoolSize: 80
+  explodePrefab: {fileID: 0}
+  explodeSFX: {fileID: 0}
+  gun: {fileID: 3284589561095707730}
+  barrel1: {fileID: 3327711718206734701}
+  barrel2: {fileID: 5201967788897051101}
+--- !u!114 &1778254083220836183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3284589561095707730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3318632978322571801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,8 +1466,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7643232693872986509}
-  - component: {fileID: 1087209187187927751}
-  - component: {fileID: 6574796851181696720}
   m_Layer: 8
   m_Name: Barrel_end_1_right
   m_TagString: Untagged
@@ -1456,35 +1487,6 @@ Transform:
   m_Father: {fileID: 7715778267918627341}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087209187187927751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327711718206734701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6574796851181696720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327711718206734701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 2
-  bulletPoolSize: 80
-  explodePrefab: {fileID: 0}
-  explodeSFX: {fileID: 0}
-  gun: {fileID: 3284589561095707730}
 --- !u!1 &3777163489390692697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,8 +2882,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7591637620712823218}
-  - component: {fileID: 1985643260693041192}
-  - component: {fileID: 2403692999199953060}
   m_Layer: 8
   m_Name: Barrel_end_1_left
   m_TagString: Untagged
@@ -2903,35 +2903,6 @@ Transform:
   m_Father: {fileID: 7591637620583789881}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1985643260693041192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7591637620712823217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 2
-  bulletPoolSize: 80
-  explodePrefab: {fileID: 0}
-  explodeSFX: {fileID: 0}
-  gun: {fileID: 7591637622200096337}
---- !u!114 &2403692999199953060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7591637620712823217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7591637620717889179
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,6 +4217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1
   rotatingToPlayer: 1
+  leftGunGO: {fileID: 7591637622200096337}
+  rightGunGO: {fileID: 3284589561095707730}
+  laserGO: {fileID: 8756494110199017141}
 --- !u!114 &1032181124009845044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4753,6 +4727,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7591637622200096338}
   - component: {fileID: 7591637622200096339}
+  - component: {fileID: 1084746349831884761}
+  - component: {fileID: 4479708587007624123}
   m_Layer: 8
   m_Name: Weapon_GLauncher_lvl3
   m_TagString: Untagged
@@ -4795,6 +4771,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1084746349831884761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591637622200096337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6ba002176d2c648a2d869377f7a484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4479708587007624123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591637622200096337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5fd54a864329e34cb0b59a8d7b0841c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 2
+  bulletPoolSize: 80
+  explodePrefab: {fileID: 0}
+  explodeSFX: {fileID: 0}
+  gun: {fileID: 7591637622200096337}
+  barrel1: {fileID: 7591637620712823217}
+  barrel2: {fileID: 7591637620984172421}
 --- !u!1 &7591637622242966988
 GameObject:
   m_ObjectHideFlags: 0

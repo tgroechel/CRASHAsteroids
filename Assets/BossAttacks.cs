@@ -11,15 +11,19 @@ namespace Crash {
         public float rotationSpeed = 1;
         public bool rotatingToPlayer;
 
+        public GameObject leftGunGO;
+        public GameObject rightGunGO;
+        public GameObject laserGO;
+
         private BossAttackScript leftGun;
         private BossAttackScript rightGun;
         private BossLaserScript laser;
 
         void Awake()
         {
-            leftGun = GameObject.Find("Barrel_end_1_left").GetComponent<BossAttackScript>();
-            rightGun = GameObject.Find("Barrel_end_1_right").GetComponent<BossAttackScript>();
-            laser = GameObject.Find("Barrel_end_laser").GetComponent<BossLaserScript>();
+            leftGun = leftGunGO.GetComponent<BossAttackScript>();
+            rightGun = rightGunGO.GetComponent<BossAttackScript>();
+            laser = laserGO.GetComponent<BossLaserScript>();
         }
 
         // Update is called once per frame

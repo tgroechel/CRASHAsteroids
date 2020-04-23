@@ -8,10 +8,12 @@ namespace Crash
     {
         public enum FirePatterns { Single, Circle, Cross};
 
+        public GameObject gunGO;
+
         private BossAttackScript gun;
         void Start()
         {
-            gun = GameObject.Find("Barrel_End_1").GetComponent<BossAttackScript>();
+            gun = gunGO.GetComponent<BossAttackScript>();
         }
 
         void Update()

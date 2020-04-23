@@ -21,6 +21,9 @@ namespace Crash {
         private GameObject effect;
         private GameObject fireEffect;
 
+        public GameObject barrel1;
+        public GameObject barrel2;
+
         void Start()
         {
             effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
@@ -29,9 +32,9 @@ namespace Crash {
             animator = GetComponent<Animator>();
         }
 
-        private void gunFire()
+        private void gunFire(Vector3 spawnPos)
         {
-            GameObject fire = Instantiate(fireEffect, transform.position, Quaternion.identity);
+            GameObject fire = Instantiate(fireEffect, spawnPos, Quaternion.identity);
         }
 
         private GameObject getBullet()
@@ -50,13 +53,22 @@ namespace Crash {
             return vfx;
         }
 
+        private Vector3 getSpawnPos()
+        {
+            if (Random.Range(-10, 10) < 0)
+                return barrel1.transform.position;
+            else
+                return barrel2.transform.position;
+        }
+
         public void Pattern0()
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             GameObject vfx = getBullet();
             if (vfx != null)
             {
-                vfx.transform.position = transform.position;
+                vfx.transform.position = spawnPos;
                 vfx.transform.rotation = Quaternion.identity;
                 Vector3 dir = Camera.main.transform.position - transform.position;
                 vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
@@ -67,7 +79,8 @@ namespace Crash {
 
         public void Pattern1(int i)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             int ii = i % 18;
             if (ii >= 9)
                 ii = 17 - ii;
@@ -75,7 +88,7 @@ namespace Crash {
             GameObject vfx = getBullet();
             if (vfx != null)
             {
-                vfx.transform.position = transform.position;// + new Vector3(0, 0.1f, 0);
+                vfx.transform.position = spawnPos;// + new Vector3(0, 0.1f, 0);
                 vfx.transform.rotation = Quaternion.identity;
                 Vector3 targetPos = Camera.main.transform.position;
                 targetPos.y += Mathf.Cos(i * 37f / 360 * Mathf.PI) * 0.1f;
@@ -90,7 +103,8 @@ namespace Crash {
 
         public void Pattern2(int i)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
@@ -99,7 +113,7 @@ namespace Crash {
             {
                 vfx = getBullet();
                 if (vfx == null) continue;
-                vfx.transform.position = transform.position;// + new Vector3(0, jj * 0.05f, 0);
+                vfx.transform.position = spawnPos;// + new Vector3(0, jj * 0.05f, 0);
                 vfx.transform.rotation = Quaternion.identity;
                 bullets.Add(vfx);
             }
@@ -122,7 +136,8 @@ namespace Crash {
 
         public void Pattern3(int i)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
@@ -138,7 +153,7 @@ namespace Crash {
 
                 vfx = getBullet();
                 if (vfx == null) continue;
-                vfx.transform.position = transform.position;// + relativePos2Player;
+                vfx.transform.position = spawnPos;// + relativePos2Player;
                 vfx.transform.rotation = Quaternion.identity;
                 bullets.Add(vfx);
             }
@@ -157,7 +172,8 @@ namespace Crash {
 
         public void CircularPattern(float offset = 0.2f)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
@@ -170,7 +186,7 @@ namespace Crash {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
-                vfx.transform.position = transform.position;
+                vfx.transform.position = spawnPos;
                 vfx.transform.rotation = Quaternion.identity;
 
                 GameObject head = Camera.main.gameObject;
@@ -194,7 +210,8 @@ namespace Crash {
 
         public void CrossPattern(float offset = 0.3f)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
@@ -208,7 +225,7 @@ namespace Crash {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
-                vfx.transform.position = transform.position;
+                vfx.transform.position = spawnPos;
                 vfx.transform.rotation = Quaternion.identity;
 
                 GameObject head = Camera.main.gameObject;
@@ -231,7 +248,8 @@ namespace Crash {
 
         public void DiePattern(float offset = 0.15f)
         {
-            gunFire();
+            Vector3 spawnPos = getSpawnPos();
+            gunFire(spawnPos);
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
@@ -249,7 +267,7 @@ namespace Crash {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
-                vfx.transform.position = transform.position;
+                vfx.transform.position = spawnPos;
                 vfx.transform.rotation = Quaternion.identity;
 
                 GameObject head = Camera.main.gameObject;
