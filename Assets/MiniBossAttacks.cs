@@ -6,6 +6,8 @@ namespace Crash
 {
     public class MiniBossAttacks : MonoBehaviour
     {
+        public enum FirePatterns { Single, Circle, Cross};
+
         private BossAttackScript gun;
         void Start()
         {
@@ -28,6 +30,25 @@ namespace Crash
             {
                 CrossPattern();
             }
+        }
+
+        public void PatternSelector(FirePatterns pattern)
+        {
+            switch (pattern)
+            {
+                case FirePatterns.Single:
+                    Pattern0();
+                    break;
+                case FirePatterns.Circle:
+                    CircularPattern();
+                    break;
+                case FirePatterns.Cross:
+                    CrossPattern();
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         public void Pattern0()
