@@ -10,6 +10,10 @@ namespace Crash
 
         public GameObject gunGO;
 
+        public GameObject top;
+
+        public bool rotatingToPlayer;
+
         private BossAttackScript gun;
         void Start()
         {
@@ -32,7 +36,44 @@ namespace Crash
             {
                 CrossPattern();
             }
-        }
+
+
+
+
+
+
+            Vector3 relativePos2Player = Camera.main.transform.position - gunGO.transform.position;
+            Quaternion lookAtPlayerRotation = Quaternion.identity;
+            if (relativePos2Player != Vector3.zero)
+            {
+                lookAtPlayerRotation = Quaternion.LookRotation(relativePos2Player, gameObject.transform.up);
+            }
+
+            Vector3 relativePos2Player2 = Camera.main.transform.position - top.transform.position;
+            Quaternion lookAtPlayerRotation2 = Quaternion.identity;
+            if (relativePos2Player2 != Vector3.zero)
+            {
+                lookAtPlayerRotation2 = Quaternion.LookRotation(relativePos2Player2, gameObject.transform.up);
+            }
+
+            if (rotatingToPlayer)
+            {
+                
+                top.transform.localRotation = Quaternion.Euler(0, lookAtPlayerRotation2.eulerAngles.y + 180, 0);// Quaternion.Euler(gameObject.transform.eulerAngles.x, lookAtPlayerRotation2.eulerAngles.y, gameObject.transform.eulerAngles.z);// * gameObject.transform.rotation * Quaternion.Euler(0,180,0);
+
+                gunGO.transform.rotation = lookAtPlayerRotation;// Quaternion.Euler(lookAtPlayerRotation.eulerAngles.x, top.transform.rotation.eulerAngles.y, lookAtPlayerRotation.eulerAngles.z);
+                float yyy = gunGO.transform.localRotation.eulerAngles.y;
+                if (yyy > 180)
+                    yyy -= 360;
+                if (Mathf.Abs(yyy) > 50)
+                    yyy = 50 * Mathf.Sign(yyy);
+                
+                gunGO.transform.localRotation = Quaternion.Euler(
+                    gunGO.transform.localRotation.eulerAngles.x,
+                    yyy,
+                    gunGO.transform.localRotation.eulerAngles.z);
+            }
+    }
 
         public void PatternSelector(FirePatterns pattern)
         {

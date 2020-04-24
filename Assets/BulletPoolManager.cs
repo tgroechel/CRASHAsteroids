@@ -26,7 +26,8 @@ public class BulletPoolManager : MonoBehaviour
         foreach (GameObject go in pools[name])
         {
             foreach (GameObject go2 in GameObject.FindGameObjectsWithTag("Boss"))
-                Physics.IgnoreCollision(go.GetComponent<Collider>(), go2.GetComponent<Collider>(), ignore: true);
+                if (go2.GetComponent<Collider>())
+                    Physics.IgnoreCollision(go.GetComponent<Collider>(), go2.GetComponent<Collider>(), ignore: true);
             
             foreach (GameObject go2 in pools[name])
                 Physics.IgnoreCollision(go.GetComponent<Collider>(), go2.GetComponent<Collider>(), ignore: true);
