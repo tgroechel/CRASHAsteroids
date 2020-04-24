@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Crash {
     public class BossAttacks : MonoBehaviour {
 
-        public enum FirePatterns { Single, OffsetSingle, HorizontalLines, VerticalLines, Circle, Cross, Die, laser };
+        public enum FirePatterns { Single, OffsetSingle, HorizontalLines, VerticalLines, Circle, Cross, Die, Laser, LaserAbort };
         public enum GunsToUse { Left, Right, Both };
 
         public float rotationSpeed = 1;
@@ -124,8 +124,11 @@ namespace Crash {
                 case FirePatterns.Die:
                     DiePattern(guns);
                     break;
-                case FirePatterns.laser:
+                case FirePatterns.Laser:
                     Laser();
+                    break;
+                case FirePatterns.LaserAbort:
+                    AbortLaser();
                     break;
                 default:
                     break;
@@ -228,6 +231,10 @@ namespace Crash {
         // laser!
         public void Laser() {
             laser.startLaser();
+        }
+        public void AbortLaser()
+        {
+            laser.stop();
         }
     }
 }

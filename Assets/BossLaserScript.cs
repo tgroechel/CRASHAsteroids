@@ -12,6 +12,8 @@ namespace Crash {
         private EGA_Laser laserScript;
         private float timeElapsed;
 
+        private const float LaserTargetingTime = 5.0f;
+        private const float LaserFiringTime = 6.0f;
         private const int LaserGunRotationLimitX = 90;
         private const int LaserGunRotationLimitY = 15;
         private const int LaserGunRotationLimitZ = 0;
@@ -41,7 +43,7 @@ namespace Crash {
             timeElapsed += Time.deltaTime;
             if (started)
             {
-                if (timeElapsed < 5)
+                if (timeElapsed < LaserTargetingTime)
                 {
                     //method0 - just rotate the laser instead of the entire gun; looks a bit unrealistic
                     Vector3 direction = Camera.main.transform.position - new Vector3(0, 0, 0.02f) - aimLaser.transform.position;
@@ -84,7 +86,7 @@ namespace Crash {
                     //    laserGun.transform.Rotate(new Vector3(1f, 0f));
                     //}
                 }
-                else if (timeElapsed < 6)
+                else if (timeElapsed < LaserFiringTime)
                 {
                     if (!finalChargeStarted)
                     {
@@ -116,7 +118,7 @@ namespace Crash {
                             Camera.main.gameObject.GetComponent<CameraShakeSimpleScript>()?.ShakeCamera();
                         }
 
-                        if (timeElapsed > 8f)
+                        if (timeElapsed > LaserFiringTime +2f)
                             stop();
                     }
                 }
@@ -184,9 +186,14 @@ namespace Crash {
         }
 
         public void stop() {
-            laserScript.DisablePrepare();
-            Destroy(laser, 1);
             started = false;
+            aimLaser.SetActive(false);
+            if (GetComponent<AudioSource>())
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+            Destroy(laser, 1);
+            laserScript.DisablePrepare();           
         }
     }
 }
