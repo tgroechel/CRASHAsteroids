@@ -747,17 +747,22 @@ PrefabInstance:
     - target: {fileID: 2443552517258126505, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2443552517258126505, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7583381142249419560, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
         type: 3}
       propertyPath: m_Name
       value: Spider_Mini (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583381142249419560, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8453409487230072197, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
         type: 3}
@@ -813,6 +818,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588574242534058194, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3420201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588574242534058194, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9396927
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588574242534058194, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9216921037371440730, guid: 028012d3bdd1cdb4cb9ad73e01293ad6,
         type: 3}

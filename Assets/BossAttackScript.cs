@@ -24,12 +24,27 @@ namespace Crash {
         public GameObject barrel1;
         public GameObject barrel2;
 
+        float timeElapsed;
+
         void Start()
         {
             effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
             fireEffect = Resources.Load<GameObject>(ResourcePathManager.bossGunFire) as GameObject;
             GetComponent<BulletPoolManager>().createPool("boss bullet", effect, bulletPoolSize);
             animator = GetComponent<Animator>();
+        }
+
+        void Update()
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > 1)
+            {
+                //gun.GetComponent<Animator>().ResetTrigger("Fold");
+                //gun.GetComponent<Animator>().ResetTrigger("Unfold");
+                //gun.GetComponent<Animator>().SetTrigger("Shoot");
+                gun.GetComponent<Animator>().enabled = false;
+                //Debug.Log("shooooot!");
+            }
         }
 
         private void gunFire(Vector3 spawnPos)
@@ -39,14 +54,10 @@ namespace Crash {
 
         private GameObject getBullet()
         {
-            if (gun)
-            {
-                gun.GetComponent<Animator>().ResetTrigger("Fold");
-                gun.GetComponent<Animator>().ResetTrigger("Unfold");
-                gun.GetComponent<Animator>().SetTrigger("Shoot");
-                //Debug.Log("shooooot!");
-            }
-                
+            timeElapsed = 0;
+            gun.GetComponent<Animator>().enabled = true;
+            
+
             GameObject vfx = GetComponent<BulletPoolManager>().getInstance("boss bullet");
             if (vfx != null)
                 vfx.GetComponent<ProjectileMoveScript2>().speed = bulletSpeed;

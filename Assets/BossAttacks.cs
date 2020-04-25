@@ -45,7 +45,7 @@ namespace Crash {
                     float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
                     if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
                         MountTop.transform.rotation *= Quaternion.Euler(0, sign * 4 * rotationSpeed, 0);
-                    else
+                    else if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > rotationSpeed)
                         MountTop.transform.rotation *= Quaternion.Euler(0, sign * rotationSpeed, 0);
                 }
                 else
@@ -53,7 +53,7 @@ namespace Crash {
                     float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
                     if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
                         MountTop.transform.rotation *= Quaternion.Euler(0, -sign * 4 * rotationSpeed, 0);
-                    else
+                    else if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > rotationSpeed)
                         MountTop.transform.rotation *= Quaternion.Euler(0, -sign * rotationSpeed, 0);
                 }
             }
