@@ -193,7 +193,8 @@ namespace Crash {
                 GetComponent<AudioSource>().Stop();
             }
             Destroy(laser, 1);
-            laserScript.DisablePrepare();           
+            laserScript.DisablePrepare();
+            laserGunPlatform.transform.localRotation = Quaternion.identity;
         }
     }
 }

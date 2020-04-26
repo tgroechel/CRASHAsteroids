@@ -1205,7 +1205,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4158,8 +4158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noOfFrames: 1
   noOfFramesForMove: 0
-  followPlayer: 1
-  mouseClickDestination: 0
+  followPlayer: 0
+  mouseClickDestination: 1
   inShootingDistance: 0
   shootingDistance: 0
   errorMargin: 0
@@ -4204,7 +4204,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 6.09
   m_BaseOffset: 0
-  m_WalkableMask: 16
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6000537302611124321
 MonoBehaviour:
@@ -4254,23 +4254,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkClips:
-  - {fileID: 8300000, guid: 666639826bfc2f64f90333ca13996035, type: 3}
-  - {fileID: 8300000, guid: 4e89720b15033fc4dbf9e7da2965027e, type: 3}
-  - {fileID: 8300000, guid: 7ec8005015cd12c4995e3044035a0827, type: 3}
-  - {fileID: 8300000, guid: 33102fad01937e34ea565e13a8fac15e, type: 3}
-  - {fileID: 8300000, guid: b8c77480c471d7449b873a19d6cca7ff, type: 3}
-  - {fileID: 8300000, guid: f5287b1b050a42b41b3795600b62d0fd, type: 3}
-  - {fileID: 8300000, guid: 91656a7c5c6728844b05c4c62a49744d, type: 3}
-  - {fileID: 8300000, guid: 07f161af704eace44b474f8cb6dfe98d, type: 3}
-  - {fileID: 8300000, guid: 63530e282cbcdcc46a1af4f2b83e07d2, type: 3}
-  - {fileID: 8300000, guid: 2341dcda4e3d07d46badaaa80153fef2, type: 3}
-  rollClips:
-  - {fileID: 8300000, guid: 7a1db5590767cff4da35d2888c6c610d, type: 3}
-  deactivationClip: {fileID: 8300000, guid: 07b44be8686ddd6438ca942a51e0e2b7, type: 3}
-  activationClip: {fileID: 8300000, guid: c60b99684df42fe48afd8c2c5dc11143, type: 3}
-  alarmSound: {fileID: 8300000, guid: 20bba8e16dbee5e438bccc78cfd9d65f, type: 3}
+  - {fileID: 8300000, guid: 8104283af7aea2f48bc1c1425016ddfc, type: 3}
+  rollClips: []
+  deactivationClip: {fileID: 0}
+  activationClip: {fileID: 0}
+  alarmSound: {fileID: 0}
   legSource: {fileID: 9108869596203876537}
-  volume: 10
+  volume: 0
+  waitForSeconds: 0
 --- !u!114 &1136843712830488006
 MonoBehaviour:
   m_ObjectHideFlags: 0
