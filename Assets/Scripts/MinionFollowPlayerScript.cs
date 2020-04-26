@@ -5,10 +5,10 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace Sid {
     public class MinionFollowPlayerScript : MonoBehaviour {
-        public int noOfFrames;
+        public int noOfFrames, noOfFramesForMove;
         public bool followPlayer;
         public bool mouseClickDestination, inShootingDistance;
-        public float shootingDistance;
+        public float shootingDistance, errorMargin, playerSphereRadius; // ensure shootingDistance > playerSphereRadius
         private NavMeshAgent agent;
         private ThirdPersonCharacter character;
         private Animator animator;
@@ -28,7 +28,7 @@ namespace Sid {
             agent.updateRotation = false;
             pathDrawn = true;
             coroutineRunning = false;
-            randomOffsetFromPlayer = Random.onUnitSphere * 2;
+            randomOffsetFromPlayer = Random.onUnitSphere * playerSphereRadius;
 
             // To check if enemy should shoot at the player
             inShootingDistance = false;
@@ -128,10 +128,17 @@ namespace Sid {
 
             // Agent follows the player
             // If agent is minion, add random offset
-            Vector3 destination = Camera.main.transform.position;
+            Vector3 newDestination = Camera.main.transform.position;
             if (!isBoss)
-                destination += randomOffsetFromPlayer;
-            agent.SetDestination(destination);
+                newDestination += randomOffsetFromPlayer;
+
+            // Change minion destination (new) only if minion is 
+            // not already within an error margin from the new destination
+            // Note: This is to prevent minion moving away from the player when player approaches it
+            if (!isBoss && Vector3.Distance(agent.transform.position, newDestination) > errorMargin && Vector3.Distance(agent.destination, newDestination) > errorMargin)
+                agent.SetDestination(newDestination);
+            else
+                agent.SetDestination(newDestination);
 
             // Set pathDrawn to false
             pathDrawn = false;

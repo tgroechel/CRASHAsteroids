@@ -10,7 +10,11 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     public GameObject navMeshesObject, enemiesObject;
     public WaterTightDetector waterTightDetector;
     public bool enableWallFloorLinks, enableWallCeilingLinks, showLoading;
-    public float percentageCompleted, delayBeforeActivation, addedHeightBoss;
+    public float percentageCompleted, delayBeforeActivation, addedHeightBoss, linkOffset;
+    public int bossTriangleIndex, kuriTriangleIndex;
+    public AudioSource globalAudioSource;
+    public AudioClip gameLoadSound;
+    public float volume;
     private float doneCount;
     private bool pastEnableWallFloorLinks, pastEnableWallCeilingLinks;
     private static GameObject navMeshPrefab, bossPrefab, kuriPrefab;
@@ -65,6 +69,9 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // Obtaining CapsuleCollider on Kuri
         kuriCollider = kuriPrefab.GetComponent<CapsuleCollider>();
+
+        // Start game loading sound
+        PlayGameLoadSound();
     }
 
     private void Update()
@@ -142,7 +149,6 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
     private IEnumerator CreateWallLinks() // Links between walls-floor and wall-ceiling
     {
-        float offset = 0.2f;
         int no_of_children = transform.childCount;
         for (int i = 0; i < no_of_children; i++)    // for each wall
         {
@@ -172,14 +178,14 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
             // Set start point of link
             float startX = 0;
-            float startY = -collider.size.y / 2 + offset;
+            float startY = -collider.size.y / 2 + linkOffset;
             float startZ = 0;
             sc.startPoint = new Vector3(startX, startY, startZ);
 
             // Set end point of link
             float endX = 0;
             float endY = -collider.size.y / 2;
-            float endZ = -offset;
+            float endZ = -linkOffset;
             sc.endPoint = new Vector3(endX, endY, endZ);
 
             // Set width of link
@@ -198,14 +204,14 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
             // Set start point of link
             startX = 0;
-            startY = collider.size.y / 2 - offset;
+            startY = collider.size.y / 2 - linkOffset;
             startZ = 0;
             sc.startPoint = new Vector3(startX, startY, startZ);
 
             // Set end point of link
             endX = 0;
             endY = collider.size.y / 2;
-            endZ = -offset;
+            endZ = -linkOffset;
             sc.endPoint = new Vector3(endX, endY, endZ);
 
             // Set width of link
@@ -241,46 +247,51 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // While all builds are complete
         int count = 0;
-        print("Count of floorNavMeshBakeScripts is -> " + floorNavMeshBakeScripts.Count);
         while(count != floorNavMeshBakeScripts.Count)
         {
             count = 0;
-
             foreach(BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts)
             {
                 if (!floorNavMeshBakeScript.surface.IsInvoking("BuildNavMesh"))
                     count++;
             }
-            print("Bake count is ->" + count);
             yield return null;
         }
-
 
         // Wait for a few seconds before instantiating Kuri and Boss objects
         yield return new WaitForSeconds(delayBeforeActivation);
 
         // Instantiate Boss object
-        Vector3 spawnPosition = GetAgentSpawnPosition("BossWalkable");
-        spawnPosition.y = kuriCollider.height + addedHeightBoss;
-        GameObject bossObject = Instantiate(bossPrefab, spawnPosition, Quaternion.identity, enemiesObject.transform);
+        Vector3 spawnPosition = GetAgentSpawnPosition("BossWalkable", bossTriangleIndex);
+        GameObject bossObject = Instantiate(bossPrefab, enemiesObject.transform);
+        NavMeshAgent bossAgent = bossObject.GetComponent<NavMeshAgent>();
+        bossAgent.Warp(spawnPosition);
+        bossAgent.enabled = false;
+        bossAgent.enabled = true;
         bossObject.name = ResourcePathManager.boss;
         print("Boss Location is -> " + bossObject.transform.position);
 
         // Instantiate Kuri object and initialize some of her attributes
-        spawnPosition = GetAgentSpawnPosition("KuriWalkable");
+        spawnPosition = GetAgentSpawnPosition("KuriWalkable", kuriTriangleIndex);
         spawnPosition.y += kuriCollider.height + 0.2f;
-        GameObject kuriObject = Instantiate(kuriPrefab, spawnPosition, Quaternion.identity, enemiesObject.transform.parent.transform);
+        GameObject kuriObject = Instantiate(kuriPrefab, enemiesObject.transform.parent.transform);
+        NavMeshAgent kuriAgent = kuriObject.GetComponent<NavMeshAgent>();
+        kuriAgent.Warp(spawnPosition);
+        kuriAgent.enabled = false;
+        kuriAgent.enabled = true;
         kuriObject.name = ResourcePathManager.kuri;
         kuriObject.GetComponent<ComputePathToBoss>().boss = bossObject;
         print("Kuri Location is -> " + kuriObject.transform.position);
 
+        // Stop Game Loading Sound first
+        globalAudioSource.Stop();
 
         // Reset showLoading to false
         showLoading = false;
 
-        // Bake floor meshes again
+        /*// Bake floor meshes again
         foreach (BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts)
-            floorNavMeshBakeScript.surface.BuildNavMesh();
+            floorNavMeshBakeScript.surface.BuildNavMesh();*/
 
         // Set updateLinks to true to allow NavMeshLinks to be updated.
         // We want links to be updated to user settings
@@ -316,13 +327,14 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     }
 
     // Get the first point on the NavMesh having area type as areaName
-    private Vector3 GetAgentSpawnPosition(string areaName)
+    private Vector3 GetAgentSpawnPosition(string areaName, int index)
     {
         // Obtain all the info about the triangles in the Global Common NavMesh
         NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
 
         // Find the first point on the area named areaName
         int areaIndex = NavMesh.GetAreaFromName(areaName);
+        int count = 0;
         for (int i = 0; i < triangulation.indices.Length; i += 3)
         {
             var triangleIndex = i / 3;
@@ -330,7 +342,12 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             Vector3 p1 = triangulation.vertices[i1];
             int currAreaIndex = triangulation.areas[triangleIndex];
             if (currAreaIndex == areaIndex)
-                return p1;
+            {
+                count++;
+                if (count == index)
+                    return p1;
+            }
+                
         }
 
         // This statement is never reached
@@ -391,4 +408,12 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         GL.PopMatrix();
     }
 
+    public void PlayGameLoadSound()
+    {
+        globalAudioSource.Stop();
+        globalAudioSource.loop = true;
+        globalAudioSource.clip = gameLoadSound;
+        globalAudioSource.volume = volume;
+        globalAudioSource.Play();
+    }
 }

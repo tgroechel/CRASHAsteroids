@@ -380,7 +380,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -415,7 +415,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1820,7 +1820,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 4.7
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &9216921037371440736
 MonoBehaviour:
@@ -1834,13 +1834,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
+  m_MovingTurnSpeed: 180
   m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
+  m_JumpPower: 1
+  m_GravityMultiplier: 1
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 2
+  m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.1
 --- !u!114 &9216921037371440731
 MonoBehaviour:
@@ -1872,11 +1872,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2b014537d53842946759b3f673311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noOfFrames: 1
+  noOfFrames: 10
+  noOfFramesForMove: 10
   followPlayer: 1
   mouseClickDestination: 0
-  inShootingDistance: 1
-  shootingDistance: 1
+  inShootingDistance: 0
+  shootingDistance: 2.5
+  errorMargin: 0.5
+  playerSphereRadius: 1
 --- !u!114 &2081062803657845122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,9 +1907,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964c46ccf4cf4724e973cae3a2574a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkClips: []
+  walkClips:
+  - {fileID: 8300000, guid: 06a5d8409b87bfe46a672ef36e09ce38, type: 3}
+  - {fileID: 8300000, guid: d0d986b55388b0f4eaa50776b80f8928, type: 3}
+  - {fileID: 8300000, guid: 25421346a10370e4fac2bebf889d125f, type: 3}
   rollClips: []
-  legSource: {fileID: 0}
+  deactivationClip: {fileID: 8300000, guid: 24380ae696e42724c93a46fbf53c6e2e, type: 3}
+  activationClip: {fileID: 0}
+  legSource: {fileID: 4699666083266784935}
+  volume: 0.5
 --- !u!114 &1456421972995764374
 MonoBehaviour:
   m_ObjectHideFlags: 0
