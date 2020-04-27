@@ -96,10 +96,15 @@ namespace Sid {
                 }
 
             // The object moves due to its animation to positions determined by the navmesh agent
-            if (agent.remainingDistance > agent.stoppingDistance)
+            if (agent.remainingDistance > agent.stoppingDistance && animator.GetBool("Activate"))
+            {
                 character.Move(agent.desiredVelocity, false, false);
+            }    
             else
+            {
                 character.Move(Vector3.zero, false, false);
+            }
+                
 
             // If enemy is within a particular distance from the player (camera), set this to true
             if (Vector3.Distance(agent.transform.position, Camera.main.transform.position) < shootingDistance)

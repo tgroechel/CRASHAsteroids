@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
-
+using Sid;
 public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 {
     public NavMeshSurface floorNavMesh;
@@ -15,6 +15,9 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     public AudioSource globalAudioSource;
     public AudioClip gameLoadSound;
     public float volume;
+    public GameObject spawnEffect;
+    public AudioClip spawnSound;
+    public AudioSource spawnSource;
     private float doneCount;
     private bool pastEnableWallFloorLinks, pastEnableWallCeilingLinks;
     private static GameObject navMeshPrefab, bossPrefab, kuriPrefab;
@@ -261,8 +264,21 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         // Wait for a few seconds before instantiating Kuri and Boss objects
         yield return new WaitForSeconds(delayBeforeActivation);
 
-        // Instantiate Boss object
+        // Get spawnPosition for the boss
         Vector3 spawnPosition = GetAgentSpawnPosition("BossWalkable", bossTriangleIndex);
+
+        // Show particle effects at spawn position and play spawn sound
+        spawnEffect.transform.position = spawnPosition;
+        spawnEffect.SetActive(true);
+        spawnSource.Stop();
+        spawnSource.loop = true;
+        spawnSource.clip = spawnSound;
+        spawnSource.volume = volume;
+        spawnSource.Play();
+
+        yield return new WaitForSeconds(5.0f);
+
+        // Instantiate Boss object
         GameObject bossObject = Instantiate(bossPrefab, enemiesObject.transform);
         NavMeshAgent bossAgent = bossObject.GetComponent<NavMeshAgent>();
         bossAgent.Warp(spawnPosition);
@@ -270,6 +286,11 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         bossAgent.enabled = true;
         bossObject.name = ResourcePathManager.boss;
         print("Boss Location is -> " + bossObject.transform.position);
+
+        // Stop spawn particle effects
+        spawnSource.Stop();
+        spawnSource.loop = false;
+        spawnEffect.SetActive(false);
 
         // Instantiate Kuri object and initialize some of her attributes
         spawnPosition = GetAgentSpawnPosition("KuriWalkable", kuriTriangleIndex);
@@ -282,6 +303,9 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         kuriObject.name = ResourcePathManager.kuri;
         kuriObject.GetComponent<ComputePathToBoss>().boss = bossObject;
         print("Kuri Location is -> " + kuriObject.transform.position);
+
+        // Set Kuri for Boss
+        bossObject.GetComponent<HealthManager>().kuri = kuriObject;
 
         // Stop Game Loading Sound first
         globalAudioSource.Stop();

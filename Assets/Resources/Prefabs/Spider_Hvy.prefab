@@ -416,6 +416,7 @@ MonoBehaviour:
   resurrectedHealthPercentage: 0
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 0}
+  kuri: {fileID: 0}
 --- !u!1 &1251594877059208492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7591637621138402551}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.16, y: -0.48030245, z: -3.611726}
+  m_LocalPosition: {x: -2.06, y: -0.3803025, z: -3.511726}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 7591637621138632917}
@@ -4195,7 +4196,7 @@ NavMeshAgent:
   m_AgentTypeID: -902729914
   m_Radius: 3.62
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 120
   avoidancePriority: 1
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -4241,6 +4242,7 @@ MonoBehaviour:
   resurrectedHealthPercentage: 50
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 1136843712830488006}
+  kuri: {fileID: 4909383228354314896, guid: 155cf88c89f730a40a5083b23d93635c, type: 3}
 --- !u!114 &1031601165268304696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4271,6 +4273,9 @@ MonoBehaviour:
   alarmSound: {fileID: 8300000, guid: 20bba8e16dbee5e438bccc78cfd9d65f, type: 3}
   legSource: {fileID: 9108869596203876537}
   volume: 10
+  waitForSeconds: 0
+  isBoss: 1
+  kuriDestinationOffset: -2
 --- !u!114 &1136843712830488006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4365,7 +4370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoSpawnTime: 10
   autoNumberOfMinions: 2
-  forwardOffset: 0.5
 --- !u!1 &7591637621138402553
 GameObject:
   m_ObjectHideFlags: 0

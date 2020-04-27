@@ -6,7 +6,7 @@ public class MinionSpawner : MonoBehaviour
 {
     public float autoSpawnTime;
     public float autoNumberOfMinions;
-    public float forwardOffset;
+    public static float forwardOffset;
     private List<GameObject> minionsAlive;
     private GameObject minionPrefab;
     private bool coroutineRunning;

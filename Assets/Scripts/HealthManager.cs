@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BehaviorDesigner.Runtime;
+using UnityEngine.AI;
 
 namespace Sid {
     public class HealthManager : MonoBehaviour {
@@ -21,10 +22,14 @@ namespace Sid {
         public float resurrectedHealthPercentage;
         public float phase2HealthPercentage;
         private Animator animator;
+        private GameObject locationEffectsKuri;
+        private NavMeshAgent agent;
+        private bool kuriDestinationCalculated;
 
         // Slider for health bar
         Slider slider;
         public BehaviorTree behaviorTree;
+        public GameObject kuri;
 
         // Store original color of current object and its children (parts)
         void Awake() {
@@ -50,6 +55,39 @@ namespace Sid {
             childOriginalColors = new List<Color>();
             foreach (Renderer childRend in childRenderers) {
                 childOriginalColors.Add(childRend.material.color);
+            }
+
+            // Get Location Effects for Kuri
+            locationEffectsKuri = GameObject.Find("LocationEffects").transform.GetChild(1).gameObject;
+            kuriDestinationCalculated = false;
+        }
+
+        private void Update()
+        {
+            // Logic to check if kuri has reached destination to kill the boss
+            if (isBoss && !animator.GetBool("Activate"))
+            {
+                // Wait till kuriDestination is calculated
+                StartCoroutine(WaitForKuriDestination());
+
+                if(kuriDestinationCalculated)
+                {
+                    print("Kuri's distance from boss kill is ->" + Vector3.Distance(kuri.transform.position, EnemySoundsScript.kuriDestination));
+                    if (Vector3.Distance(kuri.transform.position, EnemySoundsScript.kuriDestination) < 1.1f)
+                    {
+                        // Stop detination effects for Kuri
+                        locationEffectsKuri.SetActive(false);
+                        kuriDestinationCalculated = false;
+
+                        // Play Game Win music if player just killed the boss
+                        if (isBoss)
+                            kuri.GetComponent<AudioManager>().Play("GameWin");
+
+                        // Set isDead bool to true so that 'Death' animation is played
+                        // Note: Make sure death animation is played last since after it completes, the boss object is destroyed
+                        animator.SetBool("isDead", true);
+                    }
+                }
             }
         }
 
@@ -78,8 +116,6 @@ namespace Sid {
                         CallResurrectionTime();
                     }
                 }
-                
-                
             }
             else {
                 if (currentHealth > MAXHEALTH / 2 && currentHealth - damage < MAXHEALTH / 2)
@@ -110,7 +146,16 @@ namespace Sid {
         /* Sets the Activate bool to true after resurrection time is complete */
         public IEnumerator ResurrectionTime()
         {
-            yield return new WaitForSeconds(resurrectionTime);
+            //yield return new WaitForSeconds(resurrectionTime);
+            float timeLeft = resurrectionTime;
+            while(timeLeft >=0)
+            {
+                timeLeft -= Time.deltaTime;
+                string message = "Time Left Until Boss Reactivates:\n" + timeLeft;
+                AlignAmmo.textComponent.SetText(message);
+                yield return null;
+            }
+            AlignAmmo.textComponent.SetText("");
 
             // Refill health of boss
             currentHealth = MAXHEALTH * resurrectedHealthPercentage / 100;
@@ -132,7 +177,7 @@ namespace Sid {
         }
 
         // If Kuri collides with the boss in deactivated state, kill the boss
-        public void OnTriggerEnter(Collider collider)
+        /*public void OnTriggerEnter(Collider collider)
         {
             if(!animator.GetBool("Activate") && collider.gameObject.name == "Kuri")
             {
@@ -143,13 +188,22 @@ namespace Sid {
                 if (isBoss)
                     collider.gameObject.GetComponent<AudioManager>().Play("GameWin");
             }
-        }
+        }*/
 
         // Destroy the object
         // Note: This function is called after the Death animation finishes playing
         void DestroyEnemy()
         {
             Destroy(gameObject);
+        }
+
+        public IEnumerator WaitForKuriDestination()
+        {
+            while (!EnemySoundsScript.kuriDestinationCalculated)
+            {
+                yield return null;
+            }
+            kuriDestinationCalculated = true;
         }
     }
 }

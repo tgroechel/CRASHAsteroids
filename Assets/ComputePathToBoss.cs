@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Sid;
 
 public class ComputePathToBoss : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ComputePathToBoss : MonoBehaviour
     private NavMeshPath path;
     private Animator animator;
     private CapsuleCollider capsuleCollider;
+    private GameObject locationEffectsKuri;
+    private bool kuriDestinationCalculated;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,9 @@ public class ComputePathToBoss : MonoBehaviour
 
         // Get Collider Component
         capsuleCollider = GetComponent<CapsuleCollider>();
+
+        // Get location effects for Kuri
+        locationEffectsKuri = GameObject.Find("LocationEffects").transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -45,11 +51,18 @@ public class ComputePathToBoss : MonoBehaviour
             // and is visible in the scene (Enemies object is active and Boss is present and active)
             if ((boss != null ? boss.activeSelf : false) && !animator.GetBool("Activate"))
             {
-                // Calculate path to boss
-                agent.CalculatePath(boss.transform.position, path = new NavMeshPath());
+                // Wait till kuriDestination is calculated
+                kuriDestinationCalculated = false;
+                StartCoroutine(WaitForKuriDestination());
 
-                // Set pathDrawn to false
-                pathDrawn = false;
+                if(kuriDestinationCalculated)
+                {
+                    // Calculate path to boss
+                    agent.CalculatePath(EnemySoundsScript.kuriDestination, path = new NavMeshPath());
+
+                    // Set pathDrawn to false
+                    pathDrawn = false;
+                }
             }
             else 
             {
@@ -67,12 +80,21 @@ public class ComputePathToBoss : MonoBehaviour
         lineRenderer.positionCount = path.corners.Length; //set the array of positions to the amount of corners
 
         Vector3 startPoint = agent.transform.position;
-        startPoint.y -= capsuleCollider.height;
+        startPoint.y -= capsuleCollider.height - 0.1f;
         lineRenderer.SetPosition(0, startPoint); //set the first point to the current position of the GameObject
 
         for (var i = 1; i < path.corners.Length; i++)
         {
             lineRenderer.SetPosition(i, path.corners[i]); //go through each corner and set that to the line renderer's position
         }
+    }
+
+    public IEnumerator WaitForKuriDestination()
+    {
+        while (!EnemySoundsScript.kuriDestinationCalculated)
+        {
+            yield return null;
+        }
+        kuriDestinationCalculated = true;
     }
 }

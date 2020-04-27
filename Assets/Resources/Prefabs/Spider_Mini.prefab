@@ -1811,12 +1811,12 @@ NavMeshAgent:
   m_AgentTypeID: -1923039037
   m_Radius: 3.08
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 120
   avoidancePriority: 3
   m_AngularSpeed: 120
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 4.7
   m_BaseOffset: 0
@@ -1860,6 +1860,7 @@ MonoBehaviour:
   resurrectedHealthPercentage: 0
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 0}
+  kuri: {fileID: 4909383228354314896, guid: 155cf88c89f730a40a5083b23d93635c, type: 3}
 --- !u!114 &9216921037371440730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1914,8 +1915,12 @@ MonoBehaviour:
   rollClips: []
   deactivationClip: {fileID: 8300000, guid: 24380ae696e42724c93a46fbf53c6e2e, type: 3}
   activationClip: {fileID: 0}
+  alarmSound: {fileID: 0}
   legSource: {fileID: 4699666083266784935}
   volume: 0.5
+  waitForSeconds: 0
+  locationEffectsKuri: {fileID: 888943189969583658, guid: 872aea34da4bb4a49bf3d0a6ebca6d63,
+    type: 3}
 --- !u!114 &1456421972995764374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,6 +2109,7 @@ MonoBehaviour:
   resurrectedHealthPercentage: 0
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 0}
+  kuri: {fileID: 0}
 --- !u!1 &8209916733692121007
 GameObject:
   m_ObjectHideFlags: 0
