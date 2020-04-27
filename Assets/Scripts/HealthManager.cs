@@ -24,7 +24,7 @@ namespace Sid {
         private Animator animator;
         private GameObject locationEffectsKuri;
         private NavMeshAgent agent;
-        private bool kuriDestinationCalculated;
+        private bool kuriDestinationCalculated, gameWinPlayed;
 
         // Slider for health bar
         Slider slider;
@@ -60,6 +60,9 @@ namespace Sid {
             // Get Location Effects for Kuri
             locationEffectsKuri = GameObject.Find("LocationEffects").transform.GetChild(1).gameObject;
             kuriDestinationCalculated = false;
+
+            // Set gameWinPlayed to false
+            gameWinPlayed = false;
         }
 
         private void Update()
@@ -80,8 +83,11 @@ namespace Sid {
                         kuriDestinationCalculated = false;
 
                         // Play Game Win music if player just killed the boss
-                        if (isBoss)
+                        if (isBoss && !gameWinPlayed)
+                        {
+                            gameWinPlayed = true;
                             kuri.GetComponent<AudioManager>().Play("GameWin");
+                        }    
 
                         // Set isDead bool to true so that 'Death' animation is played
                         // Note: Make sure death animation is played last since after it completes, the boss object is destroyed
@@ -150,16 +156,28 @@ namespace Sid {
             float timeLeft = resurrectionTime;
             while(timeLeft >=0)
             {
-                timeLeft -= Time.deltaTime;
-                string message = "Time Left Until Boss Reactivates:\n" + timeLeft;
-                AlignAmmo.textComponent.SetText(message);
-                yield return null;
+                if(locationEffectsKuri.activeSelf)
+                {
+                    timeLeft -= Time.deltaTime;
+                    string message = "Time Left Until Boss Reactivates:\n" + timeLeft;
+                    AlignAmmo.textComponent.SetText(message);
+                    yield return null;
+                }
+                else
+                {
+                    AlignAmmo.textComponent.SetText("You won the game!");
+                    yield return null;
+                }
+                
             }
             AlignAmmo.textComponent.SetText("");
 
             // Refill health of boss
             currentHealth = MAXHEALTH * resurrectedHealthPercentage / 100;
             slider.value = currentHealth / MAXHEALTH;
+
+            // Remove "Time Left" message
+            AlignAmmo.textComponent.SetText("");
 
             // Reactivate the boss
             animator.SetBool("Activate", true);

@@ -1909,9 +1909,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkClips:
-  - {fileID: 8300000, guid: 06a5d8409b87bfe46a672ef36e09ce38, type: 3}
-  - {fileID: 8300000, guid: d0d986b55388b0f4eaa50776b80f8928, type: 3}
-  - {fileID: 8300000, guid: 25421346a10370e4fac2bebf889d125f, type: 3}
+  - {fileID: 8300000, guid: e8292ed6876c51747b1f57b338ec43a4, type: 3}
+  - {fileID: 8300000, guid: 0381f230d05e7f74e92ce3fd5cf2d502, type: 3}
+  - {fileID: 8300000, guid: ced2ca586279b3a448ba37e80a6d40a4, type: 3}
+  - {fileID: 8300000, guid: e5d001daf2baab442b8c251e68db2962, type: 3}
+  - {fileID: 8300000, guid: 563428eceaf0a1b488087f363f7382bf, type: 3}
+  - {fileID: 8300000, guid: 3bca5626e98ccf94698aa1874ddea041, type: 3}
+  - {fileID: 8300000, guid: 321134617e696684e9997a45d9fd3add, type: 3}
   rollClips: []
   deactivationClip: {fileID: 8300000, guid: 24380ae696e42724c93a46fbf53c6e2e, type: 3}
   activationClip: {fileID: 0}
@@ -1919,8 +1923,8 @@ MonoBehaviour:
   legSource: {fileID: 4699666083266784935}
   volume: 0.5
   waitForSeconds: 0
-  locationEffectsKuri: {fileID: 888943189969583658, guid: 872aea34da4bb4a49bf3d0a6ebca6d63,
-    type: 3}
+  isBoss: 0
+  kuriDestinationOffset: 0
 --- !u!114 &1456421972995764374
 MonoBehaviour:
   m_ObjectHideFlags: 0

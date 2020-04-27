@@ -7,6 +7,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public AudioClip gameWinClip;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -18,6 +20,8 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Start()
@@ -32,6 +36,6 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("Sound " + name + " not found!");
         }
-        s.source.Play();
+        audioSource.PlayOneShot(gameWinClip, s.source.volume);
     }
 }

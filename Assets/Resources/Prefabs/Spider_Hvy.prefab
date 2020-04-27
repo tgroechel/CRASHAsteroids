@@ -3991,7 +3991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7591637621138402551}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.06, y: -0.3803025, z: -3.511726}
+  m_LocalPosition: {x: -2.16, y: -0.48030245, z: -3.611726}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 7591637621138632917}
@@ -4159,8 +4159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noOfFrames: 1
   noOfFramesForMove: 0
-  followPlayer: 0
-  mouseClickDestination: 1
+  followPlayer: 1
+  mouseClickDestination: 0
   inShootingDistance: 0
   shootingDistance: 0
   errorMargin: 0
@@ -4199,13 +4199,13 @@ NavMeshAgent:
   m_Acceleration: 120
   avoidancePriority: 1
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 6.09
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 16
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6000537302611124321
 MonoBehaviour:
@@ -4242,7 +4242,7 @@ MonoBehaviour:
   resurrectedHealthPercentage: 50
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 1136843712830488006}
-  kuri: {fileID: 4909383228354314896, guid: 155cf88c89f730a40a5083b23d93635c, type: 3}
+  kuri: {fileID: 0}
 --- !u!114 &1031601165268304696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4256,21 +4256,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkClips:
-  - {fileID: 8300000, guid: 8104283af7aea2f48bc1c1425016ddfc, type: 3}
-  rollClips: []
-  deactivationClip: {fileID: 0}
-  activationClip: {fileID: 0}
-  alarmSound: {fileID: 0}
+  - {fileID: 8300000, guid: 666639826bfc2f64f90333ca13996035, type: 3}
+  - {fileID: 8300000, guid: 4e89720b15033fc4dbf9e7da2965027e, type: 3}
+  - {fileID: 8300000, guid: 7ec8005015cd12c4995e3044035a0827, type: 3}
+  - {fileID: 8300000, guid: 33102fad01937e34ea565e13a8fac15e, type: 3}
+  - {fileID: 8300000, guid: b8c77480c471d7449b873a19d6cca7ff, type: 3}
+  - {fileID: 8300000, guid: f5287b1b050a42b41b3795600b62d0fd, type: 3}
+  - {fileID: 8300000, guid: 91656a7c5c6728844b05c4c62a49744d, type: 3}
+  - {fileID: 8300000, guid: 07f161af704eace44b474f8cb6dfe98d, type: 3}
+  - {fileID: 8300000, guid: 63530e282cbcdcc46a1af4f2b83e07d2, type: 3}
+  - {fileID: 8300000, guid: 2341dcda4e3d07d46badaaa80153fef2, type: 3}
+  rollClips:
+  - {fileID: 8300000, guid: 7a1db5590767cff4da35d2888c6c610d, type: 3}
+  deactivationClip: {fileID: 8300000, guid: 07b44be8686ddd6438ca942a51e0e2b7, type: 3}
+  activationClip: {fileID: 8300000, guid: c60b99684df42fe48afd8c2c5dc11143, type: 3}
+  alarmSound: {fileID: 8300000, guid: 20bba8e16dbee5e438bccc78cfd9d65f, type: 3}
   legSource: {fileID: 9108869596203876537}
-<<<<<<< HEAD
   volume: 10
-  waitForSeconds: 0
+  waitForSeconds: 2
   isBoss: 1
   kuriDestinationOffset: -2
-=======
-  volume: 0
-  waitForSeconds: 0
->>>>>>> c31aa0310c62852b4cb537e30e4faa66ce24cb81
 --- !u!114 &1136843712830488006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4365,6 +4370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoSpawnTime: 10
   autoNumberOfMinions: 2
+  autoSpawnMinions: 1
 --- !u!1 &7591637621138402553
 GameObject:
   m_ObjectHideFlags: 0

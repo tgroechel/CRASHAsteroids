@@ -7,6 +7,7 @@ public class MinionSpawner : MonoBehaviour
     public float autoSpawnTime;
     public float autoNumberOfMinions;
     public static float forwardOffset;
+    public bool autoSpawnMinions; 
     private List<GameObject> minionsAlive;
     private GameObject minionPrefab;
     private bool coroutineRunning;
@@ -21,7 +22,7 @@ public class MinionSpawner : MonoBehaviour
         // Get Animator component
         animator = GetComponent<Animator>();
 
-        // Initialize coroutineRunning bool to true to prevent autospawn (make this false here for auto spawning minions)
+        // Initialize coroutineRunning bool to false
         coroutineRunning = false;
 
         // Create new minionsAlive list
@@ -36,7 +37,7 @@ public class MinionSpawner : MonoBehaviour
 
         // Create more minions if the number of minions alive is < numberOfMinions
         // and the boss is in activated state
-        if (!coroutineRunning && minionsAlive.Count < autoNumberOfMinions && animator.GetBool("Activate"))
+        if (!coroutineRunning && minionsAlive.Count < autoNumberOfMinions && animator.GetBool("Activate") && autoSpawnMinions)
         {
             coroutineRunning = true;
             StartCoroutine(AutoSpawnMinions());
