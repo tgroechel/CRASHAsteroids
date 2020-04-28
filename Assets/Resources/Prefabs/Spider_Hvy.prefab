@@ -4369,8 +4369,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoSpawnTime: 10
-  autoNumberOfMinions: 2
+  autoNumberOfMinions: 10
+  forwardOffset: 2
+  randomOffsetSphereRadius: 0.5
   autoSpawnMinions: 1
+  minionSpawnSound: {fileID: 8300000, guid: 830ca181f1e12cc4685592142fab1ade, type: 3}
+  volume: 5
 --- !u!1 &7591637621138402553
 GameObject:
   m_ObjectHideFlags: 0

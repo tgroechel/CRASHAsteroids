@@ -6,8 +6,10 @@ public class MinionSpawner : MonoBehaviour
 {
     public float autoSpawnTime;
     public float autoNumberOfMinions;
-    public static float forwardOffset;
-    public bool autoSpawnMinions; 
+    public float forwardOffset, randomOffsetSphereRadius;
+    public bool autoSpawnMinions;
+    public AudioClip minionSpawnSound;
+    public float volume; 
     private List<GameObject> minionsAlive;
     private GameObject minionPrefab;
     private bool coroutineRunning;
@@ -48,6 +50,10 @@ public class MinionSpawner : MonoBehaviour
     {
         for(int i=0;i<autoNumberOfMinions - minionsAlive.Count;i++)
         {
+            // If boss got deactivated, wait till he gets activated
+            while (!animator.GetBool("Activate"))
+                yield return null;
+
             // Spawn a new minion
             GameObject newMinion = SpawnMinion();
 
@@ -68,7 +74,19 @@ public class MinionSpawner : MonoBehaviour
 
         // Position the minion w.r.t. the boss using offset vector determined by camera direction
         // (i.e. minion will be spawned on the side of the boss which is opposite to the camera)
-        newMinion.transform.position = transform.position + (Camera.main.transform.forward.normalized * forwardOffset);
+        Vector3 minionPosition = transform.position + (Camera.main.transform.forward.normalized * forwardOffset);
+        minionPosition.y = transform.position.y;
+
+        // To give some randomness to minion positions (add this to the minionPosition determined above)
+        Vector3 randomOffsetVector = Random.onUnitSphere * randomOffsetSphereRadius;
+        minionPosition = minionPosition + randomOffsetVector;
+        minionPosition.y = transform.position.y;
+
+        // Finally, set the position of the newly spawned minion
+        newMinion.transform.position = minionPosition;
+
+        // Play minion spawn sound
+        AudioSource.PlayClipAtPoint(minionSpawnSound, newMinion.transform.position, volume);
 
         // Return the newly spawned minion
         return newMinion;
