@@ -23632,7 +23632,7 @@ MonoBehaviour:
     type: 3}
   hitPrefab: {fileID: 1774151147760336, guid: bb5df6d5790dfa3488481c701bd00eff, type: 3}
   shotSFX: {fileID: 8300000, guid: e83bed595307f4e4e8248aa5c4e9f10c, type: 3}
-  hitSFX: {fileID: 0}
+  hitSFX: {fileID: 8300000, guid: 9644fdf03c0720640aa9df748a6a8e71, type: 3}
   trails:
   - {fileID: 1616685706365006}
   - {fileID: 1188863494266364}
@@ -23723,8 +23723,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 10
-  objCollider: {fileID: 0}
-  objRigidbody: {fileID: 0}
 --- !u!82 &82732949952903096
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23746,7 +23744,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -23781,7 +23779,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

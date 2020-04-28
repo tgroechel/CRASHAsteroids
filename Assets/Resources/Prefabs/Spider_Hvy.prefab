@@ -4369,7 +4369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoSpawnTime: 10
-  autoNumberOfMinions: 10
+  autoNumberOfMinions: 2
   forwardOffset: 2
   randomOffsetSphereRadius: 0.5
   autoSpawnMinions: 1

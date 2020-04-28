@@ -14432,7 +14432,7 @@ MonoBehaviour:
     type: 3}
   hitPrefab: {fileID: 1805005964355744, guid: 11e1a0df98fe48c4e806bb2d90516c1a, type: 3}
   shotSFX: {fileID: 8300000, guid: ee15d44f52076de429349edc81c43fa1, type: 3}
-  hitSFX: {fileID: 0}
+  hitSFX: {fileID: 8300000, guid: 52f5641ff82d72749833d1ad64d67d51, type: 3}
   trails:
   - {fileID: 1337283046969396}
   - {fileID: 1740494233576914}
@@ -14481,8 +14481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 10
-  objCollider: {fileID: 0}
-  objRigidbody: {fileID: 0}
 --- !u!82 &82977932206488576
 AudioSource:
   m_ObjectHideFlags: 0
