@@ -49,6 +49,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
         private byte[] _latestSerializedScene = null;
         private readonly object _latestSerializedSceneLock = new object();
         private Guid _latestSceneGuid;
+        private bool _keepRetrievingData = true;
 
         /// <summary>
         /// Gets the latest scene from the Scene Understanding runtime when running on device. In the PC case, returns the serialized scene as a byte array.
@@ -80,6 +81,15 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
                 sceneGuidToReturn = _latestSceneGuid;
             }
             return sceneGuidToReturn;
+        }
+
+        /// <summary>
+        /// Gets the guid of the latest scene.
+        /// </summary>
+        /// <returns>Guid of the latest scene.</returns>
+        public void StopRetrievingData()
+        {
+            _keepRetrievingData = false;
         }
 
         /// <summary>
@@ -126,7 +136,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
         /// Retrieves Scene Understanding data continuously from the runtime.
         /// </summary>
         private void RetrieveDataContinuously() {
-            while (true) {
+            while (_keepRetrievingData) {
                 // Always request quads, meshes and the world mesh. SceneUnderstandingDisplayManager will take care of rendering only what the user has asked for.
                 RetrieveData(BoundingSphereRadiusInMeters, true, true, RequestInferredRegions, true, WorldMeshLOD);
             }

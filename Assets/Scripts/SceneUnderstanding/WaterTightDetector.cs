@@ -59,6 +59,7 @@ public class WaterTightDetector : MonoBehaviour{
             {
                 Destroy(spheres[i]);
             }
+            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().StopRetrievingData();
             SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
         }
         
