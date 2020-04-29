@@ -6,7 +6,7 @@ namespace Crash
 {
     public class MiniBossAttacks : MonoBehaviour
     {
-        public enum FirePatterns { Single, Circle, Cross};
+        public enum FirePatterns { Single, Offset, Circle, Cross};
 
         public GameObject gunGO;
 
@@ -98,6 +98,9 @@ namespace Crash
                 case FirePatterns.Single:
                     Pattern0();
                     break;
+                case FirePatterns.Offset:
+                    Pattern1();
+                    break;
                 case FirePatterns.Circle:
                     CircularPattern();
                     break;
@@ -115,6 +118,12 @@ namespace Crash
             gun.Pattern0();
         }
 
+        //Offset shot pattern
+        public void Pattern1()
+        {
+            gun.Pattern1(Random.Range(0, 1000));
+        }
+
         public void CircularPattern()
         {
             gun.CircularPattern();
@@ -123,6 +132,7 @@ namespace Crash
         public void CrossPattern()
         {
             gun.CrossPattern();
+            
         }
     }
 }

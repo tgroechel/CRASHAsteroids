@@ -87,6 +87,7 @@ namespace Sid {
                         {
                             gameWinPlayed = true;
                             kuri.GetComponent<AudioManager>().Play("GameWin");
+                            AlignAmmo.textComponent.SetText("You won the game!");
                         }    
 
                         // Set isDead bool to true so that 'Death' animation is played
@@ -155,20 +156,20 @@ namespace Sid {
             //yield return new WaitForSeconds(resurrectionTime);
             float timeLeft = resurrectionTime;
             while(timeLeft >=0)
-            {
-                if(locationEffectsKuri.activeSelf)
+            {                
+                if (locationEffectsKuri.activeSelf)
                 {
                     timeLeft -= Time.deltaTime;
                     string message = "Time Left Until Boss Reactivates:\n" + timeLeft;
                     AlignAmmo.textComponent.SetText(message);
-                    yield return null;
+                    
                 }
-                else
+                else if(animator.GetBool("isDead"))
                 {
                     AlignAmmo.textComponent.SetText("You won the game!");
-                    yield return null;
                 }
-                
+                yield return null;
+
             }
             AlignAmmo.textComponent.SetText("");
 
