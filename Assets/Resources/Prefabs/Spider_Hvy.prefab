@@ -4238,7 +4238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAXHEALTH: 100
   isBoss: 1
-  resurrectionTime: 10
+  resurrectionTime: 30
   resurrectedHealthPercentage: 50
   phase2HealthPercentage: 0
   behaviorTree: {fileID: 1136843712830488006}
@@ -4275,7 +4275,7 @@ MonoBehaviour:
   volume: 10
   waitForSeconds: 2
   isBoss: 1
-  kuriDestinationOffset: -2
+  kuriDestinationOffset: -1
 --- !u!114 &1136843712830488006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,7 +4368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5e1be3d235bc744b76289f5f83cf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoSpawnTime: 10
+  autoSpawnTime: 20
   autoNumberOfMinions: 2
   forwardOffset: 2
   randomOffsetSphereRadius: 0.5
