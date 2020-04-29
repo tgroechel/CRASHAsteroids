@@ -11,6 +11,11 @@ namespace Crash {
 
         }
 
+        public void PatKuri() {
+            Debug.Log("pat");
+            KuriManager.instance.AlertHeadPat();
+        }
+
         public void OnTouchStarted(HandTrackingInputEventData eventData) {
             Debug.Log("pat");
             // KuriManager.instance.AlertHeadPat();

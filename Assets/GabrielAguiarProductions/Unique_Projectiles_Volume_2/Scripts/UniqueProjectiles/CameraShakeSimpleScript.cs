@@ -25,10 +25,10 @@ public class CameraShakeSimpleScript : MonoBehaviour {
     }
 
     public void ShakeCamera() {
-        if (anim != null)
-            anim.Play(anim.clip.name);
-        else
-            ShakeCaller(0.25f, 0.1f);
+        /*   if (anim != null)
+               anim.Play(anim.clip.name);
+           else
+               ShakeCaller(0.25f, 0.1f);*/
     }
 
     //other shake option

@@ -3546,6 +3546,10 @@ PrefabInstance:
       propertyPath: spawnSound
       value: 
       objectReference: {fileID: 8300000, guid: 59e07208548f1404da8c1c32632e56b7, type: 3}
+    - target: {fileID: 1734553116, guid: e5ceb5438b55ccc408f88a414b7946a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5413088185640505357, guid: e5ceb5438b55ccc408f88a414b7946a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4173,10 +4177,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8670652455402249941, guid: 167096a1dbbb3c4488302ea37564ac46,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1078416636, guid: 167096a1dbbb3c4488302ea37564ac46, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8670652455633525702, guid: 167096a1dbbb3c4488302ea37564ac46,
         type: 3}
@@ -4237,11 +4240,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tomshandmenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 8670652455633525722, guid: 167096a1dbbb3c4488302ea37564ac46,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 167096a1dbbb3c4488302ea37564ac46, type: 3}
