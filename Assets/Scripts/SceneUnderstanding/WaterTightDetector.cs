@@ -27,8 +27,7 @@ public class WaterTightDetector : MonoBehaviour {
     private DateTime lastLaunch;
     private static String detectionText = "Scanning environment ... ";
     private static String generatingText = "Scanning complete, Generating NavMesh";
-
-
+    public bool one, two, three;
     // Start is called before the first frame update
     void Start() {
         navObj = root.GetComponent<CreateNavMeshesAndNavMeshLinks>();
@@ -39,6 +38,11 @@ public class WaterTightDetector : MonoBehaviour {
         LaunchSpheres();
     }
 
+
+    public void SetOne() {
+        one = true;
+    }
+
     void Update() {
         if (detectionDone) {
             progressBar.value = (float)navObj.percentageCompleted / 100;
@@ -46,18 +50,23 @@ public class WaterTightDetector : MonoBehaviour {
                 loadCanvas.gameObject.SetActive(false);
                 hudCanvas.gameObject.SetActive(true);
             }
+        }
+
+        if (detectionDone) {
             return;
         }
 
-        checkSpheres(GetSceneObjectsCenter());
+        if (!isWaterTight) {
+            checkSpheres(GetSceneObjectsCenter());
+        }
         if (isWaterTight) {
+            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().DisableContinualRetrieval();
             detectionDone = true;
             progressText.text = generatingText;
             progressBar.value = progressBar.maxValue;
             for (int i = 0; i < spheres.Count; i++) {
                 Destroy(spheres[i]);
             }
-            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().DisableContinualRetrieval();
         }
 
     }

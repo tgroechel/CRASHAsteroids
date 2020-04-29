@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radialMenuButton: {fileID: 0}
   goc: {fileID: 0}
-  offsetX: 0
+  offsetX: 0.2
   offsetY: 0.04
   offsetZ: -0.03
   xRot: -90

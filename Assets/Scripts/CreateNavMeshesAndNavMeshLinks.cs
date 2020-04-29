@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Microsoft.MixedReality.SceneUnderstanding.Samples.Unity;
+using Sid;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
-using Sid;
-public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
-{
+public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour {
     public NavMeshSurface floorNavMesh;
     public GameObject navMeshesObject, enemiesObject;
     public WaterTightDetector waterTightDetector;
@@ -27,8 +27,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     private List<BakeNavMeshRuntime> floorNavMeshBakeScripts;
     private CapsuleCollider kuriCollider;
 
-    void Awake()
-    {
+    void Awake() {
         // Loading NavMesh prefab
         navMeshPrefab = Resources.Load<GameObject>(ResourcePathManager.prefabsFolder + ResourcePathManager.navMesh) as GameObject;
 
@@ -53,7 +52,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // This is to make sure that only one updateLinks call is running at a time
         // to prevent erroneous behaviour
-        updateLinksRunning = false; 
+        updateLinksRunning = false;
 
         // Creating lists to store wall-floor and wall-ceiling links
         wallFloorLinks = new List<NavMeshLink>();
@@ -65,8 +64,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // Creating lost to store floor navmesh objects' BakeNavMeshRuntime components
         floorNavMeshBakeScripts = new List<BakeNavMeshRuntime>();
-        for (int i = 0; i < navMeshesObject.transform.childCount; i++)
-        {
+        for (int i = 0; i < navMeshesObject.transform.childCount; i++) {
             floorNavMeshBakeScripts.Add(navMeshesObject.transform.GetChild(i).GetComponent<BakeNavMeshRuntime>());
         }
 
@@ -77,12 +75,10 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         PlayGameLoadSound();
     }
 
-    private void Update()
-    {
+    private void Update() {
         // If Scene Understanding is complete, build navmeshes and navmeshlinks
         // Do this only once for the entire duration of the game
-        if(waterTightDetector.isWaterTight && !navMeshBuildDone)
-        {
+        if (waterTightDetector.isWaterTight && !navMeshBuildDone) {
             // Set navMeshBuildDone to true
             navMeshBuildDone = true;
 
@@ -92,17 +88,14 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // Update State of NavMeshLinks according to the checkboxes chosen
         // Note: Update will happen only when past bool is not equal to current bool
-        if(updateLinks)
-        {
-            if(pastEnableWallFloorLinks != enableWallFloorLinks && !updateLinksRunning)
-            {
+        if (updateLinks) {
+            if (pastEnableWallFloorLinks != enableWallFloorLinks && !updateLinksRunning) {
                 updateLinksRunning = true;
                 pastEnableWallFloorLinks = enableWallFloorLinks;
                 changeStateOfLinks(wallFloorLinks, enableWallFloorLinks);
             }
-            
-            if(pastEnableWallCeilingLinks != enableWallCeilingLinks && !updateLinksRunning)
-            {
+
+            if (pastEnableWallCeilingLinks != enableWallCeilingLinks && !updateLinksRunning) {
                 updateLinksRunning = true;
                 pastEnableWallCeilingLinks = enableWallCeilingLinks;
                 changeStateOfLinks(wallCeilingLinks, enableWallCeilingLinks);
@@ -112,8 +105,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     }
 
     // Attach NavMesh prefab to each wall
-    private IEnumerator AttachNavMeshes()
-    {
+    private IEnumerator AttachNavMeshes() {
         // Angle by which the navMesh prefab should be rotated locally
         float angleX = -90;
         float angleY = 0;
@@ -131,15 +123,15 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             // Add NavMesh only if child has name 'Wall'
             //if(child.name == "Wall")
             //{
-                // Instantiate new NavMesh object from prefab and make the child the parent of navMesh
-                GameObject navMesh = Instantiate(navMeshPrefab, child.transform);
+            // Instantiate new NavMesh object from prefab and make the child the parent of navMesh
+            GameObject navMesh = Instantiate(navMeshPrefab, child.transform);
 
-                // Make the navMesh's location and rotation the same as that of the parent
-                navMesh.transform.localPosition = Vector3.zero;
-                navMesh.transform.localRotation = Quaternion.identity;
+            // Make the navMesh's location and rotation the same as that of the parent
+            navMesh.transform.localPosition = Vector3.zero;
+            navMesh.transform.localRotation = Quaternion.identity;
 
-                // Rotating the navMesh so that its y-axis protrudes out of the wall (its parent)
-                navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
+            // Rotating the navMesh so that its y-axis protrudes out of the wall (its parent)
+            navMesh.transform.Rotate(angleX, angleY, angleZ, Space.Self);
             //}
 
             // Increase done count and re-evaulate percentageCompleted
@@ -228,8 +220,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         }
     }
 
-    private IEnumerator BuildNavMeshesAndNavMeshLinks()
-    {
+    private IEnumerator BuildNavMeshesAndNavMeshLinks() {
         // Set showLoading to true
         showLoading = true;
 
@@ -250,16 +241,16 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
 
         // While all builds are complete
         int count = 0;
-        while(count != floorNavMeshBakeScripts.Count)
-        {
+        while (count != floorNavMeshBakeScripts.Count) {
             count = 0;
-            foreach(BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts)
-            {
+            foreach (BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts) {
                 if (!floorNavMeshBakeScript.surface.IsInvoking("BuildNavMesh"))
                     count++;
             }
             yield return null;
         }
+
+        FindObjectOfType<SceneUnderstandingDataProvider>().DisableContinualRetrieval(true);
 
         // Wait for a few seconds before instantiating Kuri and Boss objects
         yield return new WaitForSeconds(delayBeforeActivation);
@@ -323,8 +314,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
         updateLinks = true;
     }
 
-    void changeStateOfLinks(List<NavMeshLink> navMeshLinks, bool setState)
-    {
+    void changeStateOfLinks(List<NavMeshLink> navMeshLinks, bool setState) {
         // Change state of each link
         navMeshLinks.ForEach(link => {
             if (link.enabled != setState)
@@ -336,8 +326,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     }
 
     // Get Random Point on a Navmesh surface (For future reference)
-    public static bool GetRandomPoint(Vector3 center, float maxDistance, int areaMask, out Vector3 position)
-    {
+    public static bool GetRandomPoint(Vector3 center, float maxDistance, int areaMask, out Vector3 position) {
         // Get Random Point inside Sphere which position is center, radius is maxDistance
         Vector3 randomPos = Random.insideUnitSphere * maxDistance + center;
 
@@ -351,27 +340,24 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     }
 
     // Get the first point on the NavMesh having area type as areaName
-    private Vector3 GetAgentSpawnPosition(string areaName, int index)
-    {
+    private Vector3 GetAgentSpawnPosition(string areaName, int index) {
         // Obtain all the info about the triangles in the Global Common NavMesh
         NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
 
         // Find the first point on the area named areaName
         int areaIndex = NavMesh.GetAreaFromName(areaName);
         int count = 0;
-        for (int i = 0; i < triangulation.indices.Length; i += 3)
-        {
+        for (int i = 0; i < triangulation.indices.Length; i += 3) {
             var triangleIndex = i / 3;
             var i1 = triangulation.indices[i];
             Vector3 p1 = triangulation.vertices[i1];
             int currAreaIndex = triangulation.areas[triangleIndex];
-            if (currAreaIndex == areaIndex)
-            {
+            if (currAreaIndex == areaIndex) {
                 count++;
                 if (count == index)
                     return p1;
             }
-                
+
         }
 
         // This statement is never reached
@@ -380,27 +366,24 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
     }
 
     // As a future reference if we want to show navMeshes in the "Game" itself
-    void showNavMeshes()
-    {
+    void showNavMeshes() {
         // Obtain all the info about the triangles in the Global Common NavMesh
         NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
 
         Material material = null;
 
-        if (material == null)
-        {
+        if (material == null) {
             return;
         }
         GL.PushMatrix();
 
         material.SetPass(0);
         GL.Begin(GL.TRIANGLES);
-        
-        for (int i = 0; i < triangulation.indices.Length; i += 3)
-        {
+
+        for (int i = 0; i < triangulation.indices.Length; i += 3) {
             var triangleIndex = i / 3;
             var areaIndex = triangulation.areas[triangleIndex];
-            
+
             var i1 = triangulation.indices[i];
             var i2 = triangulation.indices[i + 1];
             var i3 = triangulation.indices[i + 2];
@@ -412,8 +395,7 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             Color walkableColor = Color.green;
             Color nonWalkableColor = Color.blue;
             Color unknownColor = Color.yellow;
-            switch (areaIndex)
-            {
+            switch (areaIndex) {
                 case 0:
                     color = walkableColor; break;
                 case 1:
@@ -425,15 +407,14 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour
             GL.Vertex(p1);
             GL.Vertex(p2);
             GL.Vertex(p3);
-            
+
         }
         GL.End();
 
         GL.PopMatrix();
     }
 
-    public void PlayGameLoadSound()
-    {
+    public void PlayGameLoadSound() {
         globalAudioSource.Stop();
         globalAudioSource.loop = true;
         globalAudioSource.clip = gameLoadSound;

@@ -9,9 +9,8 @@ using UnityEngine;
 namespace Crash {
     public class ThrottleController : MonoBehaviour, IMixedRealityPointerHandler {
         public const float MAX_ANGLE = 25, RADIUS = 0.2f;
-        LineRenderer lr;
+        public LineRenderer lr;
         TextMeshProUGUI textMesh;
-        public Transform sphereWhite, sphereGreen;
         PointerData curPointer;
         public Transform relativeTransform;
 
@@ -37,14 +36,14 @@ namespace Crash {
         }
 
         void Start() {
-            lr = GetComponent<LineRenderer>();
-            lr.SetPosition(0, transform.parent.position);
+            //lr = GetComponentInChildren<LineRenderer>();
+            lr.SetPosition(0, relativeTransform.position);
             lr.SetPosition(1, transform.position);
             textMesh = transform.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
         }
 
         void Update() {
-            lr.SetPosition(0, transform.parent.position);
+            lr.SetPosition(0, relativeTransform.position);
             lr.SetPosition(1, transform.position);
         }
 
@@ -58,12 +57,14 @@ namespace Crash {
         }
 
         public void OnPointerDragged(MixedRealityPointerEventData eventData) {
+            relativeTransform = transform.parent.GetChild(1).GetChild(0);
             Vector3 pointerPos = eventData.Pointer.Position;
             Vector3 center = relativeTransform.position;
             Vector3 norm = relativeTransform.right; // not needed anymore
             Vector3 forwardReference = relativeTransform.forward;
             pointerPos.x = relativeTransform.position.x;
-            sphereGreen.transform.position = pointerPos;
+            Debug.DrawRay(relativeTransform.position, forwardReference);
+
 
             Vector3 potentialPosition = ProjectPointToCircle(pointerPos, center, norm, RADIUS);
             float angleFromOutward = Vector3.SignedAngle(forwardReference, potentialPosition, norm);

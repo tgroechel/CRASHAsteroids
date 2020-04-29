@@ -43,8 +43,8 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
         /// </summary>
         internal SceneUnderstanding.SceneMeshLevelOfDetail WorldMeshLOD = SceneUnderstanding.SceneMeshLevelOfDetail.Coarse;
 
-        internal void DisableContinualRetrieval() {
-            continuallyRetrieveData = false;
+        public void DisableContinualRetrieval(bool b = false) {
+            continuallyRetrieveData = b;
         }
 
         internal readonly float _minBoundingSphereRadiusInMeters = 5f;
@@ -126,6 +126,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
                         _latestSceneGuid = Guid.NewGuid();
                     }
                 }
+                FindObjectOfType<WaterTightDetector>().GetComponent<WaterTightDetector>().SetOne();
             }
         }
 
@@ -133,11 +134,10 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
         /// Retrieves Scene Understanding data continuously from the runtime.
         /// </summary>
         private void RetrieveDataContinuously() {
-            while (continuallyRetrieveData) {
+            while (true) {
                 // Always request quads, meshes and the world mesh. SceneUnderstandingDisplayManager will take care of rendering only what the user has asked for.
                 RetrieveData(BoundingSphereRadiusInMeters, true, true, RequestInferredRegions, true, WorldMeshLOD);
             }
-            UnityEngine.Debug.Log("Done retrieving");
         }
 
         /// <summary>
@@ -149,6 +149,9 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity {
         /// <param name="enableWorldMesh">When enabled, retrieves the world mesh.</param>
         /// <param name="lod">If world mesh is enabled, lod controls the resolution of the mesh returned.</param>
         private void RetrieveData(float boundingSphereRadiusInMeters, bool enableQuads, bool enableMeshes, bool enableInference, bool enableWorldMesh, SceneUnderstanding.SceneMeshLevelOfDetail lod) {
+            if (!continuallyRetrieveData) {
+                return;
+            }
             Logger.Log("SceneUnderstandingDataProvider.RetrieveData: Started.");
 
             Stopwatch stopwatch = new Stopwatch();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Microsoft.MixedReality.SceneUnderstanding.Samples.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,15 @@ namespace Crash {
     public class SnapColliderManager : Singleton<SnapColliderManager> {
 
         HashSet<SnapCollider> snapColliders;
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                FindObjectOfType<SceneUnderstandingDataProvider>().DisableContinualRetrieval();
+            }
+            if (Input.GetKeyDown(KeyCode.P)) {
+                FindObjectOfType<WaterTightDetector>().SetOne();
+            }
+        }
 
         public HashSet<SnapCollider> GetAllSnapColliders() {
             if (snapColliders == null) {
