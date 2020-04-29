@@ -59,9 +59,10 @@ namespace Crash {
 
             Vector3 potentialPosition = ProjectPointToCircle(pointerPos, center, norm, RADIUS);
             float angleFromOutward = Vector3.SignedAngle(transform.parent.forward, potentialPosition, norm);
-            Debug.Log(angleFromOutward);
             transform.localPosition = potentialPosition;
-            KuriManager.instance.SetRotation(angleFromOutward);
+            if (FindObjectOfType<KuriManager>()) {
+                KuriManager.instance.SetRotation(angleFromOutward);
+            }
             textMesh.SetText(angleFromOutward.ToString("#.00"));
         }
 
