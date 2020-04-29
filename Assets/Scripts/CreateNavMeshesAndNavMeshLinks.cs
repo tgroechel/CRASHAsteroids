@@ -255,6 +255,9 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour {
         // Wait for a few seconds before instantiating Kuri and Boss objects
         yield return new WaitForSeconds(delayBeforeActivation);
 
+        // Reset showLoading to false
+        showLoading = false;
+
         // Get spawnPosition for the boss
         Vector3 spawnPosition = GetAgentSpawnPosition("BossWalkable", bossTriangleIndex);
 
@@ -300,9 +303,6 @@ public class CreateNavMeshesAndNavMeshLinks : MonoBehaviour {
 
         // Stop Game Loading Sound first
         globalAudioSource.Stop();
-
-        // Reset showLoading to false
-        showLoading = false;
 
         /*// Bake floor meshes again
         foreach (BakeNavMeshRuntime floorNavMeshBakeScript in floorNavMeshBakeScripts)
