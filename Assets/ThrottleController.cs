@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Crash {
     public class ThrottleController : MonoBehaviour, IMixedRealityPointerHandler {
-        public const float MAX_ANGLE = 130, RADIUS = 1.2f;
+        public const float MAX_ANGLE = 15, RADIUS = 0.2f;
         LineRenderer lr;
         TextMeshProUGUI textMesh;
         public Transform sphereWhite, sphereGreen;
@@ -53,7 +53,7 @@ namespace Crash {
         }
 
         public Vector3 ProjectPointToCircle(Vector3 point, Vector3 center, Vector3 circleNormal, float radius) {
-            sphereWhite.localPosition = Vector3.ProjectOnPlane(point, circleNormal);
+            //sphereWhite.localPosition = Vector3.ProjectOnPlane(point, circleNormal);
             return ProjectPointToSphere(point, center, radius);
         }
 
@@ -61,31 +61,30 @@ namespace Crash {
             Vector3 pointerPos = eventData.Pointer.Position;
             Vector3 center = relativeTransform.position;
             Vector3 norm = relativeTransform.right; // not needed anymore
-            Vector3 forwardReference = relativeTransform.forward;
+            Vector3 forwardReference = relativeTransform.up;
             pointerPos.x = relativeTransform.position.x;
             sphereGreen.transform.position = pointerPos;
 
             Vector3 potentialPosition = ProjectPointToCircle(pointerPos, center, norm, RADIUS);
             float angleFromOutward = Vector3.SignedAngle(forwardReference, potentialPosition, norm);
+            angleFromOutward -= 90;
             Debug.Log(angleFromOutward);
             // -120 up, 120 down
             float percent = 0;
 
-            /* if (angleFromOutward < 0) {
-                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                     potentialPosition = center + (Quaternion.Euler(-MAX_ANGLE, 0, 0) * forwardReference - center).normalized * RADIUS;
-                     angleFromOutward = -MAX_ANGLE;
-                 }
-                 percent = (180 + angleFromOutward) / (180 - MAX_ANGLE);
-             }
-             else {
-                 if (Mathf.Abs(angleFromOutward) < MAX_ANGLE) {
-                     potentialPosition = center + (Quaternion.Euler(MAX_ANGLE, 0, 0) * forwardReference - center).normalized * RADIUS;
-                     angleFromOutward = MAX_ANGLE;
-                 }
-                 percent = -(180 - angleFromOutward) / (180 - MAX_ANGLE);
-             }*/
-
+            if (angleFromOutward < 0) {
+                if (Mathf.Abs(angleFromOutward) > MAX_ANGLE) {
+                    potentialPosition = center + (Quaternion.Euler(MAX_ANGLE + 90, 0, 0) * -forwardReference - center).normalized * RADIUS;
+                    angleFromOutward = -MAX_ANGLE;
+                }
+            }
+            else {
+                if (Mathf.Abs(angleFromOutward) > MAX_ANGLE) {
+                    potentialPosition = center + (Quaternion.Euler(-MAX_ANGLE + 90, 0, 0) * -forwardReference - center).normalized * RADIUS;
+                    angleFromOutward = MAX_ANGLE;
+                }
+            }
+            percent = -angleFromOutward / MAX_ANGLE;
             transform.position = potentialPosition;
             KuriManager.instance.SetVelocity(percent);
             textMesh.SetText(percent.ToString("#.00"));

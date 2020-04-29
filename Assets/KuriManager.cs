@@ -14,13 +14,16 @@ namespace Crash {
 
         public float turnSpeed = 3.0f;
 
+        public GameObject shield;
+
         void Awake() {
             rb = GetComponent<Rigidbody>();
             kuriWheelController = GetComponent<KuriWheelController>();
+            shield.SetActive(false);
         }
 
-        internal void AlertHeadPat() {
-            Debug.Log("Head was pat");
+        public void AlertHeadPat() {
+            shield.SetActive(!shield.activeSelf);
         }
 
         public void SetVelocity(float linear) {
@@ -42,7 +45,7 @@ namespace Crash {
         }
 
         private void UpdateVelocity() {
-            rb.velocity = transform.forward * desiredSpeed;
+            transform.position = transform.position + transform.forward * desiredSpeed * Time.deltaTime;
         }
 
         private void Turn() {

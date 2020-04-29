@@ -19,8 +19,7 @@ namespace Crash {
         private BossAttackScript rightGun;
         private BossLaserScript laser;
 
-        void Awake()
-        {
+        void Awake() {
             leftGun = leftGunGO.GetComponent<BossAttackScript>();
             rightGun = rightGunGO.GetComponent<BossAttackScript>();
             laser = laserGO.GetComponent<BossLaserScript>();
@@ -33,23 +32,19 @@ namespace Crash {
             Vector3 relativePos2Player = Camera.main.transform.position - MountTop.transform.position;
             relativePos2Player.y = 0;
             Quaternion lookAtPlayerRotation = Quaternion.identity;
-            if (relativePos2Player != Vector3.zero)
-            {
+            if (relativePos2Player != Vector3.zero) {
                 lookAtPlayerRotation = Quaternion.LookRotation(relativePos2Player, Vector3.up);
             }
 
-            if (rotatingToPlayer)
-            {
-                if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) < 180)
-                {
+            if (rotatingToPlayer) {
+                if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) < 180) {
                     float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
                     if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
                         MountTop.transform.rotation *= Quaternion.Euler(0, sign * 4 * rotationSpeed, 0);
                     else if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > rotationSpeed)
                         MountTop.transform.rotation *= Quaternion.Euler(0, sign * rotationSpeed, 0);
                 }
-                else
-                {
+                else {
                     float sign = Mathf.Sign(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y);
                     if (Mathf.Abs(lookAtPlayerRotation.eulerAngles.y - MountTop.transform.rotation.eulerAngles.y) > 30)
                         MountTop.transform.rotation *= Quaternion.Euler(0, -sign * 4 * rotationSpeed, 0);
@@ -99,10 +94,8 @@ namespace Crash {
             }
         }
 
-        public void PatternSelector(FirePatterns pattern, GunsToUse guns)
-        {
-            switch (pattern)
-            {
+        public void PatternSelector(FirePatterns pattern, GunsToUse guns) {
+            switch (pattern) {
                 case FirePatterns.Single:
                     Pattern0(guns);
                     break;
@@ -142,8 +135,7 @@ namespace Crash {
                 leftGun.Pattern0();
             else if (guns == GunsToUse.Right)
                 rightGun.Pattern0();
-            else
-            {
+            else {
                 leftGun.Pattern0();
                 rightGun.Pattern0();
             }
@@ -155,22 +147,19 @@ namespace Crash {
                 leftGun.Pattern1(Random.Range(0, 1000));
             else if (guns == GunsToUse.Right)
                 rightGun.Pattern1(Random.Range(0, 1000));
-            else
-            {
+            else {
                 leftGun.Pattern1(Random.Range(0, 1000));
                 rightGun.Pattern1(Random.Range(0, 1000));
             }
         }
 
         // an array of bullets - horizontal
-        public void Pattern2(GunsToUse guns)
-        {
+        public void Pattern2(GunsToUse guns) {
             if (guns == GunsToUse.Left)
                 leftGun.Pattern2(Random.Range(0, 1000));
             else if (guns == GunsToUse.Right)
                 rightGun.Pattern2(Random.Range(0, 1000));
-            else
-            {
+            else {
                 leftGun.Pattern2(Random.Range(0, 1000));
                 rightGun.Pattern2(Random.Range(0, 1000));
             }
@@ -182,8 +171,7 @@ namespace Crash {
                 leftGun.Pattern3(Random.Range(0, 1000));
             else if (guns == GunsToUse.Right)
                 rightGun.Pattern3(Random.Range(0, 1000));
-            else
-            {
+            else {
                 leftGun.Pattern3(Random.Range(0, 1000));
                 rightGun.Pattern3(Random.Range(0, 1000));
             }
@@ -195,8 +183,7 @@ namespace Crash {
                 leftGun.CircularPattern();
             else if (guns == GunsToUse.Right)
                 rightGun.CircularPattern();
-            else
-            {
+            else {
                 leftGun.CircularPattern();
                 rightGun.CircularPattern();
             }
@@ -208,8 +195,7 @@ namespace Crash {
                 leftGun.CrossPattern();
             else if (guns == GunsToUse.Right)
                 rightGun.CrossPattern();
-            else
-            {
+            else {
                 leftGun.CrossPattern();
                 rightGun.CrossPattern();
             }
@@ -221,8 +207,7 @@ namespace Crash {
                 leftGun.DiePattern();
             else if (guns == GunsToUse.Right)
                 rightGun.DiePattern();
-            else
-            {
+            else {
                 leftGun.DiePattern();
                 rightGun.DiePattern();
             }
@@ -232,8 +217,7 @@ namespace Crash {
         public void Laser() {
             laser.startLaser();
         }
-        public void AbortLaser()
-        {
+        public void AbortLaser() {
             laser.stop();
         }
     }

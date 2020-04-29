@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class WaterTightDetector : MonoBehaviour{
+public class WaterTightDetector : MonoBehaviour {
     public GameObject SC;
     public GameObject root;
     public Text progressText;
@@ -18,8 +18,8 @@ public class WaterTightDetector : MonoBehaviour{
     public int checkInterval = 2;
 
     public CreateNavMeshesAndNavMeshLinks navObj;
-    public Canvas loadCanvas;
-    public Canvas hudCanvas;
+    public GameObject loadCanvas;
+    public GameObject hudCanvas;
 
     public bool isWaterTight = false;
     private bool detectionDone = false;
@@ -28,22 +28,21 @@ public class WaterTightDetector : MonoBehaviour{
     private static String detectionText = "Scanning environment ... ";
     private static String generatingText = "Scanning complete, Generating NavMesh";
 
-    
+
     // Start is called before the first frame update
     void Start() {
         navObj = root.GetComponent<CreateNavMeshesAndNavMeshLinks>();
         hudCanvas.gameObject.SetActive(false);
+        loadCanvas.gameObject.SetActive(true);
         // Instanciate sphere objects, disable them and put them in object pool
         InstanciateSpheres(ballCount);
         LaunchSpheres();
     }
 
     void Update() {
-        if (detectionDone)
-        {
-            progressBar.value = (float) navObj.percentageCompleted/100;
-            if (!navObj.showLoading)
-            {
+        if (detectionDone) {
+            progressBar.value = (float)navObj.percentageCompleted / 100;
+            if (!navObj.showLoading) {
                 loadCanvas.gameObject.SetActive(false);
                 hudCanvas.gameObject.SetActive(true);
             }
@@ -55,13 +54,12 @@ public class WaterTightDetector : MonoBehaviour{
             detectionDone = true;
             progressText.text = generatingText;
             progressBar.value = progressBar.maxValue;
-            for (int i = 0; i < spheres.Count; i++)
-            {
+            for (int i = 0; i < spheres.Count; i++) {
                 Destroy(spheres[i]);
             }
-            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().gameObject.SetActive(false);
+            SC.GetComponentInChildren<SceneUnderstandingDataProvider>().DisableContinualRetrieval();
         }
-        
+
     }
 
     public bool IsWaterTight() {

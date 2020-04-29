@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CRASHSceneUnderstandingUtil : MonoBehaviour
-{
+public class CRASHSceneUnderstandingUtil : MonoBehaviour {
     [Tooltip("Prints debug message of this util on console or not.")]
     public static bool ShowDebugMessage = false;
 
@@ -15,19 +14,16 @@ public class CRASHSceneUnderstandingUtil : MonoBehaviour
     /// Feasible instantiate position of the robot. 
     /// If no floor is deteced, returned position would be 2 meters directly in front of player's camera
     /// </returns>
-    public static Vector3 GetRobotInitialPosition(GameObject robot)
-    {
+    public static Vector3 GetRobotInitialPosition(GameObject robot) {
         Vector3 startPoint = Camera.main.transform.position + (Camera.main.transform.forward * 2);
         Vector3 direction = Camera.main.transform.up * -1;
 
         Tuple<bool, Vector3> result = GetFloorProjectionPoint(startPoint, direction);
-        if (result.Item1)
-        {
-            if(ShowDebugMessage) Debug.Log("Floor detected, use hit point of downard raycast 2 meters away from player as robot initial position");
+        if (result.Item1) {
+            if (ShowDebugMessage) Debug.Log("Floor detected, use hit point of downard raycast 2 meters away from player as robot initial position");
             return result.Item2;
         }
-        else
-        {
+        else {
             if (ShowDebugMessage) Debug.Log("Floor not detected, failover to use point 2 meters away from player as robot initial position");
             return Camera.main.transform.position + (Camera.main.transform.forward * 2);
         }
@@ -40,8 +36,7 @@ public class CRASHSceneUnderstandingUtil : MonoBehaviour
     /// A tuple. First item is a bool that indicates whether a floor plane is found.
     /// Second item is a Vector3 that returns the projection point on floor. If no floor is found, this item would be (0,0,0)
     /// </returns>
-    public static Tuple<bool, Vector3> GetFloorProjectionPoint(GameObject go)
-    {
+    public static Tuple<bool, Vector3> GetFloorProjectionPoint(GameObject go) {
         Vector3 startPoint = go.transform.position;
         Vector3 direction = go.transform.up * -1;
 
@@ -55,14 +50,11 @@ public class CRASHSceneUnderstandingUtil : MonoBehaviour
     /// A tuple. First item is a bool that indicates whether a floor plane is detected.
     /// Second item is a Vector3 that returns the hit point on floor. If no floor is found, this item would be (0,0,0)
     /// </returns>
-    public static Tuple<bool, Vector3> GetFloorProjectionPoint(Vector3 startPoint, Vector3 direction)
-    {
+    public static Tuple<bool, Vector3> GetFloorProjectionPoint(Vector3 startPoint, Vector3 direction) {
         RaycastHit hit;
-        if (Physics.Raycast(startPoint, direction, out hit, Mathf.Infinity))
-        {
-            if (hit.collider.gameObject.name == "Floor")
-            {
-                if(ShowDebugMessage) Debug.Log("Floor detected");
+        if (Physics.Raycast(startPoint, direction, out hit, Mathf.Infinity)) {
+            if (hit.collider.gameObject.name == "Floor") {
+                if (ShowDebugMessage) Debug.Log("Floor detected");
                 return Tuple.Create(true, hit.point);
             }
         }
@@ -78,8 +70,7 @@ public class CRASHSceneUnderstandingUtil : MonoBehaviour
     /// A tuple. First item is a bool that indicates whether a floor plane is detected.
     /// Second item is a Vector3 that returns the hit point on floor. If no floor is found, this item would be (0,0,0)
     /// </returns>
-    public static bool IsWaterTight(Vector3 startPoint, Vector3 direction)
-    {
+    public static bool IsWaterTight(Vector3 startPoint, Vector3 direction) {
         /*
         RaycastHit hit;
         if (Physics.Raycast(startPoint, direction, out hit, Mathf.Infinity))
