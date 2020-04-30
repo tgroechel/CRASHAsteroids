@@ -22,7 +22,7 @@ namespace Crash {
         void Awake() {
             leftGun = leftGunGO.GetComponent<BossAttackScript>();
             rightGun = rightGunGO.GetComponent<BossAttackScript>();
-            laser = laserGO.GetComponent<BossLaserScript>();
+            laser = FindObjectOfType<BossLaserScript>();
         }
 
         // Update is called once per frame

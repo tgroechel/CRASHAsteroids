@@ -6,8 +6,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Crash {
-    public class BossAttackScript : MonoBehaviour
-    {
+    public class BossAttackScript : MonoBehaviour {
         public float bulletSpeed = 2;
         public int bulletPoolSize;
         public GameObject explodePrefab;
@@ -26,37 +25,32 @@ namespace Crash {
 
         float timeElapsed;
 
-        void Start()
-        {
+        void Start() {
             effect = Resources.Load<GameObject>(ResourcePathManager.bossProjectile) as GameObject;
             fireEffect = Resources.Load<GameObject>(ResourcePathManager.bossGunFire) as GameObject;
             GetComponent<BulletPoolManager>().createPool("boss bullet", effect, bulletPoolSize);
             animator = GetComponent<Animator>();
         }
 
-        void Update()
-        {
+        void Update() {
             timeElapsed += Time.deltaTime;
-            if (timeElapsed > 1)
-            {
+            if (timeElapsed > 1) {
                 //gun.GetComponent<Animator>().ResetTrigger("Fold");
                 //gun.GetComponent<Animator>().ResetTrigger("Unfold");
                 //gun.GetComponent<Animator>().SetTrigger("Shoot");
-                gun.GetComponent<Animator>().enabled = false;
+                GetComponent<Animator>().enabled = false;
                 //Debug.Log("shooooot!");
             }
         }
 
-        private void gunFire(Vector3 spawnPos)
-        {
+        private void gunFire(Vector3 spawnPos) {
             GameObject fire = Instantiate(fireEffect, spawnPos, Quaternion.identity);
         }
 
-        private GameObject getBullet()
-        {
+        private GameObject getBullet() {
             timeElapsed = 0;
             gun.GetComponent<Animator>().enabled = true;
-            
+
 
             GameObject vfx = GetComponent<BulletPoolManager>().getInstance("boss bullet");
             if (vfx != null)
@@ -64,21 +58,18 @@ namespace Crash {
             return vfx;
         }
 
-        private Vector3 getSpawnPos()
-        {
+        private Vector3 getSpawnPos() {
             if (Random.Range(-10, 10) < 0)
                 return barrel1.transform.position;
             else
                 return barrel2.transform.position;
         }
 
-        public void Pattern0()
-        {
+        public void Pattern0() {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             GameObject vfx = getBullet();
-            if (vfx != null)
-            {
+            if (vfx != null) {
                 vfx.transform.position = spawnPos;
                 vfx.transform.rotation = Quaternion.identity;
                 Vector3 dir = Camera.main.transform.position - transform.position;
@@ -88,8 +79,7 @@ namespace Crash {
 
         }
 
-        public void Pattern1(int i)
-        {
+        public void Pattern1(int i) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             int ii = i % 18;
@@ -97,8 +87,7 @@ namespace Crash {
                 ii = 17 - ii;
 
             GameObject vfx = getBullet();
-            if (vfx != null)
-            {
+            if (vfx != null) {
                 vfx.transform.position = spawnPos;// + new Vector3(0, 0.1f, 0);
                 vfx.transform.rotation = Quaternion.identity;
                 Vector3 targetPos = Camera.main.transform.position;
@@ -112,16 +101,14 @@ namespace Crash {
 
 
 
-        public void Pattern2(int i)
-        {
+        public void Pattern2(int i) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
-            for (int jj = 0; jj < 7; jj++)
-            {
+            for (int jj = 0; jj < 7; jj++) {
                 vfx = getBullet();
                 if (vfx == null) continue;
                 vfx.transform.position = spawnPos;// + new Vector3(0, jj * 0.05f, 0);
@@ -130,8 +117,7 @@ namespace Crash {
             }
             int j = 0;
             Vector3 targetPos, dir;
-            foreach (GameObject bullet in bullets)
-            {
+            foreach (GameObject bullet in bullets) {
                 targetPos = Camera.main.transform.position;
                 if (ii == 0)
                     targetPos.y += 0.15f;
@@ -145,16 +131,14 @@ namespace Crash {
                 bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
         }
 
-        public void Pattern3(int i)
-        {
+        public void Pattern3(int i) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             int ii = i % 3;
             GameObject vfx;
             List<GameObject> bullets = new List<GameObject>();
 
-            for (int jj = 0; jj < 7; jj++)
-            {
+            for (int jj = 0; jj < 7; jj++) {
                 GameObject head = Camera.main.gameObject;
                 Vector3 relativePos2Player = head.transform.position - transform.position;
                 relativePos2Player.y = 0;
@@ -170,8 +154,7 @@ namespace Crash {
             }
             int j = 0;
             Vector3 targetPos, dir;
-            foreach (GameObject bullet in bullets)
-            {
+            foreach (GameObject bullet in bullets) {
                 targetPos = Camera.main.transform.position;
                 dir = Quaternion.AngleAxis(-7.5f + 2.5f * j, Vector3.forward) * (targetPos - transform.position);
                 bullet.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
@@ -181,8 +164,7 @@ namespace Crash {
                 bullets[0].GetComponent<ProjectileMoveScript2>().playSpawnSound();
         }
 
-        public void CircularPattern(float offset = 0.2f)
-        {
+        public void CircularPattern(float offset = 0.2f) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             GameObject vfx;
@@ -192,8 +174,7 @@ namespace Crash {
 
 
             offset = 0.3f;
-            for (int jj = 0; jj < 8; jj++)
-            {
+            for (int jj = 0; jj < 8; jj++) {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
@@ -211,16 +192,14 @@ namespace Crash {
                 Vector3 dir = head.transform.position + newY * (float)Math.Cos(angle) * offset
                     + newZ * (float)Math.Sin(angle) * offset - transform.position;
                 vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-                if (!soundPlayed)
-                {
+                if (!soundPlayed) {
                     vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                     soundPlayed = true;
                 }
             }
         }
 
-        public void CrossPattern(float offset = 0.3f)
-        {
+        public void CrossPattern(float offset = 0.3f) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             GameObject vfx;
@@ -231,8 +210,7 @@ namespace Crash {
             float[] yOffsets = { -2, -1, 0, 1, 2, 0, 0, 0, 0 };
             float[] zOffsets = { 0, 0, 0, 0, 0, -2, -1, 1, 2 };
 
-            for (int jj = 0; jj < 9; jj++)
-            {
+            for (int jj = 0; jj < 9; jj++) {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
@@ -249,16 +227,14 @@ namespace Crash {
                 Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
                     + newZ * zOffsets[jj] * offset - transform.position;
                 vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-                if (!soundPlayed)
-                {
+                if (!soundPlayed) {
                     vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                     soundPlayed = true;
                 }
             }
         }
 
-        public void DiePattern(float offset = 0.15f)
-        {
+        public void DiePattern(float offset = 0.15f) {
             Vector3 spawnPos = getSpawnPos();
             gunFire(spawnPos);
             GameObject vfx;
@@ -273,8 +249,7 @@ namespace Crash {
                 -1, 0, 1, 0, 0, 0, -1, 0, 1,
                 3, 4, 5, 3, 3, 4, 3, 3, 4, 5};
 
-            for (int jj = 0; jj < 29; jj++)
-            {
+            for (int jj = 0; jj < 29; jj++) {
                 vfx = getBullet();
                 if (vfx == null) continue;
 
@@ -291,8 +266,7 @@ namespace Crash {
                 Vector3 dir = head.transform.position + newY * yOffsets[jj] * offset
                     + newZ * zOffsets[jj] * offset - transform.position;
                 vfx.GetComponent<ProjectileMoveScript2>().SetDirection(dir);
-                if (!soundPlayed)
-                {
+                if (!soundPlayed) {
                     vfx.GetComponent<ProjectileMoveScript2>().playSpawnSound();
                     soundPlayed = true;
                 }
